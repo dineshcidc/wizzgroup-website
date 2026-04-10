@@ -1,0 +1,11 @@
+/* =========================================
+   Global Styles — Wizzgroup Website
+   ========================================= */
+
+@import "tailwindcss";
+@import "./switzer.css";
+
+/* Apply Switzer as the default font across the entire application */
+* {
+  font-family: 'Switzer', system-ui, sans-serif;
+}

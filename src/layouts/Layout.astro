@@ -1,0 +1,80 @@
+---
+/**
+ * Layout.astro — Main site layout
+ * Wraps every page with <head>, Header, Footer, and AOS init.
+ *
+ * Props:
+ *   title       — <title> tag content
+ *   description — meta description (defaults to site description)
+ */
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Wizzgroup — Building digital products that matter.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+    <title>{title} | Wizzgroup</title>
+  </head>
+
+  <body class="flex flex-col min-h-screen bg-white text-slate-800 antialiased">
+    <!-- Skip to content (accessibility) -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-indigo-600 text-white px-4 py-2 rounded z-50"
+    >
+      Skip to content
+    </a>
+
+    <!-- Site Header -->
+    <Header />
+
+    <!-- Page Content -->
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Site Footer -->
+    <Footer />
+
+    <!-- AOS Init Script -->
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 600,   // animation duration in ms
+        easing: 'ease-out-cubic',
+        once: true,      // animate only on first scroll into view
+        offset: 80,      // trigger offset from element bottom
+      });
+    </script>
+  </body>
+</html>

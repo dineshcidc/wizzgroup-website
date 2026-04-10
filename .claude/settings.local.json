@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(mkdir -p /tmp/astro-init)",
+      "Read(//tmp/**)",
+      "Bash(npm install:*)",
+      "Bash(npx astro:*)",
+      "Bash(npm run:*)"
+    ]
+  }
+}
