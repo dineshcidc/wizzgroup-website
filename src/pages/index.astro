@@ -1,19 +1,223 @@
 ---
-// Landing Page — /
-// Placeholder until Figma design is implemented
-import '../styles/global.css';
+import "../styles/global.css";
+import LogoCard from "../components/LogoCard.astro";
+import SocialFooter from "../components/SocialFooter.astro";
+import PageAnimations from "../components/PageAnimations.astro";
+import Carousel from "../components/Carousel.astro";
+import banner from "../assets/ApplicationBanner.png";
+import mapdots from "../assets/Mapdots.png";
+import layers from "../assets/Layers.png";
+import positionlogos from "../assets/Positionlogos.png";
+import wizzstates from "../assets/Wizzstates.png";
+import logo from "../assets/Wizzlogo.png";
+
+// Extend this array to add more carousel slides
+const slides = [
+  {
+    title: "One Platform. Global Finance.",
+    p1: "From cards to cross-border transfers, from FX to embedded lending — Wizz powers every layer of modern finance through a single, integrated ecosystem.",
+    p2: "Designed for scale and speed, Wizz Financial brings together core financial capabilities into one seamless infrastructure — enabling businesses and individuals to transact, lend, and settle globally without friction.",
+    bgImage: mapdots.src,
+    fgImage: layers.src,
+    fgAlt: "Layered financial platform visualization",
+    fgScale: "scale-100",
+    headerLines: [
+      { text: "Powering Every Transaction", bold: false },
+      { text: "Globally", bold: true },
+    ],
+  },
+  {
+    title: "A Global Financial Ecosystem",
+    p1: "A network of trusted brands and platforms working together to deliver end-to-end financial solutions across markets, industries, and customer segments.",
+    p2: "Wizz Financial brings together a powerful group of companies — combining distribution, technology, licensing, and customer reach — to create a financial ecosystem built for global scale.",
+    bgImage: mapdots.src,
+    fgImage: positionlogos.src,
+    fgAlt: "Wizz position logos",
+    fgScale: "scale-90",
+    headerLines: [
+      { text: "The WIZZ Ecosystem", bold: true },
+      { text: "Where brands, technology, and scale come together.", bold: false },
+    ],
+  },
+  {
+    title: "Explore Global Corridors",
+    p1: "Seamlessly powering financial movement across India, USA, UK, and the Middle East & Africa — through a unified, intelligent network.",
+    p2: "Move money, access currencies, and transact globally with a platform built for speed, scale, and trust. Wizz Financial connects key global corridors, enabling individuals and businesses to operate without borders.",
+    bgImage: mapdots.src,
+    fgImage: wizzstates.src,
+    fgAlt: "Wizz global states map",
+    fgScale: "scale-100",
+    headerLines: [
+      { text: "50+ licenses", bold: true },
+      { text: "Multi-market presence", bold: false },
+      { text: "Trusted by millions", bold: false },
+    ],
+  },
+];
 ---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/Wizzlogo.png" />
+    <link rel="icon" type="image/png" href={logo.src} />
     <title>Landing Page</title>
-    <style>
-      body { margin: 0; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, sans-serif; }
+    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
+      .hero-bg {
+        background-image: var(--bannerSrc);
+      }
     </style>
   </head>
-  <body>
-    <h1 class="text-[50px] font-bold text-center">Landing Page</h1>
+  <body class="m-0 p-0 overflow-x-hidden">
+    <div
+      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col p-5 sm:p-8 md:p-10 lg:p-12"
+    >
+      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+
+      <div class="relative z-10 flex-1 flex flex-col justify-between gap-8 sm:gap-10 lg:gap-0">
+        <!-- Sub-header -->
+        <div
+          class="opacity-0 flex flex-col gap-5 mb-10 h-fit sm:flex-row sm:justify-between sm:items-center lg:mb-0"
+          data-animate="fade-up"
+          data-delay="100"
+        >
+          <LogoCard />
+          <!-- Header cards: stacked absolutely, swapped in sync with carousel slides -->
+          <div class="relative">
+            {slides.map((slide, i) => (
+              <div
+                class={`header-card text-white rounded-3xl text-center border border-white/10 leading-snug uppercase
+                  bg-[#373737]/25 p-3 text-xs md:p-3.5 md:text-lg lg:p-4 md:text-md xl:p-4 2xl:p-4
+                  transition-opacity duration-300 ease-in-out
+                  ${i === 0 ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 w-full pointer-events-none'}`}
+                data-header={i}
+              >
+                {slide.headerLines.map((line, j) => (
+                  <>
+                    {j > 0 && <br />}
+                    {line.bold ? <span class="font-bold">{line.text}</span> : line.text}
+                  </>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Carousel -->
+        <div
+          id="carousel"
+          class="opacity-0 relative"
+          data-animate="fade-up"
+          data-delay="300"
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+            <!-- Left: per-slide text panels, absolutely stacked -->
+            <div
+              class="lg:col-span-6 relative
+              min-h-44 sm:min-h-56 md:min-h-72 lg:min-h-80 xl:min-h-88 2xl:min-h-96"
+            >
+              {
+                slides.map((slide, i) => (
+                  <div
+                    class={`carousel-slide absolute inset-0 flex flex-row gap-6 items-center transition-opacity duration-300 ease-in-out ${i === 0 ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                    data-slide={i}
+                  >
+                    <div
+                      class="shrink-0 rounded-full bg-linear-to-b from-[#F6AF27] to-[#CA7D0F]
+                      w-1.5  h-40
+                      sm:w-2  sm:h-52
+                      md:w-2.5 md:h-64
+                      lg:w-3  lg:h-72
+                      xl:w-3.5 xl:h-80
+                      2xl:w-4  2xl:h-80"
+                    />
+
+                    <div
+                      class="flex-1 bg-[#373737]/30 border border-white/10 rounded-3xl
+                    p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8"
+                    >
+                      <h2
+                        class="text-white font-bold leading-tight mb-5 md:mb-10 sm:whitespace-nowrap
+                        text-lg sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl"
+                      >
+                        {slide.title}
+                      </h2>
+                      <div class="space-y-6">
+                        <p
+                          class="text-[#CBCBCB] font-medium md:leading-8
+                          text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl"
+                        >
+                          {slide.p1}
+                        </p>
+                        <p
+                          class="text-[#CBCBCB] font-light md:leading-8
+                          text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-xl"
+                        >
+                          {slide.p2}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Right: static map background + per-slide foreground images -->
+            <div class="lg:col-span-6 relative">
+              <!-- Mapdots in normal flow — sets the container height naturally -->
+              <img
+                src={mapdots.src}
+                alt=""
+                aria-hidden="true"
+                class="block w-full h-auto"
+              />
+              <!-- Overlay images absolutely cover the same space as mapdots -->
+              {
+                slides.map((slide, i) => (
+                  <img
+                    src={slide.fgImage}
+                    alt={slide.fgAlt}
+                    data-fg={i}
+                    class={`absolute inset-0 w-full h-full object-contain z-10 ${slide.fgScale}
+                    transition-opacity duration-300 ease-in-out
+                    ${i === 0 ? "opacity-100" : "opacity-0"}`}
+                  />
+                ))
+              }
+            </div>
+          </div>
+
+          <!-- Dot indicators (horizontal on mobile, vertical on desktop) -->
+          <div
+            role="tablist"
+            aria-label="Carousel navigation"
+            class="flex gap-3 mt-6 items-center justify-center
+              lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:mt-0
+              lg:flex-col lg:gap-4"
+          >
+            {
+              slides.map((_, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-label={`Go to slide ${i + 1}`}
+                  aria-selected={i === 0 ? "true" : "false"}
+                  data-dot={i}
+                  class={`carousel-dot rounded-full transition-all duration-300 cursor-pointer border-0 ${i === 0 ? "active bg-white" : "bg-white/40 hover:bg-white/70"}`}
+                />
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="700">
+          <SocialFooter />
+        </div>
+      </div>
+    </div>
+
+    <Carousel />
+    <PageAnimations />
   </body>
 </html>

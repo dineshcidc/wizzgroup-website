@@ -1,0 +1,76 @@
+<script>
+  const slides      = document.querySelectorAll<HTMLElement>('.carousel-slide');
+  const fgImages    = document.querySelectorAll<HTMLElement>('[data-fg]');
+  const headerCards = document.querySelectorAll<HTMLElement>('[data-header]');
+  const dots        = document.querySelectorAll<HTMLButtonElement>('.carousel-dot');
+  const FADE_OUT   = 350;
+  const FADE_IN    = 400;
+  const AUTO_DELAY = 5000;
+  let current    = 0;
+  let isAnimating = false;
+  let autoTimer: ReturnType<typeof setInterval>;
+
+  function updateDots(activeIndex: number): void {
+    dots.forEach((dot, i) => {
+      const active = i === activeIndex;
+      dot.setAttribute('aria-selected', String(active));
+      if (active) {
+        dot.classList.add('active', 'bg-white');
+        dot.classList.remove('bg-white/40');
+      } else {
+        dot.classList.remove('active', 'bg-white');
+        dot.classList.add('bg-white/40');
+      }
+    });
+  }
+
+  function goToSlide(next: number): void {
+    if (next === current || isAnimating) return;
+    isAnimating = true;
+
+    const prevIdx = current;
+
+    // Fade out current slide, fg image, and header card
+    slides[prevIdx].classList.remove('opacity-100');
+    slides[prevIdx].classList.add('opacity-0', 'pointer-events-none');
+    fgImages[prevIdx].classList.remove('opacity-100');
+    fgImages[prevIdx].classList.add('opacity-0');
+    headerCards[prevIdx].classList.remove('opacity-100');
+    headerCards[prevIdx].classList.add('opacity-0', 'pointer-events-none');
+
+    setTimeout(() => {
+      // Fade in next slide, fg image, and header card
+      slides[next].classList.remove('opacity-0', 'pointer-events-none');
+      slides[next].classList.add('opacity-100');
+      fgImages[next].classList.remove('opacity-0');
+      fgImages[next].classList.add('opacity-100');
+      headerCards[next].classList.remove('opacity-0', 'pointer-events-none');
+      headerCards[next].classList.add('opacity-100');
+
+      updateDots(next);
+      current = next;
+
+      setTimeout(() => { isAnimating = false; }, FADE_IN);
+    }, FADE_OUT);
+  }
+
+  function startAuto(): void {
+    autoTimer = setInterval(() => {
+      goToSlide((current + 1) % slides.length);
+    }, AUTO_DELAY);
+  }
+
+  function resetAuto(): void {
+    clearInterval(autoTimer);
+    startAuto();
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      goToSlide(Number(dot.dataset.dot));
+      resetAuto();
+    });
+  });
+
+  startAuto();
+</script>

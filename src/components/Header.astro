@@ -1,0 +1,92 @@
+---
+/**
+ * Header.astro — Site-wide header component
+ * Similar to LogoCard in style, but full-width with "Contact Us" CTA.
+ *
+ * Responsive breakpoints:
+ *   base/sm  → mobile  (~375–639px)
+ *   md       → tablet  (768px+)
+ *   lg       → small desktop (1024px+)
+ *   xl       → desktop (1280px+)
+ *   2xl      → large desktop (1536px+)
+ */
+import logo from '../assets/Wizzlogo.png';
+---
+
+<header
+  class="w-full flex items-center justify-between bg-[#373737]/12
+    p-3 rounded-[10px]
+    sm:p-3 sm:rounded-[10px]
+    md:p-4 md:rounded-[10px]
+    lg:p-4 lg:rounded-[10px]
+    xl:p-5 xl:rounded-[10px]
+    2xl:p-6 2xl:rounded-[10px]"
+>
+  <!-- Left: Logo -->
+  <img
+    src={logo.src}
+    alt="Wizzgroup Logo"
+    class="object-contain
+      h-7
+      sm:h-8
+      md:h-9
+      lg:h-10
+      xl:h-11
+      2xl:h-12"
+  />
+
+  <!-- Right: Contact Us button + Menu icon -->
+  <div class="flex items-center gap-5">
+    <!-- Contact Us button -->
+    <button
+      type="button"
+      class="flex items-center whitespace-nowrap cursor-pointer
+        font-medium text-white bg-[#4D4222]/40
+        gap-1 h-8 px-3 py-1 rounded-[20px] text-xs
+        sm:gap-1.5 sm:h-8 sm:px-3 sm:py-1 sm:rounded-[22px] sm:text-xs
+        md:gap-2 md:h-9 md:px-4 md:py-1.5 md:rounded-[26px] md:text-sm
+        lg:gap-2 lg:h-10 lg:px-4 lg:py-2 lg:rounded-[30px] lg:text-sm
+        xl:gap-2 xl:h-11 xl:px-5 xl:py-2 xl:rounded-[36px] xl:text-sm
+        2xl:gap-2 2xl:h-12.5 2xl:px-6 2xl:py-2.5 2xl:rounded-[40px] 2xl:text-base"
+    >
+      Contact Us
+
+      <!-- Right chevron icon -->
+      <svg
+        class="w-3 h-3 md:w-3.5 md:h-3.5 lg:w-4 lg:h-4"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 3L11 8L6 13"
+          stroke="white"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </button>
+
+    <!-- Menu icon -->
+    <button
+      type="button"
+      aria-label="Open menu"
+      class="cursor-pointer text-white"
+    >
+      <svg
+        class="w-6 h-6 md:w-7 md:h-7"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M3 6h18M3 12h18M3 18h18"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+  </div>
+</header>

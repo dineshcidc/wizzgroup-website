@@ -9,3 +9,11 @@
 * {
   font-family: 'Switzer', system-ui, sans-serif;
 }
+
+/* ── Carousel dots ── */
+.carousel-dot        { width: 0.75rem; height: 0.75rem; }
+.carousel-dot.active { width: 1.5rem;  height: 0.75rem; background: white; }
+
+@media (min-width: 1024px) {
+  .carousel-dot.active { width: 0.75rem; height: 1.5rem; }
+}
