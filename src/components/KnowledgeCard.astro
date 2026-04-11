@@ -1,0 +1,59 @@
+---
+/**
+ * KnowledgeCard Component
+ */
+interface Props {
+  image: ImageMetadata;
+  date: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+import type { ImageMetadata } from "astro";
+const { image, date, title, description, href = "/blog-detail" } = Astro.props;
+---
+
+<div class="group/card bg-[#1F1F1F]/60 rounded-lg md:p-8 p-3 flex flex-col gap-6 border border-white/5 transition-all duration-300 hover:border-white/20 hover:shadow-xl h-full">
+  <!-- Image Section -->
+  <div class="w-full h-60 rounded-lg overflow-hidden bg-[#373737]">
+    <img src={image.src} alt={title} class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover/card:scale-110" />
+  </div>
+
+  <!-- Text Section -->
+  <div class="flex flex-col gap-3 flex-1">
+    <span class="text-sm text-white/60">
+      {date}
+    </span>
+
+    <h3 class="text-xl font-bold bg-linear-to-r from-[#959595] to-[#B1D1EA] bg-clip-text text-transparent leading-snug line-clamp-2">
+      {title}
+    </h3>
+
+    <p class="text-sm text-white/80 leading-relaxed line-clamp-3">
+      {description}
+    </p>
+  </div>
+
+  <!-- Button Section -->
+  <a href={href} class="group/btn w-fit bg-[#4D4222]/40 rounded-full px-6 py-2.5 flex items-center gap-2 transition-all duration-300 hover:bg-[#4D4222]/60">
+    <span class="text-white text-sm font-medium">
+      Read More
+    </span>
+
+    <svg
+      class="w-5 h-5 text-white transition-transform duration-300 group-hover/btn:translate-x-1"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M9 18L15 12L9 6"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </a>
+</div>

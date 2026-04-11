@@ -1,19 +1,141 @@
 ---
 // Knowledge Center — /knowledge-center
-// Placeholder until Figma design is implemented
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import banner from "../assets/ApplicationBanner.png";
+import logo from "../assets/Wizzlogo.png";
+import KnowledgeCard from "../components/KnowledgeCard.astro";
+
+import blog1 from "../assets/Blog1.png";
+import blog2 from "../assets/Blog2.png";
+import blog3 from "../assets/Blog3.png";
+import blog4 from "../assets/Blog4.png";
+import blog5 from "../assets/Blog5.png";
+import blog6 from "../assets/Blog6.png";
+
+import "../styles/global.css";
+import Footer from "../components/MainFooter.astro";
+import PageAnimations from "../components/PageAnimations.astro";
+
+const cards = [
+  {
+    image: blog1,
+    date: "Last updated: December 2025",
+    title: "Wizz Financial celebrates Iftar",
+    description:
+      "Iftar, the daily evening meal used to break the fast during Ramadan, is a deeply meaningful cultural and spiritual occasion, bringing people together in reflection and gratitude. This year, we were delighted to host a number of Iftar events across Africa and the UAE, creating opportunities to give back and connect with the communities around us.",
+  },
+  {
+    image: blog2,
+    date: "Last updated: December 2025",
+    title:
+      "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
+    description:
+      "Milestone marks the next phase of Wizz Financial's multi-product fintech platform, extending its Wizz CrossBorder USA capabilities into blockchain-based B2B and B2C payments",
+  },
+  {
+    image: blog3,
+    date: "Last updated: December 2025",
+    title: "Wizz Financial and BitGo Team on X-Border Stablecoin Payments",
+    description:
+      "FinTech Wizz Financial achieved a company milestone for cross-border transactions, according to a Thursday (March 12) press release.Wizz completed its first stablecoin-powered cross-border remittance and treasury transaction originating from the United States, with capabilities into 80 countries, the release said.The transaction was carried out in collaboration with BitGo’s digital trust bank, with Wizz using BitGo’s wallet infrastructure and eTrade services to help c",
+  },
+  {
+    image: blog4,
+    date: "Last updated: December 2025",
+    title: "The Perfect Travel Match: Wizzmoni partners with KL Rahul & Athiya Shetty",
+    description:
+      "Kochi: Wizzmoni, formerly Unimoni, has officially appointed Indian cricketer KL Rahul and Bollywood actor Athiya Shetty as the faces of its premium Wizz Voyager Multi-Currency Travel Card and comprehensive foreign exchange solutions. The celebrity duo will lead nationwide and international campaigns for Wizzmoni India, part of the Wizz Financial.",
+  },
+  {
+    image: blog5,
+    date: "Last updated: December 2025",
+    title: "Wizzmoni opens its 320th branch, located in Nalgonda",
+    description:
+      "Wizzmoni (formerly Unimoni), one of India’s most trusted and diversified NBFCs, inaugurated its 320th branch located in Telangana's Nalgonda, reinforcing its nationwide footprint and commitment to accessible, customer-centric financial services.The launch also marks Wizzmoni’s 30th branch in Telangana, further strengthening its pres",
+  },
+  {
+    image: blog6,
+    date: "Last updated: December 2025",
+    title:
+      "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
+    description:
+      "Milestone marks the next phase of Wizz Financial's multi-product fintech platform, extending its Wizz CrossBorder USA capabilities into blockchain-based B2B and B2C payments",
+  },
+];
 ---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href={logo.src} />
     <title>Knowledge Center</title>
-    <style>
-      body { margin: 0; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, sans-serif; }
+    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
+      .hero-bg {
+        background-image: var(--bannerSrc);
+      }
     </style>
   </head>
-  <body>
-    <h1 class="text-[50px] font-bold text-center">Knowledge Center</h1>
+  <body class="m-0 p-0 overflow-x-hidden">
+    <div
+      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+    >
+      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+
+      <div
+        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
+      >
+        <!-- Header -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+          <Header />
+        </div>
+
+        <!-- Section 1: Hero intro -->
+        <div
+          class="opacity-0 flex flex-col items-center gap-6"
+          data-animate="fade-up"
+          data-delay="200"
+        >
+          <h1
+            class="text-white font-bold text-center text-xl sm:text-3xl md:text-5xl lg:text-5xl"
+          >
+            Knowledge Center
+          </h1>
+
+          <p
+            class="text-white/70 text-center leading-relaxed max-w-4xl text-sm sm:text-base md:text-xl"
+          >
+            The Wizz Financial Knowledge Centre is where ideas, insights, and
+            expertise come together. Explore thought leadership and expert
+            perspectives from across our global organization. From fintech
+            innovation and cross-border payments to foreign exchange trends and
+            financial inclusion, our leaders share insights on the forces
+            shaping the future of global finance
+          </p>
+        </div>
+
+        <!-- Section 2: Blog Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {
+            cards.map((card) => (
+              <div class="opacity-0" data-animate="fade-up" data-delay="100">
+                <KnowledgeCard
+                  image={card.image}
+                  date={card.date}
+                  title={card.title}
+                  description={card.description}
+                />
+              </div>
+            ))
+          }
+        </div>
+
+        <!-- Footer -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="600">
+          <Footer />
+        </div>
+      </div>
+    </div>
+    <PageAnimations />
   </body>
 </html>

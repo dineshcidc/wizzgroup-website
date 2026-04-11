@@ -5,8 +5,6 @@ import wizzcross  from "../assets/Wizzcross.png";
 import wizzvoyzer from "../assets/Wizzvoyzer.png";
 import unimoni    from "../assets/Unimoni.png";
 import scanner    from "../assets/Sacnner.png";
-import careerIcon from "../assets/Career.png";
-import csrIcon    from "../assets/Csr.png";
 
 const brands = [
   { src: wizzmoni.src,   alt: "WizzMonU" },
@@ -57,30 +55,26 @@ const brands = [
         <img src={scanner.src} alt="Scan QR code" class="w-28 h-28 sm:w-32 sm:h-32 object-contain" />
       </div>
 
-      <!-- Career + CSR parent container — same height as QR card -->
-      <div class="bg-[#4A4A4A]/60 border border-white/10 rounded-2xl p-4 w-full
-        flex flex-col justify-between
-        h-36 sm:h-40 gap-4">
-        <a
-          href="#"
-          class="flex items-center justify-between px-4
-            md:w-45 h-13.25 rounded-[40px]
-            bg-[#4D4222]/40 w-full border border-white/10 hover:bg-[#5A5A5A]/80 transition-colors
-            text-white font-medium text-sm whitespace-nowrap"
-        >
-          Career
-          <img src={careerIcon.src} alt="" aria-hidden="true" class="w-6 h-6 object-contain" />
-        </a>
-        <a
-          href="#"
-          class="flex items-center justify-between px-4
-            md:w-45 w-full h-13.25 rounded-[40px]
-            bg-[#4D4222]/40 border border-white/10 hover:bg-[#5A5A5A]/80 transition-colors
-            text-white font-medium text-sm whitespace-nowrap"
-        >
-          CSR
-          <img src={csrIcon.src} alt="" aria-hidden="true" class="w-6 h-6 object-contain" />
-        </a>
+      <!-- Company nav -->
+      <div class="bg-[#4A4A4A]/60 border border-white/10 rounded-2xl p-4 w-full flex flex-col gap-4">
+        <span class="text-white font-medium text-sm">Company</span>
+        <nav class="flex flex-col gap-3">
+          {[
+            { label: "About",            href: "/about"            },
+            { label: "Knowledge Center", href: "/knowledge-center" },
+            { label: "Newsroom",         href: "/newsroom"         },
+            { label: "Careers",          href: "/careers"          },
+            { label: "Contact Us",       href: "#"                 },
+          ].map((item) => (
+            <a
+              href={item.href}
+              class="text-sm transition-colors duration-200 hover:opacity-80"
+              style="color: rgba(231,231,231,0.5);"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
       </div>
 
     </div>
