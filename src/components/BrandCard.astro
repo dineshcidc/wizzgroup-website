@@ -1,0 +1,41 @@
+---
+interface Props {
+  image: string;
+  imageAlt: string;
+  badgeLogo: string;
+  badgeLogoAlt: string;
+  href?: string;
+}
+
+const { image, imageAlt, badgeLogo, badgeLogoAlt, href = "#" } = Astro.props;
+---
+
+<a href={href} class="group relative w-full h-72 sm:h-96 md:h-112 lg:h-132.5 rounded-md overflow-hidden cursor-pointer bg-[#1F1F1F]/60 p-5">
+
+  <!-- Card image — contained, no crop, centered inside padded area -->
+  <div class="w-full h-full flex items-center justify-center">
+    <img
+      src={image}
+      alt={imageAlt}
+      class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+    />
+  </div>
+
+  <!-- Badge — stretches to card width minus 12px on each side -->
+  <div class="absolute bottom-5 left-1/2 -translate-x-1/2 w-50
+    flex flex-row items-center justify-center gap-1.5 px-3
+    bg-[#373737]/40 backdrop-blur-sm border border-white/10 rounded-full
+    h-12 lg:h-15
+    transition-all duration-300 group-hover:bg-[#373737]/60 group-hover:border-white/20">
+
+    <img src={badgeLogo} alt={badgeLogoAlt} class="h-7 lg:h-8 object-contain" />
+
+    <svg class="shrink-0 text-white/70 w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
+      viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+  </div>
+
+</a>

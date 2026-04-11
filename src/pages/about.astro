@@ -1,19 +1,330 @@
 ---
-// About — /about
-// Placeholder until Figma design is implemented
-import '../styles/global.css';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PageAnimations from "../components/PageAnimations.astro";
+import BrandCard from "../components/BrandCard.astro";
+import banner from "../assets/ApplicationBanner.png";
+import logo from "../assets/Wizzlogo.png";
+import zlogo from "../assets/Zlogo.png";
+import mapdots from "../assets/Mapdots.png";
+import brand1 from "../assets/Brand1.png";
+import brand2 from "../assets/Brand2.png";
+import brand3 from "../assets/Brand3.png";
+import brand4 from "../assets/Brand4.png";
+import brand5 from "../assets/Brand5.png";
+import brand6 from "../assets/Brand6.png";
+import wizzBrand1 from "../assets/Wizz-Brand1.png";
+import wizzBrand2 from "../assets/Wizz-Brand2.png";
+import wizzBrand3 from "../assets/Wizz-Brand3.png";
+import wizzBrand4 from "../assets/Wizz-Brand4.png";
+import wizzBrand5 from "../assets/Wizz-Brand5.png";
+import wizzBrand6 from "../assets/Wizz-Brand6.png";
+import aditum from "../assets/Aditum.png";
+import sahaj from "../assets/Sahaj.png";
+import visa from "../assets/Visa.png";
+import bitgo from "../assets/Bitgo.png";
+import earth from "../assets/Earth.png";
+
+const strategicPartners = [
+  { src: aditum.src, alt: "Aditum" },
+  { src: sahaj.src, alt: "Sahaj" },
+  { src: visa.src, alt: "Visa" },
+  { src: bitgo.src, alt: "Bitgo" },
+];
+
+const corridorTabs = [
+  { label: "India to Rest of the World", selected: true },
+  { label: "USA to Rest of The World ", selected: false },
+  { label: "UAE to Rest of the World", selected: false },
+  { label: "Coverage Map", selected: false },
+];
+
+const brandCards = [
+  {
+    image: brand1.src,
+    imageAlt: "Brand 1",
+    badgeLogo: wizzBrand1.src,
+    badgeLogoAlt: "Wizz Brand 1",
+  },
+  {
+    image: brand2.src,
+    imageAlt: "Brand 2",
+    badgeLogo: wizzBrand2.src,
+    badgeLogoAlt: "Wizz Brand 2",
+  },
+  {
+    image: brand3.src,
+    imageAlt: "Brand 3",
+    badgeLogo: wizzBrand3.src,
+    badgeLogoAlt: "Wizz Brand 3",
+  },
+  {
+    image: brand4.src,
+    imageAlt: "Brand 4",
+    badgeLogo: wizzBrand4.src,
+    badgeLogoAlt: "Wizz Brand 4",
+  },
+  {
+    image: brand5.src,
+    imageAlt: "Brand 5",
+    badgeLogo: wizzBrand5.src,
+    badgeLogoAlt: "Wizz Brand 5",
+  },
+  {
+    image: brand6.src,
+    imageAlt: "Brand 6",
+    badgeLogo: wizzBrand6.src,
+    badgeLogoAlt: "Wizz Brand 6",
+  },
+];
+
+const infoCards = [
+  {
+    text: "One platform for sending and receiving across India, Southeast Asia, the US and the GCC",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 3C12 3 9 7 9 12s3 9 3 9M12 3c0 0 3 4 3 9s-3 9-3 9M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  },
+  {
+    text: "The Group operates under more than 50 regulatory licenses worldwide with a network of over 500 branches",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  },
+  {
+    text: "Built on a cloud-native, AI-enabled, regulator-approved technology stack",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 19a4.5 4.5 0 01-.5-9 6 6 0 0111.8-1.5A4.5 4.5 0 0118.5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13v6M9 16l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  },
+];
 ---
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href={logo.src} />
     <title>About</title>
-    <style>
-      body { margin: 0; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, sans-serif; }
+    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
+      .hero-bg {
+        background-image: var(--bannerSrc);
+      }
     </style>
   </head>
-  <body>
-    <h1 class="text-[50px] font-bold text-center">About</h1>
+  <body class="m-0 p-0 overflow-x-hidden">
+    <div class="hero-bg relative w-full bg-cover bg-center bg-no-repeat">
+      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+
+      <div
+        class="relative z-10 flex flex-col gap-10 sm:gap-14 md:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
+      >
+        <!-- Header -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+          <Header />
+        </div>
+
+        <!-- Section 1: Hero intro -->
+        <div
+          class="opacity-0 flex flex-col items-center gap-6"
+          data-animate="fade-up"
+          data-delay="200"
+        >
+          <img
+            src={zlogo.src}
+            alt="Wizz Z logo"
+            class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
+          />
+
+          <h1
+            class="text-white font-bold text-center text-xl sm:text-3xl md:text-5xl lg:text-5xl"
+          >
+            About Us
+          </h1>
+
+          <p
+            class="text-white/70 text-center leading-relaxed max-w-2xl text-sm sm:text-base md:text-lg"
+          >
+            Wizz Financial is a financial technology company focused on
+            transforming cross-border money movement and digital lending. Our
+            hybrid model combines a unified digital wallet ecosystem, full-stack
+            card issuance and processing, wallet-to-wallet technology and
+            blockchain-enabled treasury solutions.
+          </p>
+
+          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+            {
+              infoCards.map((card) => (
+                <div
+                  class="flex flex-col gap-6 bg-[#373737]/50 border border-white/10 rounded-2xl lg:p-8 p-4
+                transition-all duration-500 ease-in-out
+                hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
+                >
+                  <div class="text-white w-6 h-6" set:html={card.icon} />
+                  <p class="text-white lg:text-xl text-md leading-relaxed">
+                    {card.text}
+                  </p>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Section 2: Wizz Financial Brands -->
+        <div
+          class="opacity-0 flex flex-col gap-3"
+          data-animate="fade-up"
+          data-delay="300"
+        >
+          <h2
+            class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight"
+          >
+            Wizz Financial Brands
+          </h2>
+          <p
+            class="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed"
+          >
+            Our dynamic brands include
+          </p>
+
+          <!-- Brand cards grid -->
+          <div
+            class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full pb-8"
+          >
+            {
+              brandCards.map((card) => (
+                <BrandCard
+                  image={card.image}
+                  imageAlt={card.imageAlt}
+                  badgeLogo={card.badgeLogo}
+                  badgeLogoAlt={card.badgeLogoAlt}
+                />
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Section 3: Strategic Partners -->
+        <div
+          class="opacity-0 flex flex-col items-center justify-center text-center gap-6"
+          data-animate="fade-up"
+          data-delay="400"
+        >
+          <div class="flex flex-col items-center gap-4">
+            <h2
+              class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight"
+            >
+              Strategic Partners
+            </h2>
+          </div>
+          <p
+            class="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl"
+          >
+            We’re proud to partner with some of the best in the business to
+            enhance our capabilities and extend our offering across India, the
+            GCC and Africa. Find a full list of our partners below:
+          </p>
+
+          <!-- Partner Cards Grid -->
+          <div
+            class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
+          >
+            {
+              strategicPartners.map((partner) => (
+                <div
+                  class="bg-[#373737]/30 border border-white/10 rounded-[10px] p-6 h-[145px] flex items-center justify-center
+                transition-all duration-500 ease-in-out
+                hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
+                >
+                  <img
+                    src={partner.src}
+                    alt={partner.alt}
+                    class="max-h-full max-w-full object-contain"
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Section 4: Corridors and Markets -->
+        <div
+          class="opacity-0 flex flex-col items-center justify-center text-center gap-6"
+          data-animate="fade-up"
+          data-delay="500"
+        >
+          <div class="flex flex-col items-center gap-4">
+            <h2
+              class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight"
+            >
+              Corridors and Markets
+            </h2>
+          </div>
+          <p
+            class="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl"
+          >
+            Wizz connects the GCC and the US as primary send regions with India
+            and Southeast Asia as core receive and two‑way growth markets. This
+            footprint places us at the centre of the most important global
+            remittance corridors, linking advanced‑economy senders with some of
+            the largest remittance‑receiving markets worldwide.
+          </p>
+
+          <!-- Corridors Tabs -->
+          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+            {
+              corridorTabs.map((tab) => (
+                <div
+                  class={`corridor-tab px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
+                  ${
+                    tab.selected
+                      ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
+                      : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
+                  }`}
+                >
+                  {tab.label}
+                </div>
+              ))
+            }
+          </div>
+
+          <!-- Map Card -->
+          <div
+            class="mt-10 w-full bg-[#373737]/30 border border-white/10 rounded-[10px] p-10"
+          >
+            <img
+              src={earth.src}
+              alt="Corridors Map"
+              class="w-full h-auto object-contain rounded-md"
+            />
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="600">
+          <Footer />
+        </div>
+      </div>
+    </div>
+
+    <PageAnimations />
+
+    <script>
+      function setupTabs() {
+        const tabs = document.querySelectorAll(".corridor-tab");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            // Reset all tabs to inactive state
+            tabs.forEach((t) => {
+              t.classList.remove("bg-[#FFBD00]/17", "border-[#F79A59]");
+              t.classList.add("bg-[#8A8A8A]/10", "border-transparent");
+            });
+
+            // Set clicked tab to active state
+            tab.classList.remove("bg-[#8A8A8A]/10", "border-transparent");
+            tab.classList.add("bg-[#FFBD00]/17", "border-[#F79A59]");
+          });
+        });
+      }
+
+      // Setup tabs functionality
+      setupTabs();
+    </script>
   </body>
 </html>

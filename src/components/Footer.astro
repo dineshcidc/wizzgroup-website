@@ -1,0 +1,96 @@
+---
+import logo       from "../assets/Wizzlogo-White.png";
+import wizzmoni   from "../assets/Wizzmoni.png";
+import wizzcross  from "../assets/Wizzcross.png";
+import wizzvoyzer from "../assets/Wizzvoyzer.png";
+import unimoni    from "../assets/Unimoni.png";
+import scanner    from "../assets/Sacnner.png";
+import careerIcon from "../assets/Career.png";
+import csrIcon    from "../assets/Csr.png";
+
+const brands = [
+  { src: wizzmoni.src,   alt: "WizzMonU" },
+  { src: wizzcross.src,  alt: "Wizz Cross Borders" },
+  { src: wizzvoyzer.src, alt: "Wizz Voyager" },
+  { src: unimoni.src,    alt: "UniMonU by Wizz" },
+];
+---
+
+<footer class="w-full bg-[#373737]/30 border border-white/10 rounded-xl p-5 sm:p-6 md:p-8">
+
+  <!-- Main content -->
+  <div class="flex flex-col gap-8 lg:flex-row lg:justify-between lg:items-start">
+
+    <!-- Left: brand info + pills -->
+    <div class="flex flex-col gap-5 lg:max-w-[55%]">
+
+      <!-- Logo only -->
+      <img src={logo.src} alt="Wizz Financial" class="h-8 sm:h-9 md:h-10 object-contain self-start" />
+
+      <!-- Description -->
+      <p class="text-white/70 text-sm sm:text-base leading-relaxed max-w-md">
+        WizzFinancial is a global fintech platform with a direct presence and offices in India, GCC and USA.
+      </p>
+
+      <!-- Brand pills: full white bg, h-[50px], p-4, image centered -->
+      <div class="flex flex-wrap gap-3">
+        {brands.map((brand) => (
+          <a
+            href="#"
+            class="flex items-center justify-center gap-2 h-12.5 px-4 rounded-2xl
+              bg-white hover:bg-white/90 transition-colors cursor-pointer"
+          >
+            <img src={brand.src} alt={brand.alt} class="h-6 object-contain" />
+            <svg class="w-3 h-3 text-[#373737] shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Right: QR code card + Career/CSR parent container (same size) -->
+    <div class="flex md:flex-row flex-col gap-4 items-start">
+
+      <!-- QR code card -->
+      <div class="bg-[#4A4A4A]/60 border border-white/10 rounded-2xl p-4 w-full flex items-center justify-center">
+        <img src={scanner.src} alt="Scan QR code" class="w-28 h-28 sm:w-32 sm:h-32 object-contain" />
+      </div>
+
+      <!-- Career + CSR parent container — same height as QR card -->
+      <div class="bg-[#4A4A4A]/60 border border-white/10 rounded-2xl p-4 w-full
+        flex flex-col justify-between
+        h-36 sm:h-40 gap-4">
+        <a
+          href="#"
+          class="flex items-center justify-between px-4
+            md:w-45 h-13.25 rounded-[40px]
+            bg-[#4D4222]/40 w-full border border-white/10 hover:bg-[#5A5A5A]/80 transition-colors
+            text-white font-medium text-sm whitespace-nowrap"
+        >
+          Career
+          <img src={careerIcon.src} alt="" aria-hidden="true" class="w-6 h-6 object-contain" />
+        </a>
+        <a
+          href="#"
+          class="flex items-center justify-between px-4
+            md:w-45 w-full h-13.25 rounded-[40px]
+            bg-[#4D4222]/40 border border-white/10 hover:bg-[#5A5A5A]/80 transition-colors
+            text-white font-medium text-sm whitespace-nowrap"
+        >
+          CSR
+          <img src={csrIcon.src} alt="" aria-hidden="true" class="w-6 h-6 object-contain" />
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="mt-16 flex flex-col gap-2 sm:flex-row sm:justify-between sm:items-center">
+    <a href="#" class="text-white/50 text-xs sm:text-sm hover:text-white/70 transition-colors">Cookie Policy</a>
+    <span class="text-white/50 text-xs sm:text-sm">WizzFinancial All Rights Reserved</span>
+  </div>
+
+</footer>
