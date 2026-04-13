@@ -122,18 +122,18 @@ const infoCards = [
 
         <!-- Section 1: Hero intro -->
         <div
-          class="opacity-0 flex flex-col items-center gap-6"
+          class="opacity-0 flex flex-col items-center md:gap-6 gap-3"
           data-animate="fade-up"
           data-delay="200"
         >
           <img
             src={zlogo.src}
             alt="Wizz Z logo"
-            class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 object-contain"
+            class="w-24 h-24 md:w-24 md:h-24 object-contain"
           />
 
           <h1
-            class="text-white font-bold text-center text-xl sm:text-3xl md:text-5xl lg:text-5xl"
+            class="text-white font-bold text-center text-3xl md:text-5xl lg:text-5xl"
           >
             About Us
           </h1>
@@ -152,12 +152,12 @@ const infoCards = [
             {
               infoCards.map((card) => (
                 <div
-                  class="flex flex-col gap-6 bg-[#373737]/50 border border-white/10 rounded-2xl lg:p-8 p-4
+                  class="flex md:flex-col flex-row md:gap-6 gap-2 bg-[#373737]/50 border border-white/10 rounded-2xl lg:p-8 p-4
                 transition-all duration-500 ease-in-out
                 hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
                 >
-                  <div class="text-white w-6 h-6" set:html={card.icon} />
-                  <p class="text-white lg:text-xl text-md leading-relaxed">
+                  <div class="text-white md:w-6 md:h-6 w-12 h-12 flex-shrink-0" set:html={card.icon} />
+                  <p class="text-white md:text-xl text-xs leading-relaxed whitespace-nowrap">
                     {card.text}
                   </p>
                 </div>
@@ -185,7 +185,7 @@ const infoCards = [
 
           <!-- Brand cards grid -->
           <div
-            class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full pb-8"
+            class="md:mt-10 mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full pb-8"
           >
             {
               brandCards.map((card) => (
@@ -202,13 +202,13 @@ const infoCards = [
 
         <!-- Section 3: Strategic Partners -->
         <div
-          class="opacity-0 flex flex-col items-center justify-center text-center gap-6"
+          class="opacity-0 flex flex-col md:items-center md:justify-center justify-start md:text-center md:gap-6 gap-3"
           data-animate="fade-up"
           data-delay="400"
         >
-          <div class="flex flex-col items-center gap-4">
+          <div class="flex flex-col md:items-center md:gap-4 gap-2">
             <h2
-              class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight"
+              class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight text-left md:text-center"
             >
               Strategic Partners
             </h2>
@@ -223,19 +223,19 @@ const infoCards = [
 
           <!-- Partner Cards Grid -->
           <div
-            class="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full"
+            class="md:mt-10 mt-4 flex overflow-x-auto gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:gap-6 w-full overflow-y-hidden"
           >
             {
               strategicPartners.map((partner) => (
                 <div
-                  class="bg-[#373737]/30 border border-white/10 rounded-[10px] p-6 h-[145px] flex items-center justify-center
+                  class="bg-[#373737]/30 border border-white/10 rounded-[10px] p-3 h-[60px] md:p-6 md:h-[130px] flex items-center justify-center flex-shrink-0
                 transition-all duration-500 ease-in-out
                 hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
                 >
                   <img
                     src={partner.src}
                     alt={partner.alt}
-                    class="max-h-full max-w-full object-contain"
+                    class="md:max-h-36 h-24 md:w-36 w-24 object-contain"
                   />
                 </div>
               ))
@@ -245,11 +245,11 @@ const infoCards = [
 
         <!-- Section 4: Corridors and Markets -->
         <div
-          class="opacity-0 flex flex-col items-center justify-center text-center gap-6"
+          class="opacity-0 flex flex-col md:items-center md:justify-center md:text-center md:gap-6 gap-3"
           data-animate="fade-up"
           data-delay="500"
         >
-          <div class="flex flex-col items-center gap-4">
+          <div class="flex flex-col md:items-center gap-4">
             <h2
               class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight"
             >
@@ -267,11 +267,11 @@ const infoCards = [
           </p>
 
           <!-- Corridors Tabs -->
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <div class="md:mt-10 mt-4 flex overflow-x-auto gap-4 w-full justify-center">
             {
               corridorTabs.map((tab) => (
                 <div
-                  class={`corridor-tab px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
+                  class={`corridor-tab px-6 py-2 rounded-full text-base w-fit flex-shrink-0 transition-all duration-300 cursor-pointer border
                   ${
                     tab.selected
                       ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
@@ -286,12 +286,12 @@ const infoCards = [
 
           <!-- Map Card -->
           <div
-            class="mt-10 w-full bg-[#373737]/30 border border-white/10 rounded-[10px] p-10"
+            class="md:mt-10 mt-5 w-full bg-[#373737]/30 border border-white/10 rounded-[10px] md:p-10 md:h-auto h-[400px]"
           >
             <img
               src={earth.src}
               alt="Corridors Map"
-              class="w-full h-auto object-contain rounded-md"
+              class="w-full md:h-auto h-full md:object-contain object-cover rounded-md"
             />
           </div>
         </div>

@@ -116,7 +116,7 @@ const jobs = [
 
         <!-- Hero Title Section -->
         <div
-          class="opacity-0 flex flex-col items-center justify-center gap-6 text-center px-4"
+          class="opacity-0 flex flex-col items-center justify-center md:gap-6 gap-3 text-center px-4"
           data-animate="fade-up"
           data-delay="200"
         >
@@ -142,11 +142,11 @@ const jobs = [
           data-delay="300"
         >
           <!-- Tabs -->
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="flex overflow-x-auto gap-3 w-full">
             {
               tabs.map((tab) => (
                 <div
-                  class={`career-tab px-6 py-2 rounded-full text-sm sm:text-base w-fit transition-all duration-300 cursor-pointer border
+                  class={`career-tab px-6 py-2 rounded-full text-sm sm:text-base w-fit flex-shrink-0 transition-all duration-300 cursor-pointer border
                   ${
                     tab.selected
                       ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
@@ -164,7 +164,7 @@ const jobs = [
           <hr class="w-full border-0 h-px bg-white/20" />
 
           <!-- Job Cards -->
-          <div class="flex flex-col gap-4 mt-10.5" id="job-list">
+          <div class="flex flex-col gap-4 md:mt-10 mt-5" id="job-list">
             {
               jobs.map((job) => (
                 <div

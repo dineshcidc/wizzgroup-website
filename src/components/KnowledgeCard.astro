@@ -14,7 +14,7 @@ import type { ImageMetadata } from "astro";
 const { image, date, title, description, href = "/blog-detail" } = Astro.props;
 ---
 
-<div class="group/card bg-[#1F1F1F]/60 rounded-lg md:p-8 p-3 flex flex-col gap-6 border border-white/5 transition-all duration-300 hover:border-white/20 hover:shadow-xl h-full">
+<div class="group/card bg-[#1F1F1F]/60 rounded-lg xl:p-8 md:p-4 p-3 flex flex-col gap-6 border border-white/5 transition-all duration-300 hover:border-white/20 hover:shadow-xl h-full">
   <!-- Image Section -->
   <div class="w-full h-60 rounded-lg overflow-hidden bg-[#373737]">
     <img src={image.src} alt={title} class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover/card:scale-110" />
@@ -36,7 +36,7 @@ const { image, date, title, description, href = "/blog-detail" } = Astro.props;
   </div>
 
   <!-- Button Section -->
-  <a href={href} class="group/btn w-fit bg-[#4D4222]/40 rounded-full px-6 py-2.5 flex items-center gap-2 transition-all duration-300 hover:bg-[#4D4222]/60">
+  <a href={href} class="group/btn md:w-fit w-full justify-center bg-[#4D4222]/40 rounded-full px-6 py-2.5 flex items-center gap-2 transition-all duration-300 hover:bg-[#4D4222]/60">
     <span class="text-white text-sm font-medium">
       Read More
     </span>

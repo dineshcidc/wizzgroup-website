@@ -37,7 +37,7 @@ import logo from "../assets/Wizzlogo.png";
         type="button"
         class="flex items-center whitespace-nowrap cursor-pointer
           font-medium text-white bg-[#4D4222]/40
-          gap-1 h-8 px-3 py-1 rounded-[20px] text-xs
+          gap-1 h-8 px-3 py-1 rounded-[20px] text-xs 
           sm:gap-1.5 sm:h-8 sm:px-3 sm:py-1 sm:rounded-[22px] sm:text-xs
           md:gap-2 md:h-9 md:px-4 md:py-1.5 md:rounded-[26px] md:text-sm
           lg:gap-2 lg:h-10 lg:px-4 lg:py-2 lg:rounded-[30px] lg:text-sm
@@ -111,7 +111,7 @@ import logo from "../assets/Wizzlogo.png";
   <!-- Dropdown menu card -->
   <div
     id="nav-menu"
-    class="absolute right-0 mt-3 w-56
+    class="absolute right-0 -mt-4 w-56
       bg-[#1F1F1F]/90 backdrop-blur-md border border-white/10 rounded-2xl
       transition-all duration-300 ease-in-out"
     style="opacity:0; transform:translateY(-12px); pointer-events:none;"
@@ -126,7 +126,7 @@ import logo from "../assets/Wizzlogo.png";
         ].map((item) => (
           <a
             href={item.href}
-            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm text-white/80
+            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm text-white/80 cursor-pointer
             hover:text-white hover:bg-white/8 transition-all duration-200 group"
           >
             {item.label}
