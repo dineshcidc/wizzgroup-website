@@ -2,7 +2,7 @@
 /**
  * Header.astro — Site-wide header component
  */
-import logo from '../assets/Wizzlogo.png';
+import logo from "../assets/Wizzlogo.png";
 ---
 
 <div class="relative w-full z-50">
@@ -16,17 +16,19 @@ import logo from '../assets/Wizzlogo.png';
       2xl:p-6"
   >
     <!-- Left: Logo -->
-    <img
-      src={logo.src}
-      alt="Wizzgroup Logo"
-      class="object-contain
+    <a href="/">
+      <img
+        src={logo.src}
+        alt="Wizzgroup Logo"
+        class="object-contain
         h-7
         sm:h-8
         md:h-9
         lg:h-10
         xl:h-11
         2xl:h-12"
-    />
+      />
+    </a>
 
     <!-- Right: Contact Us button + Menu icon -->
     <div class="flex items-center gap-5">
@@ -115,52 +117,54 @@ import logo from '../assets/Wizzlogo.png';
     style="opacity:0; transform:translateY(-12px); pointer-events:none;"
   >
     <nav class="flex flex-col p-2">
-      {[
-        { label: "About Us",         href: "/about"            },
-        { label: "Knowledge Center",  href: "/knowledge-center" },
-        { label: "Careers",           href: "/careers"          },
-        { label: "Newsroom",          href: "/newsroom"         },
-      ].map((item) => (
-        <a
-          href={item.href}
-          class="flex items-center justify-between px-4 py-3 rounded-xl text-sm text-white/80
+      {
+        [
+          { label: "About Us", href: "/about" },
+          { label: "Knowledge Center", href: "/knowledge-center" },
+          { label: "Careers", href: "/careers" },
+          { label: "Newsroom", href: "/newsroom" },
+        ].map((item) => (
+          <a
+            href={item.href}
+            class="flex items-center justify-between px-4 py-3 rounded-xl text-sm text-white/80
             hover:text-white hover:bg-white/8 transition-all duration-200 group"
-        >
-          {item.label}
-          <svg
-            class="w-4 h-4 text-white/30 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/60"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
           >
-            <path
-              d="M9 18L15 12L9 6"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </a>
-      ))}
+            {item.label}
+            <svg
+              class="w-4 h-4 text-white/30 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-white/60"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        ))
+      }
     </nav>
   </div>
 </div>
 
 <script>
   function setupMenu() {
-    const toggle    = document.getElementById("menu-toggle");
-    const menu      = document.getElementById("nav-menu");
-    const iconOpen  = document.getElementById("icon-open");
+    const toggle = document.getElementById("menu-toggle");
+    const menu = document.getElementById("nav-menu");
+    const iconOpen = document.getElementById("icon-open");
     const iconClose = document.getElementById("icon-close");
 
     if (!toggle || !menu || !iconOpen || !iconClose) return;
 
     // Reassign to new consts so TypeScript treats all as non-null
-    const btn     = toggle;
-    const panel   = menu;
-    const open    = iconOpen;
-    const close   = iconClose;
+    const btn = toggle;
+    const panel = menu;
+    const open = iconOpen;
+    const close = iconClose;
 
     let isOpen = false;
 
@@ -198,7 +202,12 @@ import logo from '../assets/Wizzlogo.png';
     });
 
     document.addEventListener("click", (e) => {
-      if (isOpen && e.target instanceof Node && !panel.contains(e.target) && !btn.contains(e.target)) {
+      if (
+        isOpen &&
+        e.target instanceof Node &&
+        !panel.contains(e.target) &&
+        !btn.contains(e.target)
+      ) {
         closeMenu();
       }
     });

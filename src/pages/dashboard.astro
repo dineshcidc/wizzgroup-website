@@ -1,19 +1,531 @@
 ---
 // Dashboard — /dashboard
 // Placeholder until Figma design is implemented
-import '../styles/global.css';
+import Header from "../components/Header.astro";
+import TabCard from "../components/TabCard.astro";
+import banner from "../assets/ApplicationBanner.png";
+import logo from "../assets/Wizzlogo.png";
+import zlOgoCopacity from "../assets/zlogo-opacity.png";
+import globalImage from "../assets/Global.png";
+import UAEImage from "../assets/UAE.png";
+import IndiaImage from "../assets/India.png";
+import RestImage from "../assets/Rest.png";
+import DigitalWalletImage from "../assets/Digitalwallet.png";
+import CardPaymentImage from "../assets/Cardpayment.png";
+import MerchantImage from "../assets/Merchant.png";
+import BusinessImage from "../assets/Business.png";
+import facebook from "../assets/Facebook.png";
+import instagram from "../assets/Instagram.png";
+import telegram from "../assets/Telegram.png";
+import linkedin from "../assets/Linkedin.png";
+
+import "../styles/global.css";
+import Footer from "../components/Footer.astro";
+import PageAnimations from "../components/PageAnimations.astro";
+
+// Tab Content Data
+const tabContent = {
+  payments: {
+    title: "Payments",
+    cards: [
+      {
+        label: "Digital Wallets",
+        image: DigitalWalletImage.src,
+      },
+      {
+        label: "Card Based Payments",
+        image: CardPaymentImage.src,
+      },
+      {
+        label: "Merchant and Business Payments",
+        image: MerchantImage.src,
+      },
+      {
+        label: "Merchant and Business Payments",
+        image: BusinessImage.src,
+      },
+    ],
+  },
+  lending: {
+    title: "Lending",
+    cards: [
+      {
+        label: "Text 1",
+        image: DigitalWalletImage.src,
+      },
+      {
+        label: "Text 2",
+        image: CardPaymentImage.src,
+      },
+      {
+        label: "Text 3",
+        image: MerchantImage.src,
+      },
+      {
+        label: "Text 4",
+        image: BusinessImage.src,
+      },
+    ],
+  },
+};
+
+const presenceImageData = {
+  uae: UAEImage.src,
+  india: IndiaImage.src,
+  "rest of world": RestImage.src,
+};
+
+const faqItems = [
+  {
+    question: "What services does Wizz Financial offer?",
+    answer:
+      "Wizz Financial is your partner for tailored financial services. We specialize in personal loans for your needs and business financing to fuel your ambitions. Our investment advisory offers guidance to maximize returns and minimize risks.",
+  },
+  {
+    question: "How do I apply for a loan?",
+    answer:
+      "You can apply for a loan online through our platform. Complete the application, upload the required documents, and our team will review your request quickly to help you access funds sooner.",
+  },
+  {
+    question: "What documents are required for loan approval?",
+    answer:
+      "Typically we require proof of identity, proof of address, income statements, and any business-related paperwork if you are applying for a business loan. Exact requirements depend on the loan type.",
+  },
+  {
+    question: "How long does the approval process take?",
+    answer:
+      "Approval times vary based on the loan type and documentation provided, but most approvals are completed within a few business days once your application is complete.",
+  },
+  {
+    question: "Is my personal and financial information secure?",
+    answer:
+      "Yes. We use industry-standard security measures to safeguard your information and protect your privacy throughout the loan application and servicing process.",
+  },
+];
 ---
+
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/favicon.svg" />
-    <title>Dashboard</title>
-    <style>
-      body { margin: 0; background: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, sans-serif; }
-    </style>
-  </head>
-  <body>
-    <h1 class="text-[50px] font-bold text-center">Dashboard</h1>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href={logo.src} />
+  <title>Dashboard</title>
+  <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
+    .hero-bg {
+      background-image: var(--bannerSrc);
+    }
+
+    details[open] summary .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    .faq-panel {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition:
+        max-height 0.35s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+    }
+
+    details[open] .faq-panel {
+      max-height: 1000px;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <body class="m-0 p-0 overflow-x-hidden">
+    <div
+      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+    >
+      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+
+      <div
+        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-24 xl:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
+      >
+        <!-- Header -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+          <Header />
+        </div>
+
+        <!-- Section 1: Hero intro -->
+        <div
+          class="opacity-0 flex md:flex-row flex-col justify-between w-full items-center gap-6"
+          data-animate="fade-up"
+          data-delay="200"
+        >
+          <h1
+            class="text-white font-bold text-start leading-tight text-md sm:text-2xl md:text-4xl xl:text-6xl"
+          >
+            Transforming Payments & Lending In <br /> Growth Markets
+          </h1>
+
+          <div>
+            <div class="flex flex-row gap-4 items-center">
+              <div
+                class="cursor-pointer hover:transform hover:-translate-y-2 transition-transform duration-300"
+              >
+                <img src={facebook.src} alt="Facebook" class="w-8 h-8" />
+              </div>
+              <div
+                class="cursor-pointer hover:transform hover:-translate-y-2 transition-transform duration-300"
+              >
+                <img src={instagram.src} alt="Instagram" class="w-8 h-8" />
+              </div>
+              <div
+                class="cursor-pointer hover:transform hover:-translate-y-2 transition-transform duration-300"
+              >
+                <img src={telegram.src} alt="Telegram" class="w-8 h-8" />
+              </div>
+              <div
+                class="cursor-pointer hover:transform hover:-translate-y-2 transition-transform duration-300"
+              >
+                <img src={linkedin.src} alt="Linkedin" class="w-8 h-8" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 2: Grid Layout (6/6 columns) -->
+        <div
+          class="opacity-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-8"
+          data-animate="fade-up"
+          data-delay="300"
+        >
+          <!-- Left Column (6 columns) -->
+          <div class="flex flex-col gap-8" id="payments-section">
+            <TabCard
+              title="Our Financial Capabilities"
+              buttonLabel="Read More"
+              tabs={[
+                { label: "Payments", selected: true },
+                { label: "Lending", selected: false },
+              ]}
+              backgroundImage={zlOgoCopacity.src}
+            />
+
+            <div class="w-full bg-[#373737]/50 rounded-xl p-4">
+              <h2
+                id="card-title"
+                class="text-white text-xl sm:text-[28px] font-semibold mb-6"
+              >
+                {tabContent.payments.title}
+              </h2>
+
+              <div
+                id="cards-container"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                {
+                  tabContent.payments.cards.map((card) => (
+                    <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
+                      <span class="text-white/80 text-sm sm:text-base">
+                        {card.label}
+                      </span>
+                      <img
+                        src={card.image}
+                        alt={card.label}
+                        class="h-16 xl:h-24 w-auto object-contain"
+                      />
+                    </div>
+                  ))
+                }
+              </div>
+
+              <div class="flex justify-end mt-8">
+                <div
+                  class="flex items-center gap-3 bg-[#373737]/30 border border-white/10 rounded-full p-2"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 3L5 8L10 13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-[#BA7F4A]"></span>
+                    <span class="w-2 h-2 rounded-full bg-white/40"></span>
+                  </div>
+
+                  <svg
+                    class="w-4 h-4 text-white"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 3L11 8L6 13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column (6 columns) -->
+          <div class="flex flex-col gap-8" id="presence-section">
+            <TabCard
+              title="Our Presence"
+              buttonLabel="Read More"
+              tabs={[
+                { label: "UAE", selected: true },
+                { label: "India", selected: false },
+                { label: "Rest of world", selected: false },
+              ]}
+              backgroundImage={globalImage.src}
+            />
+
+            <div class="w-full bg-[#373737]/50 rounded-xl p-4">
+              <div
+                class="relative h-[363px] rounded-xl bg-[#373737]/20 flex items-end justify-center overflow-visible"
+              >
+                <img
+                  id="presence-image"
+                  src={UAEImage.src}
+                  alt="UAE"
+                  class="h-[400px] w-auto object-contain absolute -bottom-12"
+                />
+              </div>
+
+              <div class="flex justify-end mt-8">
+                <div
+                  class="flex items-center gap-3 bg-[#373737]/30 border border-white/10 rounded-full p-2"
+                >
+                  <svg
+                    class="w-4 h-4 text-white"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M10 3L5 8L10 13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+
+                  <div class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-[#BA7F4A]"></span>
+                    <span class="w-2 h-2 rounded-full bg-white/40"></span>
+                  </div>
+
+                  <svg
+                    class="w-4 h-4 text-white"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M6 3L11 8L6 13"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Stats row -->
+        <div class="opacity-0 w-full" data-animate="fade-up" data-delay="400">
+          <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-6">
+            {
+              [
+                { count: "5Mn+", label: "Customers Served" },
+                { count: "200+", label: "Countries Covered" },
+                { count: "900k", label: "Agent Network" },
+                { count: "400+", label: "Worldwide Locations" },
+              ].map((item) => (
+                <div class="flex flex-col items-center justify-center gap-3 rounded-[24px] p-8 text-center">
+                  <span class="text-[#FAA819] text-3xl sm:text-4xl font-semibold leading-none">
+                    {item.count}
+                  </span>
+                  <span class="text-white text-base sm:text-lg leading-snug max-w-[180px]">
+                    {item.label}
+                  </span>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Section 4: FAQ -->
+        <div class="opacity-0 w-full" data-animate="fade-up" data-delay="450">
+          <div class="flex flex-col gap-10">
+            <h2 class="text-white text-3xl sm:text-4xl font-bold">
+              Frequently Asked Questions (Faq)
+            </h2>
+            <div class="flex flex-col gap-6">
+              {
+                faqItems.map((item, index) => (
+                  <details
+                    class="group rounded-xl border border-white/10 bg-[#1F1F1F]/50 overflow-hidden"
+                    open={index === 0}
+                  >
+                    <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer text-white text-base sm:text-lg font-medium list-none">
+                      <span class="block bg-gradient-to-r from-[#959595] to-[#B1D1EA] bg-clip-text text-transparent">
+                        {item.question}
+                      </span>
+                      <span class="faq-chevron transition-transform duration-300 text-white">
+                        <svg
+                          class="w-5 h-5"
+                          viewBox="0 0 16 16"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M6 5L10 8L6 11"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </span>
+                    </summary>
+                    <div class="faq-panel px-6 pb-5 text-white/75 text-md leading-7">
+                      {item.answer}
+                    </div>
+                  </details>
+                ))
+              }
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="600">
+          <Footer />
+        </div>
+      </div>
+      <PageAnimations />
+
+      <script
+        define:vars={{
+          DigitalWallet: DigitalWalletImage.src,
+          CardPayment: CardPaymentImage.src,
+          MerchantImg: MerchantImage.src,
+          BusinessImg: BusinessImage.src,
+          UAEImage: UAEImage.src,
+          IndiaImage: IndiaImage.src,
+          RestImage: RestImage.src,
+        }}
+      >
+        const tabContentData = {
+          payments: {
+            title: "Payments",
+            cards: [
+              { label: "Digital Wallets", image: DigitalWallet },
+              { label: "Card Based Payments", image: CardPayment },
+              { label: "Merchant and Business Payments", image: MerchantImg },
+              { label: "Merchant and Business Payments", image: BusinessImg },
+            ],
+          },
+          lending: {
+            title: "Lending",
+            cards: [
+              { label: "Text 1", image: DigitalWallet },
+              { label: "Text 2", image: CardPayment },
+              { label: "Text 3", image: MerchantImg },
+              { label: "Text 4", image: BusinessImg },
+            ],
+          },
+        };
+
+        const presenceImageData = {
+          uae: UAEImage,
+          india: IndiaImage,
+          "rest of world": RestImage,
+        };
+
+        function setupTabContentSwitcher() {
+          const paymentsWrapper = document.getElementById("payments-section");
+          const presenceWrapper = document.getElementById("presence-section");
+          const presenceImage = document.getElementById("presence-image");
+          const titleElement = document.getElementById("card-title");
+          const cardsContainer = document.getElementById("cards-container");
+
+          if (!paymentsWrapper || !presenceWrapper || !titleElement || !cardsContainer) return;
+
+          const paymentsTabCard = paymentsWrapper.querySelector(".tab-card");
+          const presenceTabCard = presenceWrapper.querySelector(".tab-card");
+
+          function handlePaymentsTab(tabLabel) {
+            const contentKey = tabLabel === "payments" ? "payments" : "lending";
+            const content = tabContentData[contentKey];
+
+            titleElement.textContent = content.title;
+            cardsContainer.innerHTML = content.cards
+              .map(
+                (card) => `
+              <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
+                <span class="text-white/80 text-sm sm:text-base">${card.label}</span>
+                <img src="${card.image}" alt="${card.label}" class="h-20 md:h-24 w-auto object-contain" />
+              </div>
+            `,
+              )
+              .join("");
+          }
+
+          function handlePresenceTab(tabLabel) {
+            const key = tabLabel.toLowerCase();
+            const imageSrc = presenceImageData[key] || presenceImageData.uae;
+            if (presenceImage) {
+              presenceImage.src = imageSrc;
+              presenceImage.alt = `${tabLabel} image`;
+            }
+          }
+
+          if (paymentsTabCard) {
+            const paymentsTabs = paymentsTabCard.querySelectorAll(".tab-item");
+            paymentsTabs.forEach((tab) => {
+              tab.addEventListener("click", () => {
+                handlePaymentsTab(tab.textContent.trim().toLowerCase());
+              });
+            });
+          }
+
+          if (presenceTabCard) {
+            const presenceTabs = presenceTabCard.querySelectorAll(".tab-item");
+            presenceTabs.forEach((tab) => {
+              tab.addEventListener("click", () => {
+                handlePresenceTab(tab.textContent.trim());
+              });
+            });
+          }
+        }
+
+        // Setup when DOM is ready
+        if (document.readyState === "loading") {
+          document.addEventListener(
+            "DOMContentLoaded",
+            setupTabContentSwitcher,
+          );
+        } else {
+          setupTabContentSwitcher();
+        }
+      </script>
+    </div>
   </body>
 </html>
