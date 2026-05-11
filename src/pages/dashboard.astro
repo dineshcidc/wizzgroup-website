@@ -18,30 +18,34 @@ import facebook from "../assets/Facebook.png";
 import instagram from "../assets/Instagram.png";
 import telegram from "../assets/Telegram.png";
 import linkedin from "../assets/Linkedin.png";
+import chatbotAI from "../assets/Chatbot-AI.png";
+import infrastructureAI from "../assets/Infrastructure AI.png";
+import backendAI from "../assets/Backend.png";
+import frontendAI from "../assets/Frontend.png";
 
 import "../styles/global.css";
-import Footer from "../components/Footer.astro";
 import PageAnimations from "../components/PageAnimations.astro";
+import MainFooter from "../components/MainFooter.astro";
 
 // Tab Content Data
 const tabContent = {
   payments: {
-    title: "Payments",
+    title: "Cross Border Payments",
     cards: [
       {
-        label: "Digital Wallets",
+        label: "B2C Remittances",
         image: DigitalWalletImage.src,
       },
       {
-        label: "Card Based Payments",
+        label: "Foreign Exchange",
         image: CardPaymentImage.src,
       },
       {
-        label: "Merchant and Business Payments",
+        label: "B2B Remittances",
         image: MerchantImage.src,
       },
       {
-        label: "Merchant and Business Payments",
+        label: "WPS Salary payouts",
         image: BusinessImage.src,
       },
     ],
@@ -70,9 +74,10 @@ const tabContent = {
 };
 
 const presenceImageData = {
-  uae: UAEImage.src,
-  india: IndiaImage.src,
-  "rest of world": RestImage.src,
+  gcc: UAEImage.src,
+  "india & sea": IndiaImage.src,
+  usa: RestImage.src,
+  "rest of the world": RestImage.src,
 };
 
 const faqItems = [
@@ -200,8 +205,9 @@ const faqItems = [
               title="Our Financial Capabilities"
               buttonLabel="Read More"
               tabs={[
-                { label: "Payments", selected: true },
-                { label: "Lending", selected: false },
+                { label: "Cross Border Payments", selected: true },
+                { label: "Secured Lending", selected: false },
+                { label: "Technology Infrastructure", selected: false },
               ]}
               backgroundImage={zlOgoCopacity.src}
             />
@@ -209,7 +215,7 @@ const faqItems = [
             <div class="w-full bg-[#373737]/50 rounded-xl p-4">
               <h2
                 id="card-title"
-                class="text-white text-xl sm:text-[28px] font-semibold mb-6"
+                class="text-white text-xl sm:text-[24px] font-semibold mb-6"
               >
                 {tabContent.payments.title}
               </h2>
@@ -221,7 +227,7 @@ const faqItems = [
                 {
                   tabContent.payments.cards.map((card) => (
                     <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
-                      <span class="text-white/80 text-sm sm:text-base">
+                      <span class="text-white text-sm sm:text-base">
                         {card.label}
                       </span>
                       <img
@@ -283,9 +289,10 @@ const faqItems = [
               title="Our Presence"
               buttonLabel="Read More"
               tabs={[
-                { label: "UAE", selected: true },
-                { label: "India", selected: false },
-                { label: "Rest of world", selected: false },
+                { label: "GCC", selected: true },
+                { label: "India & SEA", selected: false },
+                { label: "USA", selected: false },
+                { label: "Rest of the World", selected: false },
               ]}
               backgroundImage={globalImage.src}
             />
@@ -369,7 +376,90 @@ const faqItems = [
           </div>
         </div>
 
-        <!-- Section 4: FAQ -->
+        <!-- Section 4: AI Stack -->
+        <div class="opacity-0 w-full" data-animate="fade-up" data-delay="500">
+          <div
+            class="relative flex lg:flex-row flex-col gap-5 items-center border border-white/10 rounded-2xl overflow-visible bg-white/5 md:p-6 p-4 xl:p-8"
+          >
+            <!-- Robot character — overflows top and bottom -->
+            <div
+              class="flex-shrink-0 relative -my-10 w-36 sm:w-52 md:w-64 xl:w-80"
+            >
+              <img
+                src={chatbotAI.src}
+                alt="AI Robot"
+                class="w-full h-auto object-contain drop-shadow-2xl"
+              />
+            </div>
+
+            <!-- Right content wrapper: #919191 at 20% opacity, 24px padding -->
+            <div class="flex-1 min-w-0 rounded-4xl bg-[#919191]/17 md:p-8 p-4">
+              <h2
+                class="text-white xl:text-[32px] md:text-xl font-medium leading-snug mb-6"
+              >
+                All Across the Entire Stack,{" "}
+                <strong class="font-bold">AI isn't a feature.</strong><br />
+                It's embedded in every layer
+              </h2>
+
+              <!-- Three AI cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-3 xl:gap-8 gap-3">
+                <div
+                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                >
+                  <img
+                    src={infrastructureAI.src}
+                    alt="Infrastructure AI"
+                    class="h-40 w-40 object-contain"
+                  />
+                  <span
+                    class="text-white font-bold text-sm md:text-md xl:text-xl"
+                    >Infrastructure AI</span
+                  >
+                  <span class="text-white/55 text-xs xl:text-base leading-snug"
+                    >Engineer &amp; Coding</span
+                  >
+                </div>
+
+                <div
+                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                >
+                  <img
+                    src={backendAI.src}
+                    alt="Backend"
+                    class="h-40 w-40 object-contain"
+                  />
+                  <span
+                    class="text-white font-bold text-sm md:text-md xl:text-xl"
+                    >Backend</span
+                  >
+                  <span class="text-white/55 text-xs xl:text-base leading-snug"
+                    >KYC/KYB | Treasury |<br />Risk &amp; Underwriting</span
+                  >
+                </div>
+
+                <div
+                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                >
+                  <img
+                    src={frontendAI.src}
+                    alt="Frontend"
+                    class="h-40 w-40 object-contain"
+                  />
+                  <span
+                    class="text-white font-bold text-sm md:text-md xl:text-xl"
+                    >Frontend</span
+                  >
+                  <span class="text-white/55 text-xs xl:text-base leading-snug"
+                    >UX-Agentic AI |<br />Speech AI</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 5: FAQ -->
         <div class="opacity-0 w-full" data-animate="fade-up" data-delay="450">
           <div class="flex flex-col gap-10">
             <h2 class="text-white text-3xl sm:text-4xl font-bold">
@@ -416,7 +506,7 @@ const faqItems = [
 
         <!-- Footer -->
         <div class="opacity-0" data-animate="fade-up" data-delay="600">
-          <Footer />
+          <MainFooter />
         </div>
       </div>
       <PageAnimations />
@@ -454,9 +544,10 @@ const faqItems = [
         };
 
         const presenceImageData = {
-          uae: UAEImage,
-          india: IndiaImage,
-          "rest of world": RestImage,
+          gcc: UAEImage,
+          "india & sea": IndiaImage,
+          usa: RestImage,
+          "rest of the world": RestImage,
         };
 
         function setupTabContentSwitcher() {
@@ -466,13 +557,20 @@ const faqItems = [
           const titleElement = document.getElementById("card-title");
           const cardsContainer = document.getElementById("cards-container");
 
-          if (!paymentsWrapper || !presenceWrapper || !titleElement || !cardsContainer) return;
+          if (
+            !paymentsWrapper ||
+            !presenceWrapper ||
+            !titleElement ||
+            !cardsContainer
+          )
+            return;
 
           const paymentsTabCard = paymentsWrapper.querySelector(".tab-card");
           const presenceTabCard = presenceWrapper.querySelector(".tab-card");
 
           function handlePaymentsTab(tabLabel) {
-            const contentKey = tabLabel === "payments" ? "payments" : "lending";
+            const contentKey =
+              tabLabel === "cross border payments" ? "payments" : "lending";
             const content = tabContentData[contentKey];
 
             titleElement.textContent = content.title;

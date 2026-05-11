@@ -1,25 +1,26 @@
 <script>
-  const slides      = document.querySelectorAll<HTMLElement>('.carousel-slide');
-  const fgImages    = document.querySelectorAll<HTMLElement>('[data-fg]');
-  const headerCards = document.querySelectorAll<HTMLElement>('[data-header]');
-  const dots        = document.querySelectorAll<HTMLButtonElement>('.carousel-dot');
-  const FADE_OUT   = 350;
-  const FADE_IN    = 400;
-  const AUTO_DELAY = 5000;
-  let current    = 0;
+  const slides = document.querySelectorAll<HTMLElement>(".carousel-slide");
+  const fgImages = document.querySelectorAll<HTMLElement>("[data-fg]");
+  const dots = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
+  const FADE_OUT = 350;
+  const FADE_IN = 400;
+  const AUTO_DELAY = 8000;
+  let current = 0;
   let isAnimating = false;
   let autoTimer: ReturnType<typeof setInterval>;
 
   function updateDots(activeIndex: number): void {
     dots.forEach((dot, i) => {
       const active = i === activeIndex;
-      dot.setAttribute('aria-selected', String(active));
+      dot.setAttribute("aria-selected", String(active));
       if (active) {
-        dot.classList.add('active', 'bg-white');
-        dot.classList.remove('bg-white/40');
+        dot.classList.add("active");
+        dot.classList.remove("bg-white/40");
+        dot.style.backgroundColor = "#BA7F4A";
       } else {
-        dot.classList.remove('active', 'bg-white');
-        dot.classList.add('bg-white/40');
+        dot.classList.remove("active");
+        dot.style.backgroundColor = "";
+        dot.classList.add("bg-white/40");
       }
     });
   }
@@ -30,27 +31,23 @@
 
     const prevIdx = current;
 
-    // Fade out current slide, fg image, and header card
-    slides[prevIdx].classList.remove('opacity-100');
-    slides[prevIdx].classList.add('opacity-0', 'pointer-events-none');
-    fgImages[prevIdx].classList.remove('opacity-100');
-    fgImages[prevIdx].classList.add('opacity-0');
-    headerCards[prevIdx].classList.remove('opacity-100');
-    headerCards[prevIdx].classList.add('opacity-0', 'pointer-events-none');
+    slides[prevIdx].classList.remove("opacity-100");
+    slides[prevIdx].classList.add("opacity-0", "pointer-events-none");
+    fgImages[prevIdx].classList.remove("opacity-100");
+    fgImages[prevIdx].classList.add("opacity-0");
 
     setTimeout(() => {
-      // Fade in next slide, fg image, and header card
-      slides[next].classList.remove('opacity-0', 'pointer-events-none');
-      slides[next].classList.add('opacity-100');
-      fgImages[next].classList.remove('opacity-0');
-      fgImages[next].classList.add('opacity-100');
-      headerCards[next].classList.remove('opacity-0', 'pointer-events-none');
-      headerCards[next].classList.add('opacity-100');
+      slides[next].classList.remove("opacity-0", "pointer-events-none");
+      slides[next].classList.add("opacity-100");
+      fgImages[next].classList.remove("opacity-0");
+      fgImages[next].classList.add("opacity-100");
 
       updateDots(next);
       current = next;
 
-      setTimeout(() => { isAnimating = false; }, FADE_IN);
+      setTimeout(() => {
+        isAnimating = false;
+      }, FADE_IN);
     }, FADE_OUT);
   }
 
@@ -66,10 +63,23 @@
   }
 
   dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
+    dot.addEventListener("click", () => {
       goToSlide(Number(dot.dataset.dot));
       resetAuto();
     });
+  });
+
+  const prevBtn = document.querySelector<HTMLButtonElement>("[data-prev]");
+  const nextBtn = document.querySelector<HTMLButtonElement>("[data-next]");
+
+  prevBtn?.addEventListener("click", () => {
+    goToSlide((current - 1 + slides.length) % slides.length);
+    resetAuto();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    goToSlide((current + 1) % slides.length);
+    resetAuto();
   });
 
   startAuto();

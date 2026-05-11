@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 import LogoCard from "../components/LogoCard.astro";
-import SocialFooter from "../components/SocialFooter.astro";
 import PageAnimations from "../components/PageAnimations.astro";
 import Carousel from "../components/Carousel.astro";
 import banner from "../assets/ApplicationBanner.png";
@@ -14,44 +13,28 @@ import logo from "../assets/Wizzlogo.png";
 // Extend this array to add more carousel slides
 const slides = [
   {
-    title: "One Platform. Global Finance.",
-    p1: "From cards to cross-border transfers, from FX to embedded lending — Wizz powers every layer of modern finance through a single, integrated ecosystem.",
-    p2: "Designed for scale and speed, Wizz Financial brings together core financial capabilities into one seamless infrastructure — enabling businesses and individuals to transact, lend, and settle globally without friction.",
+    title: "The Only Platform Focusing on GCC, INDIA, SEA & US Corridors",
+    p2: "Wizz Financial connects cross-border payments, digital wallets, card issuing, secured lending, and stablecoin treasury on a single regulated infrastructure — built for the corridors that matter most.",
     bgImage: mapdots.src,
     fgImage: layers.src,
     fgAlt: "Layered financial platform visualization",
     fgScale: "scale-100",
-    headerLines: [
-      { text: "Powering Every Transaction", bold: false },
-      { text: "Globally", bold: true },
-    ],
   },
   {
-    title: "A Global Financial Ecosystem",
-    p1: "A network of trusted brands and platforms working together to deliver end-to-end financial solutions across markets, industries, and customer segments.",
-    p2: "Wizz Financial brings together a powerful group of companies — combining distribution, technology, licensing, and customer reach — to create a financial ecosystem built for global scale.",
+    title: "Serving Every Cross-Border Customer",
+    p2: "Legacy systems break across borders — creating friction, delays, and high costs for global customers. Wizz Financial solves this with an integrated financial stack built specifically for cross-border scale.",
     bgImage: mapdots.src,
     fgImage: positionlogos.src,
     fgAlt: "Wizz position logos",
     fgScale: "scale-90",
-    headerLines: [
-      { text: "The WIZZ Ecosystem", bold: true },
-      { text: "Where brands, technology, and scale come together.", bold: false },
-    ],
   },
   {
-    title: "Explore Global Corridors",
-    p1: "Seamlessly powering financial movement across India, USA, UK, and the Middle East & Africa — through a unified, intelligent network.",
-    p2: "Move money, access currencies, and transact globally with a platform built for speed, scale, and trust. Wizz Financial connects key global corridors, enabling individuals and businesses to operate without borders.",
+    title: "The Financial Operating System for Cross-Border Populations",
+    p2: "Wizz Financial is a regulated financial ecosystem with licensed credibility across the GCC, India, South East Asia, and the US.",
     bgImage: mapdots.src,
     fgImage: wizzstates.src,
     fgAlt: "Wizz global states map",
     fgScale: "scale-100",
-    headerLines: [
-      { text: "50+ licenses", bold: true },
-      { text: "Multi-market presence", bold: false },
-      { text: "Trusted by millions", bold: false },
-    ],
   },
 ];
 ---
@@ -74,7 +57,9 @@ const slides = [
     >
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
-      <div class="relative z-10 flex-1 flex flex-col justify-between gap-8 sm:gap-10 lg:gap-0">
+      <div
+        class="relative z-10 flex-1 flex flex-col justify-between gap-8 sm:gap-10 lg:gap-0"
+      >
         <!-- Sub-header -->
         <div
           class="opacity-0 flex flex-col gap-5 mb-10 h-fit sm:flex-row sm:justify-between sm:items-center lg:mb-0"
@@ -82,25 +67,29 @@ const slides = [
           data-delay="100"
         >
           <LogoCard />
-          <!-- Header cards: stacked absolutely, swapped in sync with carousel slides -->
-          <div class="relative">
-            {slides.map((slide, i) => (
-              <div
-                class={`header-card text-white rounded-3xl text-center border border-white/10 leading-snug uppercase
-                  bg-[#373737]/25 p-3 text-xs md:p-3.5 md:text-lg lg:p-4 md:text-md xl:p-4 2xl:p-4
-                  transition-opacity duration-300 ease-in-out
-                  ${i === 0 ? 'opacity-100' : 'opacity-0 absolute top-0 left-0 w-full pointer-events-none'}`}
-                data-header={i}
-              >
-                {slide.headerLines.map((line, j) => (
-                  <>
-                    {j > 0 && <br />}
-                    {line.bold ? <span class="font-bold">{line.text}</span> : line.text}
-                  </>
-                ))}
-              </div>
-            ))}
-          </div>
+          <a
+            href="/dashboard"
+            class="flex items-center text-lg justify-center gap-2 whitespace-nowrap cursor-pointer
+      font-medium text-white bg-[#4D4222]/30
+      w-52 h-16 rounded-[2.5rem]"
+          >
+            Explore WIZZ
+
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 16 16"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M6 3L11 8L6 13"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </a>
         </div>
 
         <!-- Carousel -->
@@ -137,18 +126,12 @@ const slides = [
                     p-3 sm:p-4 md:p-5 lg:p-6 xl:p-8"
                     >
                       <h2
-                        class="text-white font-bold leading-tight mb-5 md:mb-10 sm:whitespace-nowrap
+                        class="text-white font-bold leading-16 mb-5 md:mb-6 
                         text-lg sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl 2xl:text-5xl"
                       >
                         {slide.title}
                       </h2>
-                      <div class="space-y-6">
-                        <p
-                          class="text-[#CBCBCB] font-medium md:leading-8
-                          text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-2xl"
-                        >
-                          {slide.p1}
-                        </p>
+                      <div>
                         <p
                           class="text-[#CBCBCB] font-light md:leading-8
                           text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-xl"
@@ -186,33 +169,84 @@ const slides = [
               }
             </div>
           </div>
-
-          <!-- Dot indicators (horizontal on mobile, vertical on desktop) -->
-          <div
-            role="tablist"
-            aria-label="Carousel navigation"
-            class="flex gap-3 mt-6 items-center justify-center
-              lg:absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:mt-0
-              lg:flex-col lg:gap-4"
-          >
-            {
-              slides.map((_, i) => (
-                <button
-                  type="button"
-                  role="tab"
-                  aria-label={`Go to slide ${i + 1}`}
-                  aria-selected={i === 0 ? "true" : "false"}
-                  data-dot={i}
-                  class={`carousel-dot rounded-full transition-all duration-300 cursor-pointer border-0 ${i === 0 ? "active bg-white" : "bg-white/40 hover:bg-white/70"}`}
-                />
-              ))
-            }
-          </div>
         </div>
 
-        <!-- Footer -->
-        <div class="opacity-0" data-animate="fade-up" data-delay="700">
-          <SocialFooter />
+        <!-- Footer: dot indicators -->
+        <div
+          class="opacity-0 flex justify-start"
+          data-animate="fade-up"
+          data-delay="700"
+        >
+          <div
+            class="flex flex-row items-center gap-2 bg-[#373737]/12 rounded-full p-2"
+          >
+            <!-- Chevron left -->
+            <button
+              type="button"
+              aria-label="Previous slide"
+              data-prev
+              class="flex items-center justify-center text-white/70 hover:text-white cursor-pointer border-0 bg-transparent transition-colors duration-200"
+            >
+              <svg
+                class="w-4 h-4"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 3L5 8L10 13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </button>
+
+            <!-- Dots -->
+            <div
+              role="tablist"
+              aria-label="Carousel navigation"
+              class="flex flex-row items-center gap-2"
+            >
+              {
+                slides.map((_, i) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-label={`Go to slide ${i + 1}`}
+                    aria-selected={i === 0 ? "true" : "false"}
+                    data-dot={i}
+                    class={`carousel-dot w-2.5 h-2.5 rounded-full transition-all duration-300 cursor-pointer border-0 ${i === 0 ? "active" : "bg-white/40 hover:bg-white/70"}`}
+                    style={i === 0 ? "background-color:#BA7F4A" : ""}
+                  />
+                ))
+              }
+            </div>
+
+            <!-- Chevron right -->
+            <button
+              type="button"
+              aria-label="Next slide"
+              data-next
+              class="flex items-center justify-center text-white/70 hover:text-white cursor-pointer border-0 bg-transparent transition-colors duration-200"
+            >
+              <svg
+                class="w-4 h-4"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 3L11 8L6 13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"></path>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -19,18 +19,11 @@ import wizzBrand3 from "../assets/Wizz-Brand3.png";
 import wizzBrand4 from "../assets/Wizz-Brand4.png";
 import wizzBrand5 from "../assets/Wizz-Brand5.png";
 import wizzBrand6 from "../assets/Wizz-Brand6.png";
-import aditum from "../assets/Aditum.png";
-import sahaj from "../assets/Sahaj.png";
-import visa from "../assets/Visa.png";
-import bitgo from "../assets/Bitgo.png";
 import earth from "../assets/Earth.png";
+import visionImg from "../assets/Vision_about.png";
+import missionImg from "../assets/Mission_about.png";
+import differImg from "../assets/Differ_about.png";
 
-const strategicPartners = [
-  { src: aditum.src, alt: "Aditum" },
-  { src: sahaj.src, alt: "Sahaj" },
-  { src: visa.src, alt: "Visa" },
-  { src: bitgo.src, alt: "Bitgo" },
-];
 
 const corridorTabs = [
   { label: "India to Rest of the World", selected: true },
@@ -78,19 +71,65 @@ const brandCards = [
   },
 ];
 
-const infoCards = [
+const visionMissionCards = [
   {
-    text: "One platform for sending and receiving across India, Southeast Asia, the US and the GCC",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 3C12 3 9 7 9 12s3 9 3 9M12 3c0 0 3 4 3 9s-3 9-3 9M3 12h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    title: "The Vision",
+    text: "Build the financial operating system for cross-border populations – a single platform that works wherever the customer lives, travels, sends, or borrows.",
+    image: visionImg.src,
+    imageAlt: "Vision",
   },
   {
-    text: "The Group operates under more than 50 regulatory licenses worldwide with a network of over 500 branches",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="11" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    title: "The Mission",
+    text: "Deliver seamless, secure, and compliant financial services independent of traditional banking rails – combining physical accessibility with digital innovation.",
+    image: missionImg.src,
+    imageAlt: "Mission",
   },
   {
-    text: "Built on a cloud-native, AI-enabled, regulator-approved technology stack",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 19a4.5 4.5 0 01-.5-9 6 6 0 0111.8-1.5A4.5 4.5 0 0118.5 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 13v6M9 16l3-3 3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    title: "The Differentiation",
+    text: "Unlike pure digital fintechs that lack physical reach, or traditional banks with poor UX – WizzFinancial is the only hybrid platform with both regulatory infrastructure and street-level distribution.",
+    image: differImg.src,
+    imageAlt: "Differentiation",
   },
+];
+
+const partnerColumns = [
+  {
+    title: "Payment Network",
+    partners: [
+      { name: "Visa", description: "In Principal Global Member" },
+      { name: "UPI", description: "Direct UPI integration for india payments" },
+      { name: "RuPay", description: "Card scheme: 1st AED denominates" },
+      { name: "Bharat BillPay", description: "Bill payments across India" },
+    ],
+  },
+  {
+    title: "Banking Partners",
+    partners: [
+      { name: "Airtel Payments Bank", description: "Distribution Partner" },
+      { name: "HDFC Bank", description: "AD I partner in india" },
+      { name: "Yes Bank", description: "AD I Partner In india" },
+      { name: "FAB", description: "HNW1 Product" },
+    ],
+  },
+  {
+    title: "Tech & More Partners",
+    partners: [
+      { name: "BitGo", description: "Stablecoin rail for B2C remittances" },
+      { name: "IndiGo", description: "Travel Partners" },
+      { name: "AWS", description: "Amazon-AWS" },
+      { name: "Samsung", description: "Samsung" },
+    ],
+  },
+];
+
+const problemPills = [
+  "Regulatory complexity",
+  "Fragmented systems",
+  "Multiple intermediaries",
+  "High fees",
+  "Multi-day settlement",
+  "Outdated technology",
+  "Lack of transparency",
 ];
 ---
 
@@ -138,28 +177,58 @@ const infoCards = [
             About Us
           </h1>
 
-          <p
-            class="text-white/70 text-center leading-relaxed max-w-4xl text-sm sm:text-base md:text-xl"
+          <h2 class="text-white font-bold text-center text-xl md:text-2xl">
+            The Problem Seen
+          </h2>
+
+          <!-- Scrollable problem pills -->
+          <div
+            class="w-full flex overflow-x-auto gap-6 py-2 justify-start md:justify-center"
+            style="scrollbar-width: none; -ms-overflow-style: none;"
           >
-            Wizz Financial is a financial technology company focused on
-            transforming cross-border money movement and digital lending. Our
-            hybrid model combines a unified digital wallet ecosystem, full-stack
-            card issuance and processing, wallet-to-wallet technology and
-            blockchain-enabled treasury solutions.
+            {
+              problemPills.map((pill) => (
+                <div class="flex-shrink-0 px-5 py-2 rounded-full border border-white/20 bg-[#4D4222]/40 text-white text-[18px] whitespace-nowrap">
+                  {pill}
+                </div>
+              ))
+            }
+          </div>
+
+          <p
+            class="text-white/80 text-center leading-relaxed max-w-5xl text-sm sm:text-base md:text-lg mt-2"
+          >
+            India, GCC and Asia are tightly linked, yet financial services are
+            fragmented, slow &amp; expensive. 280M global migrants move $800B+
+            annually through fragmented, expensive, slow channels – paying 5-8%
+            in fees and waiting days for settlement. <br />
+            <strong
+              >No single platform serves them across origin and destination
+              countries.</strong
+            >
           </p>
 
-          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+          <!-- Vision / Mission / Differentiation cards -->
+          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
             {
-              infoCards.map((card) => (
+              visionMissionCards.map((card) => (
                 <div
-                  class="flex md:flex-col flex-row md:gap-6 gap-2 bg-[#373737]/50 border border-white/10 rounded-2xl lg:p-8 p-4
-                transition-all duration-500 ease-in-out
-                hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
+                  class="relative overflow-hidden rounded-2xl bg-[#373737]/30 border border-white/10 min-h-[300px]
+                  transition-all duration-500 ease-in-out hover:bg-white/10 hover:border-white/20 hover:scale-[1.02]"
                 >
-                  <div class="text-white md:w-7 md:h-7 w-8 h-8 flex-shrink-0" set:html={card.icon} />
-                  <p class="text-white md:text-xl text-xs leading-relaxed">
-                    {card.text}
-                  </p>
+                  <div class="flex flex-col gap-3 p-6 pb-3 z-10 relative">
+                    <h3 class="text-white font-bold text-[20px]">
+                      {card.title}
+                    </h3>
+                    <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                      {card.text}
+                    </p>
+                  </div>
+                  <img
+                    src={card.image}
+                    alt={card.imageAlt}
+                    class="absolute -bottom-[30px] -right-[50px] w-[200px] h-[200px] object-contain opacity-90 pointer-events-none"
+                  />
                 </div>
               ))
             }
@@ -200,7 +269,7 @@ const infoCards = [
           </div>
         </div>
 
-        <!-- Section 3: Strategic Partners -->
+        <!-- Section 3: Tier-1 Partner Ecosystem -->
         <div
           class="opacity-0 flex flex-col md:items-center md:justify-center justify-start md:text-center md:gap-6 gap-3"
           data-animate="fade-up"
@@ -210,33 +279,31 @@ const infoCards = [
             <h2
               class="text-white font-bold text-2xl sm:text-3xl md:text-4xl leading-tight text-left md:text-center"
             >
-              Strategic Partners
+              Tier-1 Partner Ecosystem
             </h2>
           </div>
           <p
             class="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl"
           >
-            We’re proud to partner with some of the best in the business to
-            enhance our capabilities and extend our offering across India, the
-            GCC and Africa. Find a full list of our partners below:
+            We’re proud to partner with some of the best in the business to enhance our capabilities and extend our offering across India, the GCC and Africa. Find a full list of our partners below:
           </p>
 
-          <!-- Partner Cards Grid -->
-          <div
-            class="md:mt-10 mt-4 flex overflow-x-auto gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible sm:gap-6 w-full overflow-y-hidden"
-          >
+          <!-- Partner Ecosystem Grid -->
+          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8 text-left">
             {
-              strategicPartners.map((partner) => (
-                <div
-                  class="bg-[#373737]/30 border border-white/10 rounded-[10px] p-3 h-[60px] md:p-6 md:h-[130px] flex items-center justify-center flex-shrink-0
-                transition-all duration-500 ease-in-out
-                hover:bg-white/15 hover:border-white/30 hover:shadow-lg hover:shadow-white/5 hover:scale-[1.02]"
-                >
-                  <img
-                    src={partner.src}
-                    alt={partner.alt}
-                    class="md:max-h-36 h-24 md:w-36 w-24 object-contain"
-                  />
+              partnerColumns.map((col) => (
+                <div class="flex flex-col gap-4 bg-[#373737]/20 border border-white/10 rounded-2xl p-5">
+                  <h3 class="text-white font-bold text-xl md:text-2xl">{col.title}</h3>
+                  <div class="flex flex-col gap-10 mt-6">
+                    {col.partners.map((partner) => (
+                      <div class="flex items-center gap-4">
+                        <div class="w-[72px] h-[72px] flex-shrink-0 rounded-xl bg-white flex items-center justify-center">
+                          <!-- logo placeholder -->
+                        </div>
+                        <p class="text-white/80 text-sm md:text-base leading-snug">{partner.description}</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               ))
             }
@@ -267,7 +334,9 @@ const infoCards = [
           </p>
 
           <!-- Corridors Tabs -->
-          <div class="md:mt-10 mt-4 flex overflow-x-auto gap-4 w-full justify-center">
+          <div
+            class="md:mt-10 mt-4 flex overflow-x-auto gap-4 w-full justify-center"
+          >
             {
               corridorTabs.map((tab) => (
                 <div

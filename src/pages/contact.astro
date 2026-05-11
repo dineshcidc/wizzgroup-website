@@ -1,0 +1,169 @@
+---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/MainFooter.astro";
+import PageAnimations from "../components/PageAnimations.astro";
+import banner from "../assets/ApplicationBanner.png";
+import logo from "../assets/Wizzlogo.png";
+import chatbot from "../assets/Chatbot-AI.png";
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href={logo.src} />
+    <title>Contact</title>
+    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
+      .hero-bg {
+        background-image: var(--bannerSrc);
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+      input,
+      textarea {
+        outline: none;
+      }
+      input:focus,
+      textarea:focus {
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+    </style>
+  </head>
+  <body class="m-0 p-0 overflow-x-hidden">
+    <div
+      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+    >
+      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+
+      <div
+        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-24 p-5 sm:p-8 md:p-10 lg:p-12"
+      >
+        <!-- Header -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+          <Header />
+        </div>
+
+        <!-- Get In Touch Section -->
+        <div
+          class="opacity-0 flex flex-col items-center gap-4"
+          data-animate="fade-up"
+          data-delay="200"
+        >
+          <!-- Title & subtitle -->
+          <h1
+            class="text-white font-bold text-center text-[24px] md:text-[32px] lg:text-[56px] leading-tight"
+          >
+            Get In Touch
+          </h1>
+          <p
+            class="text-white/70 text-center leading-relaxed max-w-3xl md:text-xl text-sm"
+          >
+            Have a question, need assistance, or want to learn more about our
+            services? We're here to help—just drop us a message and our team
+            will get back to you shortly.
+          </p>
+
+          <!-- Two-column layout -->
+          <div
+            class="w-full grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-8 md:mt-16 max-w-7xl items-start"
+          >
+            <!-- Left: chatbot image (always first on mobile, title/subtext hidden on mobile) -->
+            <div class="flex flex-col gap-4 order-1 md:order-1 relative z-0">
+              <h2
+                class="hidden md:block text-white font-bold text-2xl md:text-3xl"
+              >
+                Let's Connect
+              </h2>
+              <p
+                class="hidden md:block text-white/60 text-sm md:text-base leading-relaxed max-w-md"
+              >
+                Whether you're exploring our solutions or need support, our team
+                is ready to assist you every step of the way. Fill out the form
+                and we'll respond as quickly as possible.
+              </p>
+              <div
+                class="flex items-end justify-center md:justify-start md:mt-4"
+              >
+                <img
+                  src={chatbot.src}
+                  alt="Wizz chatbot"
+                  class="w-56 md:w-80 object-contain drop-shadow-2xl"
+                />
+              </div>
+            </div>
+
+            <!-- Form card: on mobile pulls up over the bottom half of the image -->
+            <div
+              class="flex flex-col gap-8 bg-[#373737]/25 backdrop-blur-xl backdrop-saturate-150 border border-white/10 rounded-[24px] p-6 order-2 md:order-2 relative z-10 -mt-24 md:mt-0"
+            >
+              <!-- Full Name -->
+              <div class="flex flex-col gap-2">
+                <label class="text-white font-medium text-base">Full Name</label
+                >
+                <input
+                  type="text"
+                  placeholder="Enter Your Full Name"
+                  class="w-full bg-white/5 border border-[#9ca3af]/30 rounded-xl px-4 py-3 text-white text-sm transition-colors duration-200"
+                />
+              </div>
+
+              <!-- Email Address -->
+              <div class="flex flex-col gap-2">
+                <label class="text-white font-medium text-base"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  placeholder="Enter Email Address"
+                  class="w-full bg-white/5 border border-[#9ca3af]/30 rounded-xl px-4 py-3 text-white text-sm transition-colors duration-200"
+                />
+              </div>
+
+              <!-- Phone Number -->
+              <div class="flex flex-col gap-2">
+                <label class="text-white font-medium text-base">
+                  Phone Number <span class="text-white/40">(Optional)</span>
+                </label>
+                <input
+                  type="tel"
+                  placeholder="Enter Phone Number"
+                  class="w-full bg-white/5 border border-[#9ca3af]/30 rounded-xl px-4 py-3 text-white text-sm transition-colors duration-200"
+                />
+              </div>
+
+              <!-- Message -->
+              <div class="flex flex-col gap-2">
+                <label class="text-white font-medium text-base">Message</label>
+                <textarea
+                  placeholder="Write Your Message Here"
+                  rows="5"
+                  class="w-full bg-white/5 border border-[#9ca3af]/30 rounded-xl px-4 py-3 text-white text-sm resize-none transition-colors duration-200"
+                ></textarea>
+              </div>
+
+              <!-- Submit -->
+              <button
+                type="submit"
+                class="w-full py-4 rounded-full font-semibold text-white text-base border border-[#F79A59]
+                  bg-[#FFBD00]/20 hover:bg-[#FFBD00]/30
+                  transition-all duration-300 hover:shadow-lg hover:shadow-[#F79A59]/20"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="opacity-0" data-animate="fade-up" data-delay="300">
+          <Footer />
+        </div>
+      </div>
+    </div>
+
+    <PageAnimations />
+  </body>
+</html>
