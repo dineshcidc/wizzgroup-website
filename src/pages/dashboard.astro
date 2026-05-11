@@ -7,13 +7,29 @@ import banner from "../assets/ApplicationBanner.png";
 import logo from "../assets/Wizzlogo.png";
 import zlOgoCopacity from "../assets/zlogo-opacity.png";
 import globalImage from "../assets/Global.png";
-import UAEImage from "../assets/UAE.png";
-import IndiaImage from "../assets/India.png";
-import RestImage from "../assets/Rest.png";
+import GccImage from "../assets/Gcc.png";
+import IndiaSEAImage from "../assets/India & SEA.png";
+import UsaImage from "../assets/Usa.png";
+import RestOfWorldImage from "../assets/Rest of World.png";
 import DigitalWalletImage from "../assets/Digitalwallet.png";
 import CardPaymentImage from "../assets/Cardpayment.png";
 import MerchantImage from "../assets/Merchant.png";
 import BusinessImage from "../assets/Business.png";
+import B2CRemittancesImg from "../assets/B2C Remittances.png";
+import ForeignExchangeImg from "../assets/Foreign Exchange.png";
+import B2BRemittancesImg from "../assets/B2B Remittances.png";
+import WPSSalaryPayoutsImg from "../assets/WPS Salary payouts.png";
+import FXPrepaidCardsImg from "../assets/FX Prepaid Cards.png";
+import BillPaymentsImg from "../assets/Bill Payments.png";
+import AssetBackedLendingImg from "../assets/Asset - Backed Lending.png";
+import RemitNowPayLaterImg from "../assets/Remit Now Pay Later.png";
+import InsurancePremiumFinanceImg from "../assets/Insurance Premium Finance.png";
+import EducationLoansImg from "../assets/Education Loans.png";
+import ProprietaryCoreImg from "../assets/Proprietary Core.png";
+import AIPoweredDecisioningImg from "../assets/AI-powered decisioning.png";
+import CloudNativeAPIImg from "../assets/Cloud-native & API.png";
+import CardIssueImg from "../assets/Card Issue.png";
+import StablecoinImg from "../assets/Stablecoin.png";
 import facebook from "../assets/Facebook.png";
 import instagram from "../assets/Instagram.png";
 import telegram from "../assets/Telegram.png";
@@ -32,52 +48,30 @@ const tabContent = {
   payments: {
     title: "Cross Border Payments",
     cards: [
-      {
-        label: "B2C Remittances",
-        image: DigitalWalletImage.src,
-      },
-      {
-        label: "Foreign Exchange",
-        image: CardPaymentImage.src,
-      },
-      {
-        label: "B2B Remittances",
-        image: MerchantImage.src,
-      },
-      {
-        label: "WPS Salary payouts",
-        image: BusinessImage.src,
-      },
+      { label: "B2C Remittances", image: B2CRemittancesImg.src },
+      { label: "Foreign Exchange", image: ForeignExchangeImg.src },
+      { label: "B2B Remittances", image: B2BRemittancesImg.src },
+      { label: "WPS Salary payouts", image: WPSSalaryPayoutsImg.src },
+      { label: "FX Prepaid Cards", image: FXPrepaidCardsImg.src },
+      { label: "Bill Payments", image: BillPaymentsImg.src },
     ],
   },
   lending: {
-    title: "Lending",
+    title: "Secured Lending",
     cards: [
-      {
-        label: "Text 1",
-        image: DigitalWalletImage.src,
-      },
-      {
-        label: "Text 2",
-        image: CardPaymentImage.src,
-      },
-      {
-        label: "Text 3",
-        image: MerchantImage.src,
-      },
-      {
-        label: "Text 4",
-        image: BusinessImage.src,
-      },
+      { label: "Asset - Backed Lending", image: AssetBackedLendingImg.src },
+      { label: "Remit Now Pay Later", image: RemitNowPayLaterImg.src },
+      { label: "Insurance Premium Finance", image: InsurancePremiumFinanceImg.src },
+      { label: "Education Loans", image: EducationLoansImg.src },
     ],
   },
 };
 
 const presenceImageData = {
-  gcc: UAEImage.src,
-  "india & sea": IndiaImage.src,
-  usa: RestImage.src,
-  "rest of the world": RestImage.src,
+  gcc: GccImage.src,
+  "india & sea": IndiaSEAImage.src,
+  usa: UsaImage.src,
+  "rest of the world": RestOfWorldImage.src,
 };
 
 const faqItems = [
@@ -212,20 +206,21 @@ const faqItems = [
               backgroundImage={zlOgoCopacity.src}
             />
 
-            <div class="w-full bg-[#373737]/50 rounded-xl p-4">
+            <div class="w-full bg-[#373737]/50 rounded-xl p-4 flex flex-col flex-1">
+              <div id="payments-content" class="flex flex-col flex-1" style="transition: opacity 0.25s ease;">
               <h2
                 id="card-title"
-                class="text-white text-xl sm:text-[24px] font-semibold mb-6"
+                class="bg-gradient-to-r from-[#959595] to-[#B1D1EA] bg-clip-text text-transparent text-xl sm:text-2xl font-normal mb-6"
               >
                 {tabContent.payments.title}
               </h2>
 
               <div
                 id="cards-container"
-                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6 content-start flex-1"
               >
                 {
-                  tabContent.payments.cards.map((card) => (
+                  tabContent.payments.cards.slice(0, 4).map((card) => (
                     <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
                       <span class="text-white text-sm sm:text-base">
                         {card.label}
@@ -239,13 +234,15 @@ const faqItems = [
                   ))
                 }
               </div>
+              </div>
 
               <div class="flex justify-end mt-8">
                 <div
                   class="flex items-center gap-3 bg-[#373737]/30 border border-white/10 rounded-full p-2"
                 >
                   <svg
-                    class="w-4 h-4 text-white"
+                    id="payments-prev"
+                    class="w-4 h-4 text-white cursor-pointer"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -259,13 +256,14 @@ const faqItems = [
                       stroke-linejoin="round"></path>
                   </svg>
 
-                  <div class="flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-[#BA7F4A]"></span>
-                    <span class="w-2 h-2 rounded-full bg-white/40"></span>
+                  <div id="payments-dots" class="flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full cursor-pointer bg-[#BA7F4A]"></span>
+                    <span class="w-2 h-2 rounded-full cursor-pointer bg-white/40"></span>
                   </div>
 
                   <svg
-                    class="w-4 h-4 text-white"
+                    id="payments-next"
+                    class="w-4 h-4 text-white cursor-pointer"
                     viewBox="0 0 16 16"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -297,19 +295,20 @@ const faqItems = [
               backgroundImage={globalImage.src}
             />
 
-            <div class="w-full bg-[#373737]/50 rounded-xl p-4">
+            <div class="w-full bg-[#373737]/50 rounded-xl p-4 flex flex-col flex-1">
               <div
                 class="relative h-[363px] rounded-xl bg-[#373737]/20 flex items-end justify-center overflow-visible"
               >
                 <img
                   id="presence-image"
-                  src={UAEImage.src}
-                  alt="UAE"
+                  src={GccImage.src}
+                  alt="GCC"
                   class="h-[400px] w-auto object-contain absolute -bottom-12"
+                  style="transition: opacity 0.25s ease;"
                 />
               </div>
 
-              <div class="flex justify-end mt-8">
+              <div class="flex justify-end mt-auto pt-8">
                 <div
                   class="flex items-center gap-3 bg-[#373737]/30 border border-white/10 rounded-full p-2"
                 >
@@ -517,38 +516,115 @@ const faqItems = [
           CardPayment: CardPaymentImage.src,
           MerchantImg: MerchantImage.src,
           BusinessImg: BusinessImage.src,
-          UAEImage: UAEImage.src,
-          IndiaImage: IndiaImage.src,
-          RestImage: RestImage.src,
+          GccImage: GccImage.src,
+          IndiaSEAImage: IndiaSEAImage.src,
+          UsaImage: UsaImage.src,
+          RestOfWorldImage: RestOfWorldImage.src,
+          B2CRemittances: B2CRemittancesImg.src,
+          ForeignExchange: ForeignExchangeImg.src,
+          B2BRemittances: B2BRemittancesImg.src,
+          WPSSalaryPayouts: WPSSalaryPayoutsImg.src,
+          FXPrepaidCards: FXPrepaidCardsImg.src,
+          BillPayments: BillPaymentsImg.src,
+          AssetBackedLending: AssetBackedLendingImg.src,
+          RemitNowPayLater: RemitNowPayLaterImg.src,
+          InsurancePremiumFinance: InsurancePremiumFinanceImg.src,
+          EducationLoans: EducationLoansImg.src,
+          ProprietaryCore: ProprietaryCoreImg.src,
+          AIPoweredDecisioning: AIPoweredDecisioningImg.src,
+          CloudNativeAPI: CloudNativeAPIImg.src,
+          CardIssue: CardIssueImg.src,
+          Stablecoin: StablecoinImg.src,
         }}
       >
+        const CARDS_PER_PAGE = 4;
+        let paymentsCurrentPage = 0;
+        let activePaymentsKey = "payments";
+
         const tabContentData = {
           payments: {
-            title: "Payments",
+            title: "Cross Border Payments",
             cards: [
-              { label: "Digital Wallets", image: DigitalWallet },
-              { label: "Card Based Payments", image: CardPayment },
-              { label: "Merchant and Business Payments", image: MerchantImg },
-              { label: "Merchant and Business Payments", image: BusinessImg },
+              { label: "B2C Remittances", image: B2CRemittances },
+              { label: "Foreign Exchange", image: ForeignExchange },
+              { label: "B2B Remittances", image: B2BRemittances },
+              { label: "WPS Salary payouts", image: WPSSalaryPayouts },
+              { label: "FX Prepaid Cards", image: FXPrepaidCards },
+              { label: "Bill Payments", image: BillPayments },
             ],
           },
           lending: {
-            title: "Lending",
+            title: "Secured Lending",
             cards: [
-              { label: "Text 1", image: DigitalWallet },
-              { label: "Text 2", image: CardPayment },
-              { label: "Text 3", image: MerchantImg },
-              { label: "Text 4", image: BusinessImg },
+              { label: "Asset - Backed Lending", image: AssetBackedLending },
+              { label: "Remit Now Pay Later", image: RemitNowPayLater },
+              { label: "Insurance Premium Finance", image: InsurancePremiumFinance },
+              { label: "Education Loans", image: EducationLoans },
+            ],
+          },
+          techinfra: {
+            title: "Technology Infrastructure",
+            cards: [
+              { label: "Proprietary Core", image: ProprietaryCore },
+              { label: "AI-powered decisioning", image: AIPoweredDecisioning },
+              { label: "Cloud-native & API - first", image: CloudNativeAPI },
+              { label: "Card issuing platform", image: CardIssue },
+              { label: "Stablecoin Treasury & Liquidity", image: Stablecoin },
             ],
           },
         };
 
         const presenceImageData = {
-          gcc: UAEImage,
-          "india & sea": IndiaImage,
-          usa: RestImage,
-          "rest of the world": RestImage,
+          gcc: GccImage,
+          "india & sea": IndiaSEAImage,
+          usa: UsaImage,
+          "rest of the world": RestOfWorldImage,
         };
+
+        function renderPaymentsCards(titleElement, cardsContainer) {
+          const content = tabContentData[activePaymentsKey];
+          const totalPages = Math.ceil(content.cards.length / CARDS_PER_PAGE);
+          const start = paymentsCurrentPage * CARDS_PER_PAGE;
+          const pageCards = content.cards.slice(start, start + CARDS_PER_PAGE);
+          const paymentsContent = document.getElementById("payments-content");
+
+          function applyUpdate() {
+            titleElement.textContent = content.title;
+            cardsContainer.innerHTML = pageCards
+              .map(
+                (card) => `
+                <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
+                  <span class="text-white text-sm sm:text-base">${card.label}</span>
+                  <img src="${card.image}" alt="${card.label}" class="h-16 xl:h-24 w-auto object-contain" />
+                </div>
+              `,
+              )
+              .join("");
+
+            // Update dots
+            const dotsContainer = document.getElementById("payments-dots");
+            if (dotsContainer) {
+              dotsContainer.innerHTML = Array.from({ length: totalPages }, (_, i) =>
+                `<span class="w-2 h-2 rounded-full cursor-pointer ${i === paymentsCurrentPage ? "bg-[#BA7F4A]" : "bg-white/40"}" data-page="${i}"></span>`
+              ).join("");
+              dotsContainer.querySelectorAll("span").forEach((dot) => {
+                dot.addEventListener("click", () => {
+                  paymentsCurrentPage = parseInt(dot.dataset.page);
+                  renderPaymentsCards(titleElement, cardsContainer);
+                });
+              });
+            }
+
+            if (paymentsContent) paymentsContent.style.opacity = "1";
+          }
+
+          if (paymentsContent) {
+            paymentsContent.style.opacity = "0";
+            setTimeout(applyUpdate, 250);
+          } else {
+            applyUpdate();
+          }
+        }
 
         function setupTabContentSwitcher() {
           const paymentsWrapper = document.getElementById("payments-section");
@@ -568,30 +644,48 @@ const faqItems = [
           const paymentsTabCard = paymentsWrapper.querySelector(".tab-card");
           const presenceTabCard = presenceWrapper.querySelector(".tab-card");
 
-          function handlePaymentsTab(tabLabel) {
-            const contentKey =
-              tabLabel === "cross border payments" ? "payments" : "lending";
-            const content = tabContentData[contentKey];
+          // Carousel prev/next
+          const prevBtn = document.getElementById("payments-prev");
+          const nextBtn = document.getElementById("payments-next");
 
-            titleElement.textContent = content.title;
-            cardsContainer.innerHTML = content.cards
-              .map(
-                (card) => `
-              <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
-                <span class="text-white/80 text-sm sm:text-base">${card.label}</span>
-                <img src="${card.image}" alt="${card.label}" class="h-20 md:h-24 w-auto object-contain" />
-              </div>
-            `,
-              )
-              .join("");
+          if (prevBtn) {
+            prevBtn.addEventListener("click", () => {
+              const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
+              paymentsCurrentPage = (paymentsCurrentPage - 1 + totalPages) % totalPages;
+              renderPaymentsCards(titleElement, cardsContainer);
+            });
+          }
+
+          if (nextBtn) {
+            nextBtn.addEventListener("click", () => {
+              const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
+              paymentsCurrentPage = (paymentsCurrentPage + 1) % totalPages;
+              renderPaymentsCards(titleElement, cardsContainer);
+            });
+          }
+
+          function handlePaymentsTab(tabLabel) {
+            if (tabLabel === "cross border payments") {
+              activePaymentsKey = "payments";
+            } else if (tabLabel === "secured lending") {
+              activePaymentsKey = "lending";
+            } else if (tabLabel === "technology infrastructure") {
+              activePaymentsKey = "techinfra";
+            }
+            paymentsCurrentPage = 0;
+            renderPaymentsCards(titleElement, cardsContainer);
           }
 
           function handlePresenceTab(tabLabel) {
             const key = tabLabel.toLowerCase();
-            const imageSrc = presenceImageData[key] || presenceImageData.uae;
+            const imageSrc = presenceImageData[key] || presenceImageData.gcc;
             if (presenceImage) {
-              presenceImage.src = imageSrc;
-              presenceImage.alt = `${tabLabel} image`;
+              presenceImage.style.opacity = "0";
+              setTimeout(() => {
+                presenceImage.src = imageSrc;
+                presenceImage.alt = `${tabLabel} image`;
+                presenceImage.style.opacity = "1";
+              }, 250);
             }
           }
 
