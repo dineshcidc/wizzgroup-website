@@ -52,10 +52,10 @@ function renderPaymentsCards(tabContentData, titleElement, cardsContainer) {
     cardsContainer.innerHTML = pageCards
       .map(
         (card) => `
-        <div class="relative group flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
-          <span class="text-white text-sm sm:text-base">${card.label}</span>
-          <img src="${card.image}" alt="${card.label}" class="h-16 xl:h-24 w-auto object-contain" />
-          ${card.hoverText ? `<div class="absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="padding: 12px"><span class="text-white text-base font-medium leading-tight">${card.label}</span><span class="text-white/75 text-sm leading-snug">${card.hoverText}</span></div>` : ""}
+        <div class="relative group flex flex-col items-center justify-center text-center md:flex-row md:justify-between md:text-left gap-3 bg-[#373737]/12 border border-white/10 rounded-xl p-3 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
+          <span class="text-white text-xs md:text-base">${card.label}</span>
+          <img src="${card.image}" alt="${card.label}" class="h-12 md:h-16 xl:h-24 w-auto object-contain" />
+          ${card.hoverText ? `<div class="hidden md:flex absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="padding: 12px"><span class="text-white text-base font-medium leading-tight">${card.label}</span><span class="text-white/75 text-sm leading-snug">${card.hoverText}</span></div>` : ""}
         </div>
       `,
       )

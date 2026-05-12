@@ -21,7 +21,7 @@ const { title, tabs, buttonLabel = "View More", buttonOnClick = "", backgroundIm
     <img
       src={backgroundImage}
       alt=""
-      class="absolute right-0 top-0 h-full w-auto object-cover pointer-events-none"
+      class="absolute right-0 top-0 md:h-48 h-16 md:w-48 w-16 object-cover pointer-events-none"
       aria-hidden="true"
     />
   )}
@@ -31,13 +31,13 @@ const { title, tabs, buttonLabel = "View More", buttonOnClick = "", backgroundIm
     <!-- Top Section: Title and Button -->
   <div class="flex items-center justify-between mb-6">
     <!-- Left side: Title -->
-    <h3 class="text-white font-medium xl:text-3xl md:text-xl">
+    <h3 class="text-white font-medium xl:text-3xl md:text-xl text-sm">
       {title}
     </h3>
 
     <!-- Right side: Button -->
     <button
-      class="flex items-center whitespace-nowrap cursor-pointer border border-white/20
+      class="hidden md:flex items-center whitespace-nowrap cursor-pointer border border-white/20
         font-medium text-white bg-[#4D4222]/50
         gap-2 px-6 py-3 rounded-[40px] text-base
         transition-all duration-300 hover:bg-[#4D4222]/60"
@@ -69,7 +69,7 @@ const { title, tabs, buttonLabel = "View More", buttonOnClick = "", backgroundIm
     {
       tabs.map((tab) => (
         <div
-          class={`tab-item px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
+          class={`tab-item px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-pre-line text-center
           ${
             tab.selected
               ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"

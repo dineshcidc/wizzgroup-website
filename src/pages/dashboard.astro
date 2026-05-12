@@ -138,7 +138,7 @@ const faqItems = [
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
       <div
-        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-24 xl:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
+        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-16 lg:gap-24 p-5 sm:p-8 md:p-10 lg:p-12"
       >
         <!-- Header -->
         <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
@@ -147,18 +147,17 @@ const faqItems = [
 
         <!-- Section 1: Hero intro -->
         <div
-          class="opacity-0 flex md:flex-row flex-col justify-between w-full items-center gap-6"
+          class="opacity-0 flex md:flex-row flex-col justify-between w-full md:items-center gap-6"
           data-animate="fade-up"
           data-delay="200"
         >
           <h1
-            class="text-white font-bold text-start leading-tight text-md sm:text-2xl md:text-4xl xl:text-6xl"
+            class="order-2 md:order-1 text-white font-bold text-start lg:leading-tight md:leading-10 text-md sm:text-2xl md:text-2xl xl:text-6xl"
           >
-            Transforming Payments & Lending In <br /> Growth Markets
+            Transforming Payments & Lending In <br /> <span class="text-[#E87E51]">Growth Markets</span>
           </h1>
 
-          <div>
-            <div class="flex flex-row gap-4 items-center">
+            <div class="order-1 md:order-2 flex flex-row gap-4 items-center">
               <div
                 class="cursor-pointer hover:transform hover:-translate-y-2 transition-transform duration-300"
               >
@@ -179,7 +178,6 @@ const faqItems = [
               >
                 <img src={linkedin.src} alt="Linkedin" class="w-8 h-8" />
               </div>
-            </div>
           </div>
         </div>
 
@@ -210,7 +208,7 @@ const faqItems = [
               </div>
             </div>
 
-            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl p-6 flex flex-col flex-1">
+            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl md:p-6 p-3 flex flex-col flex-1">
               <!-- Decorative top-right glow -->
               <div class="absolute -top-20 -left-8 w-72 h-72 rounded-full bg-[#E5AF1C]/15 blur-[85px] pointer-events-none"></div>
 
@@ -224,20 +222,20 @@ const faqItems = [
 
               <div
                 id="cards-container"
-                class="grid grid-cols-1 md:grid-cols-2 gap-6 content-start flex-1"
+                class="grid grid-cols-2 md:gap-6 gap-3 content-start flex-1"
               >
                 {
                   tabContent.payments.cards.slice(0, 4).map((card) => (
-                    <div class="relative group flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
-                      <span class="text-white text-sm sm:text-base">
+                    <div class="relative group flex flex-col items-center justify-center text-center md:flex-row md:justify-between md:text-left gap-3 bg-[#373737]/12 border border-white/10 rounded-xl p-3 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
+                      <span class="text-white text-xs md:text-base">
                         {card.label}
                       </span>
                       <img
                         src={card.image}
                         alt={card.label}
-                        class="h-16 xl:h-24 w-auto object-contain"
+                        class="h-12 md:h-16 xl:h-24 w-auto object-contain"
                       />
-                      <div class="absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div class="hidden md:flex absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span class="text-white text-base font-medium leading-tight">{card.label}</span>
                         <span class="text-white/75 text-sm leading-snug">{card.hoverText}</span>
                       </div>
@@ -307,7 +305,6 @@ const faqItems = [
             />
 
             <!-- Vertical connector: moves under whichever presence tab is active (positioned by dashboard-presence.js) -->
-            <!-- Vertical connector: moves under whichever presence tab is active (positioned by dashboard-presence.js) -->
             <div class="relative w-full h-14">
               <div id="presence-connector" class="absolute flex flex-col items-center" style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;">
                 <div class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"></div>
@@ -315,23 +312,23 @@ const faqItems = [
               </div>
             </div>
 
-            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl p-6 flex flex-col flex-1">
+            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl md:p-6 p-3 flex flex-col flex-1">
               <!-- Decorative top-left glow -->
               <div class="absolute -top-20 -left-8 w-72 h-72 rounded-full bg-[#E5AF1C]/15 blur-[85px] pointer-events-none"></div>
 
               <div
-                class="relative h-[363px] rounded-xl bg-[#373737]/20 flex items-end justify-center overflow-visible"
+                class="relative md:h-[400px] h-[300px] flex items-end justify-center overflow-visible"
               >
                 <img
                   id="presence-image"
                   src={GccImage.src}
                   alt="GCC"
-                  class="h-100 w-auto object-contain absolute -bottom-12"
+                  class="h-100 w-auto md:object-cover object-contain absolute -bottom-12"
                   style="transition: opacity 0.25s ease;"
                 />
               </div>
 
-              <div class="flex justify-end mt-auto pt-8">
+              <div class="flex justify-end mt-auto md:pt-8 pt-4">
                 <div
                   class="flex items-center gap-3 bg-[#373737]/30 border border-white/10 rounded-full p-2"
                 >
@@ -427,54 +424,45 @@ const faqItems = [
               <!-- Three AI cards -->
               <div class="grid grid-cols-1 sm:grid-cols-3 xl:gap-8 gap-3 items-stretch">
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/30 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/30 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
                 >
                   <img
                     src={infrastructureAI.src}
                     alt="Infrastructure AI"
-                    class="h-40 w-40 object-contain"
+                    class="h-14 w-14 sm:h-40 sm:w-40 object-contain flex-shrink-0"
                   />
-                  <span
-                    class="text-white font-bold text-sm md:text-md xl:text-xl"
-                    >Infrastructure AI</span
-                  >
-                  <span class="text-white/55 text-xs xl:text-base leading-snug"
-                    >Engineer &amp; Coding</span
-                  >
+                  <div class="flex flex-col gap-1 sm:items-center">
+                    <span class="text-white font-bold text-sm md:text-md xl:text-xl">Infrastructure AI</span>
+                    <span class="text-white/55 text-xs xl:text-base leading-snug">Engineer &amp; Coding</span>
+                  </div>
                 </div>
 
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
                 >
                   <img
                     src={backendAI.src}
                     alt="Backend"
-                    class="h-40 w-40 object-contain"
+                    class="h-14 w-14 sm:h-40 sm:w-40 object-contain flex-shrink-0"
                   />
-                  <span
-                    class="text-white font-bold text-sm md:text-md xl:text-xl"
-                    >Backend</span
-                  >
-                  <span class="text-white/55 text-xs xl:text-base leading-snug"
-                    >KYC/KYB | Treasury |<br />Risk &amp; Underwriting</span
-                  >
+                  <div class="flex flex-col gap-1 sm:items-center">
+                    <span class="text-white font-bold text-sm md:text-md xl:text-xl">Backend</span>
+                    <span class="text-white/55 text-xs xl:text-base leading-snug">KYC/KYB | Treasury |<br />Risk &amp; Underwriting</span>
+                  </div>
                 </div>
 
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
                 >
                   <img
                     src={frontendAI.src}
                     alt="Frontend"
-                    class="h-40 w-40 object-contain"
+                    class="h-14 w-14 sm:h-40 sm:w-40 object-contain flex-shrink-0"
                   />
-                  <span
-                    class="text-white font-bold text-sm md:text-md xl:text-xl"
-                    >Frontend</span
-                  >
-                  <span class="text-white/55 text-xs xl:text-base leading-snug"
-                    >UX-Agentic AI |<br />Speech AI</span
-                  >
+                  <div class="flex flex-col gap-1 sm:items-center">
+                    <span class="text-white font-bold text-sm md:text-md xl:text-xl">Frontend</span>
+                    <span class="text-white/55 text-xs xl:text-base leading-snug">UX-Agentic AI |<br />Speech AI</span>
+                  </div>
                 </div>
               </div>
             </div>

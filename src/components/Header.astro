@@ -8,15 +8,12 @@ import logo from "../assets/Wizzlogo.png";
 <div class="relative w-full z-50">
   <header
     class="w-full flex items-center justify-between bg-[#373737]/10 border border-white/10
-      p-3 rounded-xl
-      sm:p-3
-      md:p-4
-      lg:p-4
-      xl:p-5
+      p-4 rounded-xl
+      md:p-5
       2xl:p-6"
   >
     <!-- Left: Logo -->
-    <a href="/">
+    <a href="/dashboard">
       <img
         src={logo.src}
         alt="Wizzgroup Logo"
@@ -32,10 +29,10 @@ import logo from "../assets/Wizzlogo.png";
 
     <!-- Right: Contact Us button + Menu icon -->
     <div class="flex items-center gap-5">
-      <!-- Contact Us button -->
+      <!-- Contact Us button (hidden on mobile, visible sm+) -->
       <a
         href="/contact"
-        class="flex items-center whitespace-nowrap cursor-pointer
+        class="hidden sm:flex items-center whitespace-nowrap cursor-pointer
           font-medium text-white bg-[#4D4222]/40
           gap-1 h-8 px-3 py-1 rounded-[20px] text-xs
           sm:gap-1.5 sm:h-8 sm:px-3 sm:py-1 sm:rounded-[22px] sm:text-xs
@@ -147,6 +144,31 @@ import logo from "../assets/Wizzlogo.png";
           </a>
         ))
       }
+
+      <!-- Contact Us — mobile only (hidden on sm+) -->
+      <div class="sm:hidden mt-1 px-2 pt-2 border-t border-white/10">
+        <a
+          href="/contact"
+          class="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-[#4D4222]/40 cursor-pointer hover:bg-[#4D4222]/60 transition-all duration-200"
+        >
+          Contact Us
+          <svg
+            class="w-3.5 h-3.5"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+          >
+            <path
+              d="M6 3L11 8L6 13"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+      </div>
     </nav>
   </div>
 </div>
