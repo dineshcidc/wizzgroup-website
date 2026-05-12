@@ -14,47 +14,6 @@
  */
 ---
 
-<style is:global>
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(28px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  .anim-fade-up {
-    animation: fadeInUp 0.7s ease-out forwards;
-  }
-
-  .anim-fade-in {
-    animation: fadeIn 0.9s ease-out forwards;
-  }
-
-  /* Delay utilities */
-  .anim-delay-100  { animation-delay: 0.1s; }
-  .anim-delay-200  { animation-delay: 0.2s; }
-  .anim-delay-300  { animation-delay: 0.3s; }
-  .anim-delay-400  { animation-delay: 0.4s; }
-  .anim-delay-500  { animation-delay: 0.5s; }
-  .anim-delay-600  { animation-delay: 0.6s; }
-  .anim-delay-700  { animation-delay: 0.7s; }
-  .anim-delay-800  { animation-delay: 0.8s; }
-  .anim-delay-1000 { animation-delay: 1.0s; }
-
-  /* Respect reduced-motion */
-  @media (prefers-reduced-motion: reduce) {
-    .anim-fade-up,
-    .anim-fade-in {
-      animation: none !important;
-      opacity: 1 !important;
-      transform: none !important;
-    }
-  }
-</style>
-
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const targets = document.querySelectorAll<HTMLElement>('[data-animate]');

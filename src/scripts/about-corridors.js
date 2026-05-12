@@ -25,7 +25,9 @@ export function setupCorridorTabs() {
   requestAnimationFrame(() => updateCorridorConnector(getActiveTab()));
 
   // Recalculate whenever the viewport is resized (handles all breakpoints).
-  window.addEventListener("resize", () => updateCorridorConnector(getActiveTab()));
+  window.addEventListener("resize", () =>
+    updateCorridorConnector(getActiveTab()),
+  );
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {

@@ -31,7 +31,8 @@ const pressCards = [
   {
     image: blog2,
     date: "Last updated: December 2025",
-    title: "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
+    title:
+      "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
     description:
       "Milestone marks the next phase of Wizz Financial's multi-product fintech platform, extending its Wizz CrossBorder USA capabilities into blockchain-based B2B and B2C payments.",
   },
@@ -45,7 +46,8 @@ const pressCards = [
   {
     image: blog4,
     date: "Last updated: December 2025",
-    title: "The Perfect Travel Match: Wizzmoni partners with KL Rahul & Athiya Shetty",
+    title:
+      "The Perfect Travel Match: Wizzmoni partners with KL Rahul & Athiya Shetty",
     description:
       "Wizzmoni, formerly Unimoni, has officially appointed Indian cricketer KL Rahul and Bollywood actor Athiya Shetty as the faces of its premium Wizz Voyager Multi-Currency Travel Card and foreign exchange solutions.",
   },
@@ -59,7 +61,8 @@ const pressCards = [
   {
     image: blog6,
     date: "Last updated: December 2025",
-    title: "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
+    title:
+      "Wizz Financial Completes First Stablecoin-Powered Cross-Border Transaction from the US to 80 Countries with BitGo",
     description:
       "Milestone marks the next phase of Wizz Financial's multi-product fintech platform, extending its Wizz CrossBorder USA capabilities into blockchain-based B2B and B2C payments.",
   },
@@ -67,12 +70,36 @@ const pressCards = [
 
 // --- Update these when newsletter content is ready ---
 const newsletterCards = [
-  { date: "Coming Soon", title: "Newsletter Title 1", description: "Newsletter content will be added here." },
-  { date: "Coming Soon", title: "Newsletter Title 2", description: "Newsletter content will be added here." },
-  { date: "Coming Soon", title: "Newsletter Title 3", description: "Newsletter content will be added here." },
-  { date: "Coming Soon", title: "Newsletter Title 4", description: "Newsletter content will be added here." },
-  { date: "Coming Soon", title: "Newsletter Title 5", description: "Newsletter content will be added here." },
-  { date: "Coming Soon", title: "Newsletter Title 6", description: "Newsletter content will be added here." },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 1",
+    description: "Newsletter content will be added here.",
+  },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 2",
+    description: "Newsletter content will be added here.",
+  },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 3",
+    description: "Newsletter content will be added here.",
+  },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 4",
+    description: "Newsletter content will be added here.",
+  },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 5",
+    description: "Newsletter content will be added here.",
+  },
+  {
+    date: "Coming Soon",
+    title: "Newsletter Title 6",
+    description: "Newsletter content will be added here.",
+  },
 ];
 ---
 
@@ -82,15 +109,11 @@ const newsletterCards = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>Newsroom</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
     <div
-      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+      style={`background-image: url('${banner.src}')`}
+      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
     >
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
@@ -115,11 +138,18 @@ const newsletterCards = [
           </h1>
 
           <div class="flex flex-col gap-5 max-w-4xl">
-            <p class="text-white/70 text-center leading-relaxed text-sm sm:text-base md:text-xl">
-              Stay up to date with the latest news, announcements, and media coverage from Wizz Financial.
+            <p
+              class="text-white/70 text-center leading-relaxed text-sm sm:text-base md:text-xl"
+            >
+              Stay up to date with the latest news, announcements, and media
+              coverage from Wizz Financial.
             </p>
-            <p class="text-white/70 text-center leading-relaxed text-sm sm:text-base md:text-xl">
-              Our newsroom highlights important milestones, launches, strategic partnerships that reflect our commitment to expanding secure and accessible financial services.
+            <p
+              class="text-white/70 text-center leading-relaxed text-sm sm:text-base md:text-xl"
+            >
+              Our newsroom highlights important milestones, launches, strategic
+              partnerships that reflect our commitment to expanding secure and
+              accessible financial services.
             </p>
           </div>
         </div>
@@ -132,50 +162,63 @@ const newsletterCards = [
         >
           <!-- Tabs -->
           <div class="flex flex-row items-center justify-center gap-3">
-            {tabs.map((tab, i) => (
-              <div
-                class={`newsroom-tab px-6 py-2 rounded-full text-xs text-nowrap md:text-base w-fit transition-all duration-300 cursor-pointer border
-                ${i === 0
-                  ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
-                  : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
+            {
+              tabs.map((tab, i) => (
+                <div
+                  class={`newsroom-tab px-6 py-2 rounded-full text-xs text-nowrap md:text-base w-fit transition-all duration-300 cursor-pointer border
+                ${
+                  i === 0
+                    ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
+                    : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
                 }`}
-                data-tab={tab.id}
-              >
-                {tab.label}
-              </div>
-            ))}
+                  data-tab={tab.id}
+                >
+                  {tab.label}
+                </div>
+              ))
+            }
           </div>
 
           <!-- Press Releases Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="press-grid">
-            {pressCards.map((card) => {
-              const params = new URLSearchParams({
-                title: card.title,
-                date: card.date,
-                description: card.description,
-                image: card.image.src,
-              });
-              return (
-                <KnowledgeCard
-                  image={card.image}
-                  date={card.date}
-                  title={card.title}
-                  description={card.description}
-                  href={`/newsroom-detail?${params.toString()}`}
-                />
-              );
-            })}
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            id="press-grid"
+          >
+            {
+              pressCards.map((card) => {
+                const params = new URLSearchParams({
+                  title: card.title,
+                  date: card.date,
+                  description: card.description,
+                  image: card.image.src,
+                });
+                return (
+                  <KnowledgeCard
+                    image={card.image}
+                    date={card.date}
+                    title={card.title}
+                    description={card.description}
+                    href={`/newsroom-detail?${params.toString()}`}
+                  />
+                );
+              })
+            }
           </div>
 
           <!-- Newsletters Grid (hidden by default) -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden" id="newsletters-grid">
-            {newsletterCards.map((card) => (
-              <KnowledgeCard
-                date={card.date}
-                title={card.title}
-                description={card.description}
-              />
-            ))}
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden"
+            id="newsletters-grid"
+          >
+            {
+              newsletterCards.map((card) => (
+                <KnowledgeCard
+                  date={card.date}
+                  title={card.title}
+                  description={card.description}
+                />
+              ))
+            }
           </div>
         </div>
 

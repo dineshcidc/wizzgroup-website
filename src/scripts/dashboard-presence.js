@@ -30,7 +30,7 @@ export function setupPresenceSection(images) {
   // Position connector under the initially active tab
   const initialTab =
     Array.from(presenceTabCard.querySelectorAll(".tab-item")).find((t) =>
-      t.classList.contains("border-[#F79A59]")
+      t.classList.contains("border-[#F79A59]"),
     ) ?? presenceTabCard.querySelector(".tab-item");
   updateConnectorPosition(initialTab);
 

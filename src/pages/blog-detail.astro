@@ -15,14 +15,9 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>Blog Detail</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
-    <div class="hero-bg relative w-full bg-cover bg-center bg-no-repeat">
+    <div style={`background-image: url('${banner.src}')`} class="relative w-full bg-cover bg-center bg-no-repeat">
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
       <div
@@ -44,12 +39,14 @@ import "../styles/global.css";
             <nav class="flex items-center gap-2 text-sm">
               <a
                 href="/knowledge-center"
-                class="hover:text-white text-white/50 transition-colors duration-200">Home</a
+                class="hover:text-white text-white/50 transition-colors duration-200"
+                >Home</a
               >
               <span class="text-white/40">/</span>
               <a
                 href="/knowledge-center"
-                class="hover:text-white text-white transition-colors duration-200">Blogs</a
+                class="hover:text-white text-white transition-colors duration-200"
+                >Blogs</a
               >
             </nav>
             <hr class="w-full border-0 h-px bg-white/20" />
@@ -121,7 +118,7 @@ import "../styles/global.css";
             <!-- Right: Article Body -->
             <div
               id="blog-body"
-              class="bg-[#373737]/50 rounded-xl md:p-8 p-3 flex flex-col gap-5 text-white/80 h-fit text-sm  md:text-xl xl:text-2xl lg:leading-10 md:leading-8 font-regular"
+              class="bg-[#373737]/50 rounded-xl md:p-8 p-3 flex flex-col gap-5 text-white/80 h-fit text-sm md:text-xl xl:text-2xl lg:leading-10 md:leading-8 font-regular"
             >
               <p>
                 <span class="font-semibold text-white">Iftar</span>, the daily

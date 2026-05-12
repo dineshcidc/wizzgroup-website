@@ -36,7 +36,6 @@ import indigoTechImg from "../assets/Indigo_Tech.png";
 import awsTechImg from "../assets/Aws_Tech.png";
 import samsungTechImg from "../assets/Samsung.png";
 
-
 const corridorTabs = [
   { label: "India to Rest of the World", selected: true },
   { label: "USA to Rest of The World ", selected: false },
@@ -111,26 +110,62 @@ const partnerColumns: PartnerColumn[] = [
   {
     title: "Payment Network",
     partners: [
-      { name: "Visa", description: "In Principal Global Member", image: visaPayImg.src },
-      { name: "UPI", description: "Direct UPI integration for india payments", image: upiPayImg.src },
-      { name: "RuPay", description: "Card scheme: 1st AED denominates", image: rupayPayImg.src },
-      { name: "Bharat BillPay", description: "Bill payments across India", image: bharatPayImg.src },
+      {
+        name: "Visa",
+        description: "In Principal Global Member",
+        image: visaPayImg.src,
+      },
+      {
+        name: "UPI",
+        description: "Direct UPI integration for india payments",
+        image: upiPayImg.src,
+      },
+      {
+        name: "RuPay",
+        description: "Card scheme: 1st AED denominates",
+        image: rupayPayImg.src,
+      },
+      {
+        name: "Bharat BillPay",
+        description: "Bill payments across India",
+        image: bharatPayImg.src,
+      },
     ],
   },
   {
     title: "Banking Partners",
     partners: [
-      { name: "Airtel Payments Bank", description: "Distribution Partner", image: airtelBankImg.src },
-      { name: "HDFC Bank", description: "AD I partner in india", image: hdfcBankImg.src },
-      { name: "Yes Bank", description: "AD I Partner In india", image: yesBankImg.src },
+      {
+        name: "Airtel Payments Bank",
+        description: "Distribution Partner",
+        image: airtelBankImg.src,
+      },
+      {
+        name: "HDFC Bank",
+        description: "AD I partner in india",
+        image: hdfcBankImg.src,
+      },
+      {
+        name: "Yes Bank",
+        description: "AD I Partner In india",
+        image: yesBankImg.src,
+      },
       { name: "FAB", description: "HNW1 Product", image: fabBankImg.src },
     ],
   },
   {
     title: "Tech & More Partners",
     partners: [
-      { name: "BitGo", description: "Stablecoin rail for B2C remittances", image: bitgoTechImg.src },
-      { name: "IndiGo", description: "Travel Partners", image: indigoTechImg.src },
+      {
+        name: "BitGo",
+        description: "Stablecoin rail for B2C remittances",
+        image: bitgoTechImg.src,
+      },
+      {
+        name: "IndiGo",
+        description: "Travel Partners",
+        image: indigoTechImg.src,
+      },
       { name: "AWS", description: "Amazon-AWS", image: awsTechImg.src },
       { name: "Samsung", description: "Samsung", image: samsungTechImg.src },
     ],
@@ -154,15 +189,11 @@ const problemPills = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>About</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
     <div
-      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+      style={`background-image: url('${banner.src}')`}
+      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
     >
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
@@ -197,15 +228,20 @@ const problemPills = [
           </h2>
 
           <!-- Scrollable problem pills -->
-          <div class="w-full overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
-            <div class="flex gap-2 py-2 justify-start md:justify-center px-4 min-w-max md:min-w-0 mx-auto">
-            {
-              problemPills.map((pill) => (
-                <div class="flex-shrink-0 px-5 py-2 rounded-full border border-white/20 bg-[#4D4222]/40 text-white md:text-md text-xs xl:text-lg whitespace-nowrap">
-                  {pill}
-                </div>
-              ))
-            }
+          <div
+            class="w-full overflow-x-auto"
+            style="scrollbar-width: none; -ms-overflow-style: none;"
+          >
+            <div
+              class="flex gap-2 py-2 justify-start md:justify-center px-4 min-w-max md:min-w-0 mx-auto"
+            >
+              {
+                problemPills.map((pill) => (
+                  <div class="flex-shrink-0 px-5 py-2 rounded-full border border-white/20 bg-[#4D4222]/40 text-white md:text-md text-xs xl:text-lg whitespace-nowrap">
+                    {pill}
+                  </div>
+                ))
+              }
             </div>
           </div>
 
@@ -223,7 +259,9 @@ const problemPills = [
           </p>
 
           <!-- Vision / Mission / Differentiation cards -->
-          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-4 items-stretch">
+          <div
+            class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-4 items-stretch"
+          >
             {
               visionMissionCards.map((card) => (
                 <div
@@ -231,9 +269,7 @@ const problemPills = [
                   transition-all duration-500 ease-in-out hover:bg-white/10 hover:border-white/20 hover:scale-[1.02] h-full flex flex-col"
                 >
                   <div class="flex flex-col gap-3 lg:p-6 p-3 pb-3 z-10 relative flex-1">
-                    <h3 class="text-white font-bold text-xl">
-                      {card.title}
-                    </h3>
+                    <h3 class="text-white font-bold text-xl">{card.title}</h3>
                     <p class="text-white/70 text-sm lg:text-base leading-relaxed flex-1">
                       {card.text}
                     </p>
@@ -299,11 +335,15 @@ const problemPills = [
           <p
             class="text-white/60 text-base sm:text-lg md:text-xl leading-relaxed max-w-4xl"
           >
-            We’re proud to partner with some of the best in the business to enhance our capabilities and extend our offering across India, the GCC and Africa. Find a full list of our partners below:
+            We’re proud to partner with some of the best in the business to
+            enhance our capabilities and extend our offering across India, the
+            GCC and Africa. Find a full list of our partners below:
           </p>
 
           <!-- Partner Ecosystem Grid -->
-          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8 text-left">
+          <div
+            class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-8 text-left"
+          >
             {
               partnerColumns.map((col) => (
                 <div class="flex flex-col gap-4 bg-[#373737]/20 border border-white/10 rounded-2xl p-5">
@@ -313,10 +353,16 @@ const problemPills = [
                       <div class="flex items-center lg:flex-row md:flex-col flex-row  gap-4">
                         <div class="md:w-30 w-18 h-18 flex-shrink-0 rounded-xl bg-white flex items-center justify-center p-3">
                           {partner.image && (
-                            <img src={partner.image} alt={partner.name} class="w-4/5 h-4/5 object-contain" />
+                            <img
+                              src={partner.image}
+                              alt={partner.name}
+                              class="w-4/5 h-4/5 object-contain"
+                            />
                           )}
                         </div>
-                        <p class="text-white/80 text-sm  md:text-center md:text-base leading-snug">{partner.description}</p>
+                        <p class="text-white/80 text-sm  md:text-center md:text-base leading-snug">
+                          {partner.description}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -351,8 +397,10 @@ const problemPills = [
           </p>
 
           <!-- Tabs + connector + map wrapped with gap-0, matching Dashboard structure -->
-          <div class="flex flex-col gap-0 w-full mt-4 md:mt-10" id="corridors-tab-section">
-
+          <div
+            class="flex flex-col gap-0 w-full mt-4 md:mt-10"
+            id="corridors-tab-section"
+          >
             <!-- Corridors Tabs — flex-wrap matches Dashboard TabCard (no centering, no scroll) -->
             <div class="flex flex-wrap gap-3 w-full">
               {
@@ -373,21 +421,29 @@ const problemPills = [
 
             <!-- Vertical connector: absolute-positioned under the active tab -->
             <div class="relative w-full h-14">
-              <div id="corridor-connector" class="absolute flex flex-col items-center" style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;">
-                <div class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"></div>
+              <div
+                id="corridor-connector"
+                class="absolute flex flex-col items-center"
+                style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;"
+              >
+                <div
+                  class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"
+                >
+                </div>
                 <div class="w-2.5 h-2.5 rounded-full bg-[#BA7F4A]"></div>
               </div>
             </div>
 
             <!-- Map Card -->
-            <div class="w-full bg-[#373737]/30 border border-white/10 rounded-xl md:p-10 md:h-auto h-100">
+            <div
+              class="w-full bg-[#373737]/30 border border-white/10 rounded-xl md:p-10 md:h-auto h-100"
+            >
               <img
                 src={earth.src}
                 alt="Corridors Map"
                 class="w-full md:h-auto h-full md:object-contain object-cover rounded-md"
               />
             </div>
-
           </div>
         </div>
 

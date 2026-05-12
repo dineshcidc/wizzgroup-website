@@ -15,14 +15,9 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>Newsroom Detail</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
-    <div class="hero-bg relative w-full bg-cover bg-center bg-no-repeat">
+    <div style={`background-image: url('${banner.src}')`} class="relative w-full bg-cover bg-center bg-no-repeat">
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
       <div
@@ -44,7 +39,8 @@ import "../styles/global.css";
             <nav class="flex items-center gap-2 text-sm">
               <a
                 href="/newsroom"
-                class="hover:text-white text-white/50 transition-colors duration-200">Newsroom</a
+                class="hover:text-white text-white/50 transition-colors duration-200"
+                >Newsroom</a
               >
               <span class="text-white/40">/</span>
               <span class="text-white">Press Release</span>
@@ -111,20 +107,21 @@ import "../styles/global.css";
                 id="news-title"
                 class="text-xl md:text-2xl xl:text-4xl font-semibold text-white leading-snug"
               >
-                Wizz Financial Completes First Stablecoin-Powered Cross-Border Payment
+                Wizz Financial Completes First Stablecoin-Powered Cross-Border
+                Payment
               </h1>
             </div>
 
             <!-- Right: Article Body -->
             <div
               id="news-body"
-              class="bg-[#373737]/50 rounded-xl md:p-8 p-3 flex flex-col gap-5  h-fit text-white/80 text-sm  md:text-xl xl:text-2xl lg:leading-10 leading-6"
+              class="bg-[#373737]/50 rounded-xl md:p-8 p-3 flex flex-col gap-5 h-fit text-white/80 text-sm md:text-xl xl:text-2xl lg:leading-10 leading-6"
             >
               <p>
-                <span class="font-semibold text-white">Wizz Financial</span> has
-                completed its first stablecoin-powered cross-border remittance and
-                treasury transaction originating from the United States, marking a
-                significant milestone in the company's multi-product fintech platform.
+                <span class="font-semibold text-white">Wizz Financial</span> has completed
+                its first stablecoin-powered cross-border remittance and treasury
+                transaction originating from the United States, marking a significant
+                milestone in the company's multi-product fintech platform.
               </p>
 
               <p>

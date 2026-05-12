@@ -94,15 +94,11 @@ const jobs = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>Careers</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
     <div
-      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+      style={`background-image: url('${banner.src}')`}
+      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
     >
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 

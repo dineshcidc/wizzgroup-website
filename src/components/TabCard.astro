@@ -10,83 +10,86 @@ interface Props {
   backgroundImage?: string;
 }
 
-const { title, tabs, buttonLabel = "View More", buttonOnClick = "", backgroundImage } = Astro.props;
+const {
+  title,
+  tabs,
+  buttonLabel = "View More",
+  buttonOnClick = "",
+  backgroundImage,
+} = Astro.props;
 ---
 
 <div
   class="tab-card relative bg-[#373737]/50 border border-white/10 rounded-xl p-4 transition-all duration-300 overflow-hidden"
 >
   <!-- Background Image Layer -->
-  {backgroundImage && (
-    <img
-      src={backgroundImage}
-      alt=""
-      class="absolute right-0 top-0 md:h-48 h-16 md:w-48 w-16 object-cover pointer-events-none"
-      aria-hidden="true"
-    />
-  )}
+  {
+    backgroundImage && (
+      <img
+        src={backgroundImage}
+        alt=""
+        class="absolute right-0 top-0 md:h-48 h-16 md:w-48 w-16 object-cover pointer-events-none"
+        aria-hidden="true"
+      />
+    )
+  }
 
   <!-- Content Layer -->
   <div class="relative z-10">
     <!-- Top Section: Title and Button -->
-  <div class="flex items-center justify-between mb-6">
-    <!-- Left side: Title -->
-    <h3 class="text-white font-medium xl:text-3xl md:text-xl text-sm">
-      {title}
-    </h3>
+    <div class="flex items-center justify-between mb-6">
+      <!-- Left side: Title -->
+      <h3 class="text-white font-medium xl:text-3xl md:text-xl text-sm">
+        {title}
+      </h3>
 
-    <!-- Right side: Button -->
-    <button
-      class="hidden md:flex items-center whitespace-nowrap cursor-pointer border border-white/20
+      <!-- Right side: Button -->
+      <button
+        class="hidden md:flex items-center whitespace-nowrap cursor-pointer border border-white/20
         font-medium text-white bg-[#4D4222]/50
         gap-2 px-6 py-3 rounded-[40px] text-base
         transition-all duration-300 hover:bg-[#4D4222]/60"
-      onclick={buttonOnClick}
-    >
-      {buttonLabel}
-      
-      <!-- Right chevron -->
-      <svg
-        class="w-4 h-4"
-        viewBox="0 0 16 16"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        aria-hidden="true"
+        onclick={buttonOnClick}
       >
-        <path
-          d="M6 3L11 8L6 13"
-          stroke="white"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    </button>
-  </div>
+        {buttonLabel}
+
+        <!-- Right chevron -->
+        <svg
+          class="w-4 h-4"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <path
+            d="M6 3L11 8L6 13"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+    </div>
 
     <!-- Below Section: Tabs -->
     <div class="flex flex-wrap items-center gap-3">
-    {
-      tabs.map((tab) => (
-        <div
-          class={`tab-item px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-pre-line text-center
+      {
+        tabs.map((tab) => (
+          <div
+            class={`tab-item px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-pre-line text-center
           ${
             tab.selected
               ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
               : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
           }`}
-        >
-          {tab.label}
-        </div>
-      ))
-    }
+          >
+            {tab.label}
+          </div>
+        ))
+      }
     </div>
   </div>
 </div>
-
-<style>
-  /* Optional: Add any component-specific styles here */
-</style>
 
 <script>
   function setupTabCardTabs() {

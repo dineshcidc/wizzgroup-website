@@ -42,7 +42,8 @@ const cards = [
   {
     image: blog4,
     date: "Last updated: December 2025",
-    title: "The Perfect Travel Match: Wizzmoni partners with KL Rahul & Athiya Shetty",
+    title:
+      "The Perfect Travel Match: Wizzmoni partners with KL Rahul & Athiya Shetty",
     description:
       "Kochi: Wizzmoni, formerly Unimoni, has officially appointed Indian cricketer KL Rahul and Bollywood actor Athiya Shetty as the faces of its premium Wizz Voyager Multi-Currency Travel Card and comprehensive foreign exchange solutions. The celebrity duo will lead nationwide and international campaigns for Wizzmoni India, part of the Wizz Financial.",
   },
@@ -70,15 +71,11 @@ const cards = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href={logo.src} />
     <title>Knowledge Center</title>
-    <style define:vars={{ bannerSrc: `url('${banner.src}')` }}>
-      .hero-bg {
-        background-image: var(--bannerSrc);
-      }
-    </style>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
     <div
-      class="hero-bg relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+      style={`background-image: url('${banner.src}')`}
+      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
     >
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 

@@ -10,31 +10,106 @@ function buildTabContentData(images) {
     payments: {
       title: "Cross Border Payments",
       cards: [
-        { label: "B2C Remittances", image: images.b2cRemittances, hoverText: "Businesses sending money directly to customers, like refunds or payouts." },
-        { label: "Foreign Exchange", image: images.foreignExchange, hoverText: "Converting one country's currency into another for international transactions." },
-        { label: "B2B Remittances", image: images.b2bRemittances, hoverText: "Businesses sending payments to other businesses for goods or services." },
-        { label: "WPS Salary payouts", image: images.wpsSalaryPayouts, hoverText: "Employers paying salaries through regulated systems to ensure timely employee payments." },
-        { label: "FX Prepaid Cards", image: images.fxPrepaidCards, hoverText: "Preloaded cards for spending in foreign currencies while traveling abroad." },
-        { label: "Bill Payments", image: images.billPayments, hoverText: "Paying utility or service bills like electricity, water, or internet." },
+        {
+          label: "B2C Remittances",
+          image: images.b2cRemittances,
+          hoverText:
+            "Businesses sending money directly to customers, like refunds or payouts.",
+        },
+        {
+          label: "Foreign Exchange",
+          image: images.foreignExchange,
+          hoverText:
+            "Converting one country's currency into another for international transactions.",
+        },
+        {
+          label: "B2B Remittances",
+          image: images.b2bRemittances,
+          hoverText:
+            "Businesses sending payments to other businesses for goods or services.",
+        },
+        {
+          label: "WPS Salary payouts",
+          image: images.wpsSalaryPayouts,
+          hoverText:
+            "Employers paying salaries through regulated systems to ensure timely employee payments.",
+        },
+        {
+          label: "FX Prepaid Cards",
+          image: images.fxPrepaidCards,
+          hoverText:
+            "Preloaded cards for spending in foreign currencies while traveling abroad.",
+        },
+        {
+          label: "Bill Payments",
+          image: images.billPayments,
+          hoverText:
+            "Paying utility or service bills like electricity, water, or internet.",
+        },
       ],
     },
     lending: {
       title: "Secured Lending",
       cards: [
-        { label: "Asset - Backed Lending", image: images.assetBackedLending, hoverText: "Loans secured using assets like property, inventory, or equipment as collateral." },
-        { label: "Remit Now Pay Later", image: images.remitNowPayLater, hoverText: "Send money instantly and pay the amount back at a later time." },
-        { label: "Insurance Premium Finance", image: images.insurancePremiumFinance, hoverText: "Spreading insurance premium payments over time instead of paying the full amount upfront." },
-        { label: "Education Loans", image: images.educationLoans, hoverText: "Borrowed funds to pay for education, repaid over time with interest." },
+        {
+          label: "Asset - Backed Lending",
+          image: images.assetBackedLending,
+          hoverText:
+            "Loans secured using assets like property, inventory, or equipment as collateral.",
+        },
+        {
+          label: "Remit Now Pay Later",
+          image: images.remitNowPayLater,
+          hoverText:
+            "Send money instantly and pay the amount back at a later time.",
+        },
+        {
+          label: "Insurance Premium Finance",
+          image: images.insurancePremiumFinance,
+          hoverText:
+            "Spreading insurance premium payments over time instead of paying the full amount upfront.",
+        },
+        {
+          label: "Education Loans",
+          image: images.educationLoans,
+          hoverText:
+            "Borrowed funds to pay for education, repaid over time with interest.",
+        },
       ],
     },
     techinfra: {
       title: "Technology Infrastructure",
       cards: [
-        { label: "Proprietary Core", image: images.proprietaryCore, hoverText: "A company's own built system used to manage its operations and services." },
-        { label: "AI-powered decisioning", image: images.aiPoweredDecisioning, hoverText: "Using artificial intelligence to analyze data and make automated business decisions." },
-        { label: "Cloud-native & API - first", image: images.cloudNativeApi, hoverText: "Built for cloud environments with APIs enabling easy integration and scalability." },
-        { label: "Card issuing platform", image: images.cardIssue, hoverText: "System enabling businesses to create, manage, and distribute payment cards." },
-        { label: "Stablecoin Treasury & Liquidity", image: images.stablecoin, hoverText: "Managing stablecoin funds and ensuring sufficient liquidity for transactions and operations." },
+        {
+          label: "Proprietary Core",
+          image: images.proprietaryCore,
+          hoverText:
+            "A company's own built system used to manage its operations and services.",
+        },
+        {
+          label: "AI-powered decisioning",
+          image: images.aiPoweredDecisioning,
+          hoverText:
+            "Using artificial intelligence to analyze data and make automated business decisions.",
+        },
+        {
+          label: "Cloud-native & API - first",
+          image: images.cloudNativeApi,
+          hoverText:
+            "Built for cloud environments with APIs enabling easy integration and scalability.",
+        },
+        {
+          label: "Card issuing platform",
+          image: images.cardIssue,
+          hoverText:
+            "System enabling businesses to create, manage, and distribute payment cards.",
+        },
+        {
+          label: "Stablecoin Treasury & Liquidity",
+          image: images.stablecoin,
+          hoverText:
+            "Managing stablecoin funds and ensuring sufficient liquidity for transactions and operations.",
+        },
       ],
     },
   };
@@ -52,10 +127,10 @@ function renderPaymentsCards(tabContentData, titleElement, cardsContainer) {
     cardsContainer.innerHTML = pageCards
       .map(
         (card) => `
-        <div class="relative group flex flex-col items-center justify-center text-center md:flex-row md:justify-between md:text-left gap-3 bg-[#373737]/12 border border-white/10 rounded-xl p-3 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
-          <span class="text-white text-xs md:text-base">${card.label}</span>
-          <img src="${card.image}" alt="${card.label}" class="h-12 md:h-16 xl:h-24 w-auto object-contain" />
-          ${card.hoverText ? `<div class="hidden md:flex absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="padding: 12px"><span class="text-white text-base font-medium leading-tight">${card.label}</span><span class="text-white/75 text-sm leading-snug">${card.hoverText}</span></div>` : ""}
+        <div class="relative group flex flex-col items-center justify-center text-center md:flex-row md:items-center md:justify-between md:text-left lg:flex-col lg:items-center lg:justify-center lg:text-center xl:flex-row xl:items-center xl:justify-between xl:text-left gap-3 bg-[#373737]/12 border border-white/10 rounded-xl p-3 md:p-4 lg:p-3 xl:p-5 min-h-[110px] transition duration-300 hover:bg-[#474747]/20">
+          <span class="text-white text-xs md:text-sm lg:text-xs xl:text-base">${card.label}</span>
+          <img src="${card.image}" alt="${card.label}" class="h-12 md:h-16 lg:h-12 xl:h-24 w-auto object-contain" />
+          ${card.hoverText ? `<div class="hidden md:flex lg:hidden xl:flex absolute right-4 xl:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="padding: 12px"><span class="text-white text-base font-medium leading-tight">${card.label}</span><span class="text-white/75 text-sm leading-snug">${card.hoverText}</span></div>` : ""}
         </div>
       `,
       )
@@ -64,8 +139,10 @@ function renderPaymentsCards(tabContentData, titleElement, cardsContainer) {
     // Rebuild pagination dots for the current page count
     const dotsContainer = document.getElementById("payments-dots");
     if (dotsContainer) {
-      dotsContainer.innerHTML = Array.from({ length: totalPages }, (_, i) =>
-        `<span class="w-2 h-2 rounded-full cursor-pointer ${i === paymentsCurrentPage ? "bg-[#BA7F4A]" : "bg-white/40"}" data-page="${i}"></span>`
+      dotsContainer.innerHTML = Array.from(
+        { length: totalPages },
+        (_, i) =>
+          `<span class="w-2 h-2 rounded-full cursor-pointer ${i === paymentsCurrentPage ? "bg-[#BA7F4A]" : "bg-white/40"}" data-page="${i}"></span>`,
       ).join("");
       dotsContainer.querySelectorAll("span").forEach((dot) => {
         dot.addEventListener("click", () => {
@@ -111,7 +188,9 @@ export function setupPaymentsSection(images) {
 
   if (prevBtn) {
     prevBtn.addEventListener("click", () => {
-      const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
+      const totalPages = Math.ceil(
+        tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE,
+      );
       paymentsCurrentPage = (paymentsCurrentPage - 1 + totalPages) % totalPages;
       renderPaymentsCards(tabContentData, titleElement, cardsContainer);
     });
@@ -119,7 +198,9 @@ export function setupPaymentsSection(images) {
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
-      const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
+      const totalPages = Math.ceil(
+        tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE,
+      );
       paymentsCurrentPage = (paymentsCurrentPage + 1) % totalPages;
       renderPaymentsCards(tabContentData, titleElement, cardsContainer);
     });
@@ -131,7 +212,7 @@ export function setupPaymentsSection(images) {
     // Position connector under the initially active tab
     const initialTab =
       Array.from(paymentsTabCard.querySelectorAll(".tab-item")).find((t) =>
-        t.classList.contains("border-[#F79A59]")
+        t.classList.contains("border-[#F79A59]"),
       ) ?? paymentsTabCard.querySelector(".tab-item");
     updateConnectorPosition(initialTab);
 
