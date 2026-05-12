@@ -5,36 +5,77 @@ import PageAnimations from "../components/PageAnimations.astro";
 import Carousel from "../components/Carousel.astro";
 import banner from "../assets/ApplicationBanner.png";
 import mapdots from "../assets/Mapdots.png";
-import layers from "../assets/Layers.png";
-import positionlogos from "../assets/Positionlogos.png";
-import wizzstates from "../assets/Wizzstates.png";
+import slide1 from "../assets/Slide_1.png";
+import slide3 from "../assets/Slide_3.png";
+import crossborder from "../assets/Crossborder.png";
+import migrant from "../assets/Migrant.png";
+import whitecoller from "../assets/Whitecoller.png";
+import bankfintech from "../assets/Bankfintech.png";
+import smecorparate from "../assets/Smecorparate.png";
 import logo from "../assets/Wizzlogo.png";
+
+const stats = [
+  { value: "5Mn+",   label: "Customers" },
+  { value: "50+",    label: "Regulatory Licences" },
+  { value: "500+",   label: "Physical Branches" },
+  { value: "159",    label: "Countries Payout Network" },
+  { value: "$6.9Bn", label: "Transaction Volumes*" },
+];
 
 // Extend this array to add more carousel slides
 const slides = [
   {
     title: "The Only Platform Focusing on GCC, INDIA, SEA & US Corridors",
     p2: "Wizz Financial connects cross-border payments, digital wallets, card issuing, secured lending, and stablecoin treasury on a single regulated infrastructure — built for the corridors that matter most.",
-    bgImage: mapdots.src,
-    fgImage: layers.src,
-    fgAlt: "Layered financial platform visualization",
-    fgScale: "scale-100",
+    fgImage: slide1.src,
+    fgAlt: "Wizz platform visualization",
   },
   {
     title: "Serving Every Cross-Border Customer",
     p2: "Legacy systems break across borders — creating friction, delays, and high costs for global customers. Wizz Financial solves this with an integrated financial stack built specifically for cross-border scale.",
     bgImage: mapdots.src,
-    fgImage: positionlogos.src,
-    fgAlt: "Wizz position logos",
-    fgScale: "scale-90",
+    fgImage: "",
+    fgAlt: "",
+    fgScale: "",
+    cards: [
+      { image: crossborder.src,  label: "Cross Border Families", style: "top:1%;left:5%"   },
+      { image: migrant.src,      label: "Migrant workers",       style: "top:32%;left:36%" },
+      { image: whitecoller.src,  label: "White Collar Expats",   style: "top:3%;right:3%"  },
+      { image: bankfintech.src,  label: "Banks & Fintechs",      style: "top:70%;left:8%"  },
+      { image: smecorparate.src, label: "SME & Corporates",      style: "top:65%;right:3%" },
+    ],
   },
   {
     title: "The Financial Operating System for Cross-Border Populations",
     p2: "Wizz Financial is a regulated financial ecosystem with licensed credibility across the GCC, India, South East Asia, and the US.",
     bgImage: mapdots.src,
-    fgImage: wizzstates.src,
-    fgAlt: "Wizz global states map",
+    fgImage: slide3.src,
+    fgAlt: "Wizz platform layers",
     fgScale: "scale-100",
+    listItems: [
+      {
+        title: "Core Platform",
+        subtitle: "Zero Assumption | Cloud-native | API Gateway",
+      },
+      {
+        title: "Treasury",
+        subtitle: "Stable coin-backed Treasury Bypass | Traditional Treasury",
+      },
+      {
+        title: "Processing Engine",
+        subtitle:
+          "Processing Engine | KYC | KYB | KYBC | KYT | AML | AI/ML | Authentication & Authorisation for VISA & Mastercard",
+      },
+      {
+        title: "Connectivity",
+        subtitle: "Bank APIs | Payment Networks | External Services",
+      },
+      {
+        title: "Distribution",
+        subtitle:
+          "B2C: Wallet, Card, Stablecoin, Agents, Branch, Kiosk | B2B APIs, FIs",
+      },
+    ],
   },
 ];
 ---
@@ -95,7 +136,7 @@ const slides = [
           data-animate="fade-up"
           data-delay="300"
         >
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <!-- Left: per-slide text panels, absolutely stacked -->
             <div
               class="lg:col-span-6 relative
@@ -141,27 +182,102 @@ const slides = [
               }
             </div>
 
-            <!-- Right: static map background + per-slide foreground images -->
-            <div class="lg:col-span-6 relative">
-              <!-- Mapdots in normal flow — sets the container height naturally -->
-              <img
-                src={mapdots.src}
-                alt=""
-                aria-hidden="true"
-                class="block w-full h-auto"
-              />
-              <!-- Overlay images absolutely cover the same space as mapdots -->
+            <!-- Right: per-slide content (slide 1 = Slide_1 only, others = mapdots + overlays) -->
+            <div class="lg:col-span-6 relative min-h-80 sm:min-h-96 md:min-h-[420px] lg:min-h-[480px] xl:min-h-[540px]">
               {
-                slides.map((slide, i) => (
-                  <img
-                    src={slide.fgImage}
-                    alt={slide.fgAlt}
-                    data-fg={i}
-                    class={`absolute inset-0 w-full h-full object-contain z-10 ${slide.fgScale}
-                    transition-opacity duration-300 ease-in-out
-                    ${i === 0 ? "opacity-100" : "opacity-0"}`}
-                  />
-                ))
+                slides.map((slide, i) =>
+                  "cards" in slide ? (
+                    <div
+                      data-fg={i}
+                      class={`absolute inset-0 w-full h-full transition-opacity duration-300 ease-in-out
+                      ${i === 0 ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <img
+                        src={mapdots.src}
+                        alt=""
+                        aria-hidden="true"
+                        class="w-full h-full object-cover"
+                      />
+                      {slide.cards!.map((card: { image: string; label: string; style: string }) => (
+                        <div
+                          class="absolute flex flex-col items-center gap-3 rounded-2xl bg-[#1c2748]/65 backdrop-blur-2xl border border-white/15 shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_8px_32px_rgba(0,0,0,0.4)] p-4 w-[28%]"
+                          style={card.style}
+                        >
+                          <img src={card.image} alt={card.label} class="w-full h-24 object-contain" />
+                          <span class="text-white text-sm text-center leading-tight font-medium">{card.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  ) : "listItems" in slide ? (
+                    <div
+                      data-fg={i}
+                      class={`absolute inset-0 w-full h-full z-10 flex flex-col lg:flex-row items-center
+                      transition-opacity duration-300 ease-in-out
+                      ${i === 0 ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <img
+                        src={mapdots.src}
+                        alt=""
+                        aria-hidden="true"
+                        class="absolute inset-0 w-full h-full object-cover"
+                      />
+                      <div class="relative z-10 flex flex-col lg:flex-row items-center w-full h-full">
+                        <img
+                          src={slide.fgImage}
+                          alt={slide.fgAlt}
+                          class="w-64 h-[500px] object-contain ml-32"
+                        />
+                        <div class="flex-1 flex flex-col max-w-xs">
+                          {slide.listItems!.map(
+                            (
+                              item: { title: string; subtitle: string },
+                              idx: number,
+                            ) => (
+                              <div
+                                class={`py-1.5 lg:py-2 xl:py-2.5 ${idx < slide.listItems!.length - 1 ? "border-b border-white/10" : ""}`}
+                              >
+                                <h3
+                                  class="text-white font-bold mb-0.5"
+                                  style="font-size:20px"
+                                >
+                                  {item.title}
+                                </h3>
+                                <p
+                                  class="text-[#CBCBCB] font-light leading-relaxed"
+                                  style="font-size:14px"
+                                >
+                                  {item.subtitle}
+                                </p>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    /* Slide 1: Slide_1 image (smaller) + stats cards below */
+                    <div
+                      data-fg={i}
+                      class={`absolute inset-0 w-full h-full flex flex-col gap-3 transition-opacity duration-300 ease-in-out
+                      ${i === 0 ? "opacity-100" : "opacity-0"}`}
+                    >
+                      <img
+                        src={slide.fgImage}
+                        alt={slide.fgAlt}
+                        class="w-full object-contain"
+                        style="height: 70%"
+                      />
+                      <div class="flex flex-row mt-12" style="gap:16px">
+                        {stats.map((stat) => (
+                          <div class="flex-1 flex flex-col items-center justify-center gap-1 bg-[#1c2748]/65 backdrop-blur-sm border border-white/10 rounded-xl p-3 lg:p-4">
+                            <span class="text-white font-bold text-base lg:text-xl xl:text-2xl text-center">{stat.value}</span>
+                            <span class="text-[#CBCBCB] text-xs font-light leading-snug text-center">{stat.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ),
+                )
               }
             </div>
           </div>
