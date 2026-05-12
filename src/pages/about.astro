@@ -23,6 +23,18 @@ import earth from "../assets/Earth.png";
 import visionImg from "../assets/Vision_about.png";
 import missionImg from "../assets/Mission_about.png";
 import differImg from "../assets/Differ_about.png";
+import visaPayImg from "../assets/Visa_payment.png";
+import upiPayImg from "../assets/upi_payment.png";
+import rupayPayImg from "../assets/Rubay_payment.png";
+import bharatPayImg from "../assets/Bharat_payment.png";
+import airtelBankImg from "../assets/Airtel_Banking.png";
+import hdfcBankImg from "../assets/Hdfc_Banking.png";
+import yesBankImg from "../assets/Yesbank_Banking.png";
+import fabBankImg from "../assets/Fab_Banking.png";
+import bitgoTechImg from "../assets/Bitgo_Tech.png";
+import indigoTechImg from "../assets/Indigo_Tech.png";
+import awsTechImg from "../assets/Aws_Tech.png";
+import samsungTechImg from "../assets/Samsung.png";
 
 
 const corridorTabs = [
@@ -92,32 +104,35 @@ const visionMissionCards = [
   },
 ];
 
-const partnerColumns = [
+type Partner = { name: string; description: string; image?: string };
+type PartnerColumn = { title: string; partners: Partner[] };
+
+const partnerColumns: PartnerColumn[] = [
   {
     title: "Payment Network",
     partners: [
-      { name: "Visa", description: "In Principal Global Member" },
-      { name: "UPI", description: "Direct UPI integration for india payments" },
-      { name: "RuPay", description: "Card scheme: 1st AED denominates" },
-      { name: "Bharat BillPay", description: "Bill payments across India" },
+      { name: "Visa", description: "In Principal Global Member", image: visaPayImg.src },
+      { name: "UPI", description: "Direct UPI integration for india payments", image: upiPayImg.src },
+      { name: "RuPay", description: "Card scheme: 1st AED denominates", image: rupayPayImg.src },
+      { name: "Bharat BillPay", description: "Bill payments across India", image: bharatPayImg.src },
     ],
   },
   {
     title: "Banking Partners",
     partners: [
-      { name: "Airtel Payments Bank", description: "Distribution Partner" },
-      { name: "HDFC Bank", description: "AD I partner in india" },
-      { name: "Yes Bank", description: "AD I Partner In india" },
-      { name: "FAB", description: "HNW1 Product" },
+      { name: "Airtel Payments Bank", description: "Distribution Partner", image: airtelBankImg.src },
+      { name: "HDFC Bank", description: "AD I partner in india", image: hdfcBankImg.src },
+      { name: "Yes Bank", description: "AD I Partner In india", image: yesBankImg.src },
+      { name: "FAB", description: "HNW1 Product", image: fabBankImg.src },
     ],
   },
   {
     title: "Tech & More Partners",
     partners: [
-      { name: "BitGo", description: "Stablecoin rail for B2C remittances" },
-      { name: "IndiGo", description: "Travel Partners" },
-      { name: "AWS", description: "Amazon-AWS" },
-      { name: "Samsung", description: "Samsung" },
+      { name: "BitGo", description: "Stablecoin rail for B2C remittances", image: bitgoTechImg.src },
+      { name: "IndiGo", description: "Travel Partners", image: indigoTechImg.src },
+      { name: "AWS", description: "Amazon-AWS", image: awsTechImg.src },
+      { name: "Samsung", description: "Samsung", image: samsungTechImg.src },
     ],
   },
 ];
@@ -152,10 +167,10 @@ const problemPills = [
       <div class="absolute inset-0 bg-[#12152F]/50"></div>
 
       <div
-        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-24 lg:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
+        class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 xl:gap-24 p-5 sm:p-8 md:p-10 lg:p-12"
       >
         <!-- Header -->
-        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+        <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
           <Header />
         </div>
 
@@ -188,7 +203,7 @@ const problemPills = [
           >
             {
               problemPills.map((pill) => (
-                <div class="flex-shrink-0 px-5 py-2 rounded-full border border-white/20 bg-[#4D4222]/40 text-white text-[18px] whitespace-nowrap">
+                <div class="flex-shrink-0 px-5 py-2 rounded-full border border-white/20 bg-[#4D4222]/40 text-white md:text-md text-xs xl:text-lg whitespace-nowrap">
                   {pill}
                 </div>
               ))
@@ -209,25 +224,25 @@ const problemPills = [
           </p>
 
           <!-- Vision / Mission / Differentiation cards -->
-          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+          <div class="w-full grid grid-cols-1 sm:grid-cols-3 gap-8 mt-4">
             {
               visionMissionCards.map((card) => (
                 <div
-                  class="relative overflow-hidden rounded-2xl bg-[#373737]/30 border border-white/10 min-h-[300px]
+                  class="relative overflow-hidden rounded-2xl bg-[#373737]/30 border border-white/10 min-h-75
                   transition-all duration-500 ease-in-out hover:bg-white/10 hover:border-white/20 hover:scale-[1.02]"
                 >
-                  <div class="flex flex-col gap-3 p-6 pb-3 z-10 relative">
-                    <h3 class="text-white font-bold text-[20px]">
+                  <div class="flex flex-col gap-3 lg:p-6 p-4 pb-3 z-10 relative">
+                    <h3 class="text-white font-bold text-xl">
                       {card.title}
                     </h3>
-                    <p class="text-white/70 text-sm md:text-base leading-relaxed">
+                    <p class="text-white/70 text-sm lg:text-base leading-relaxed">
                       {card.text}
                     </p>
                   </div>
                   <img
                     src={card.image}
                     alt={card.imageAlt}
-                    class="absolute -bottom-[30px] -right-[50px] w-[200px] h-[200px] object-contain opacity-90 pointer-events-none"
+                    class="absolute -bottom-8 -right-12 lg:w-50 w-40 lg:h-50 h-40 object-contain opacity-90 pointer-events-none"
                   />
                 </div>
               ))
@@ -293,14 +308,16 @@ const problemPills = [
             {
               partnerColumns.map((col) => (
                 <div class="flex flex-col gap-4 bg-[#373737]/20 border border-white/10 rounded-2xl p-5">
-                  <h3 class="text-white font-bold text-xl md:text-2xl">{col.title}</h3>
+                  <h3 class="text-white font-medium text-2xl">{col.title}</h3>
                   <div class="flex flex-col gap-10 mt-6">
                     {col.partners.map((partner) => (
-                      <div class="flex items-center gap-4">
-                        <div class="w-[72px] h-[72px] flex-shrink-0 rounded-xl bg-white flex items-center justify-center">
-                          <!-- logo placeholder -->
+                      <div class="flex items-center lg:flex-row md:flex-col flex-row  gap-4">
+                        <div class="md:w-30 w-18 h-18 flex-shrink-0 rounded-xl bg-white flex items-center justify-center p-3">
+                          {partner.image && (
+                            <img src={partner.image} alt={partner.name} class="w-4/5 h-4/5 object-contain" />
+                          )}
                         </div>
-                        <p class="text-white/80 text-sm md:text-base leading-snug">{partner.description}</p>
+                        <p class="text-white/80 text-sm  md:text-center md:text-base leading-snug">{partner.description}</p>
                       </div>
                     ))}
                   </div>
@@ -312,6 +329,7 @@ const problemPills = [
 
         <!-- Section 4: Corridors and Markets -->
         <div
+          id="corridors-section"
           class="opacity-0 flex flex-col md:items-center md:justify-center md:text-center md:gap-6 gap-3"
           data-animate="fade-up"
           data-delay="500"
@@ -333,35 +351,44 @@ const problemPills = [
             the largest remittance‑receiving markets worldwide.
           </p>
 
-          <!-- Corridors Tabs -->
-          <div
-            class="md:mt-10 mt-4 flex overflow-x-auto gap-4 w-full justify-center"
-          >
-            {
-              corridorTabs.map((tab) => (
-                <div
-                  class={`corridor-tab px-6 py-2 rounded-full text-base w-fit flex-shrink-0 transition-all duration-300 cursor-pointer border
-                  ${
-                    tab.selected
-                      ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
-                      : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
-                  }`}
-                >
-                  {tab.label}
-                </div>
-              ))
-            }
-          </div>
+          <!-- Tabs + connector + map wrapped with gap-0, matching Dashboard structure -->
+          <div class="flex flex-col gap-0 w-full mt-4 md:mt-10" id="corridors-tab-section">
 
-          <!-- Map Card -->
-          <div
-            class="md:mt-10 mt-5 w-full bg-[#373737]/30 border border-white/10 rounded-[10px] md:p-10 md:h-auto h-[400px]"
-          >
-            <img
-              src={earth.src}
-              alt="Corridors Map"
-              class="w-full md:h-auto h-full md:object-contain object-cover rounded-md"
-            />
+            <!-- Corridors Tabs — flex-wrap matches Dashboard TabCard (no centering, no scroll) -->
+            <div class="flex flex-wrap gap-3 w-full">
+              {
+                corridorTabs.map((tab) => (
+                  <div
+                    class={`corridor-tab px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
+                    ${
+                      tab.selected
+                        ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
+                        : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
+                    }`}
+                  >
+                    {tab.label}
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Vertical connector: absolute-positioned under the active tab -->
+            <div class="relative w-full h-14">
+              <div id="corridor-connector" class="absolute flex flex-col items-center" style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;">
+                <div class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#BA7F4A]"></div>
+              </div>
+            </div>
+
+            <!-- Map Card -->
+            <div class="w-full bg-[#373737]/30 border border-white/10 rounded-xl md:p-10 md:h-auto h-100">
+              <img
+                src={earth.src}
+                alt="Corridors Map"
+                class="w-full md:h-auto h-full md:object-contain object-cover rounded-md"
+              />
+            </div>
+
           </div>
         </div>
 
@@ -374,27 +401,10 @@ const problemPills = [
 
     <PageAnimations />
 
+    <!-- Section 4 — Corridors tab switching and connector line -->
     <script>
-      function setupTabs() {
-        const tabs = document.querySelectorAll(".corridor-tab");
-
-        tabs.forEach((tab) => {
-          tab.addEventListener("click", () => {
-            // Reset all tabs to inactive state
-            tabs.forEach((t) => {
-              t.classList.remove("bg-[#FFBD00]/17", "border-[#F79A59]");
-              t.classList.add("bg-[#8A8A8A]/10", "border-transparent");
-            });
-
-            // Set clicked tab to active state
-            tab.classList.remove("bg-[#8A8A8A]/10", "border-transparent");
-            tab.classList.add("bg-[#FFBD00]/17", "border-[#F79A59]");
-          });
-        });
-      }
-
-      // Setup tabs functionality
-      setupTabs();
+      import { setupCorridorTabs } from "../scripts/about-corridors.js";
+      setupCorridorTabs();
     </script>
   </body>
 </html>

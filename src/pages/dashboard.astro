@@ -11,10 +11,6 @@ import GccImage from "../assets/Gcc.png";
 import IndiaSEAImage from "../assets/India & SEA.png";
 import UsaImage from "../assets/Usa.png";
 import RestOfWorldImage from "../assets/Rest of World.png";
-import DigitalWalletImage from "../assets/Digitalwallet.png";
-import CardPaymentImage from "../assets/Cardpayment.png";
-import MerchantImage from "../assets/Merchant.png";
-import BusinessImage from "../assets/Business.png";
 import B2CRemittancesImg from "../assets/B2C Remittances.png";
 import ForeignExchangeImg from "../assets/Foreign Exchange.png";
 import B2BRemittancesImg from "../assets/B2B Remittances.png";
@@ -48,12 +44,12 @@ const tabContent = {
   payments: {
     title: "Cross Border Payments",
     cards: [
-      { label: "B2C Remittances", image: B2CRemittancesImg.src },
-      { label: "Foreign Exchange", image: ForeignExchangeImg.src },
-      { label: "B2B Remittances", image: B2BRemittancesImg.src },
-      { label: "WPS Salary payouts", image: WPSSalaryPayoutsImg.src },
-      { label: "FX Prepaid Cards", image: FXPrepaidCardsImg.src },
-      { label: "Bill Payments", image: BillPaymentsImg.src },
+      { label: "B2C Remittances", image: B2CRemittancesImg.src, hoverText: "Businesses sending money directly to customers, like refunds or payouts." },
+      { label: "Foreign Exchange", image: ForeignExchangeImg.src, hoverText: "Converting one country's currency into another for international transactions." },
+      { label: "B2B Remittances", image: B2BRemittancesImg.src, hoverText: "Businesses sending payments to other businesses for goods or services." },
+      { label: "WPS Salary payouts", image: WPSSalaryPayoutsImg.src, hoverText: "Employers paying salaries through regulated systems to ensure timely employee payments." },
+      { label: "FX Prepaid Cards", image: FXPrepaidCardsImg.src, hoverText: "Preloaded cards for spending in foreign currencies while traveling abroad." },
+      { label: "Bill Payments", image: BillPaymentsImg.src, hoverText: "Paying utility or service bills like electricity, water, or internet." },
     ],
   },
   lending: {
@@ -145,7 +141,7 @@ const faqItems = [
         class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-24 xl:gap-34 p-5 sm:p-8 md:p-10 lg:p-12"
       >
         <!-- Header -->
-        <div class="opacity-0" data-animate="fade-up" data-delay="100">
+        <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
           <Header />
         </div>
 
@@ -189,12 +185,12 @@ const faqItems = [
 
         <!-- Section 2: Grid Layout (6/6 columns) -->
         <div
-          class="opacity-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-8"
+          class="opacity-0 w-full grid grid-cols-1 lg:grid-cols-2 gap-12"
           data-animate="fade-up"
           data-delay="300"
         >
           <!-- Left Column (6 columns) -->
-          <div class="flex flex-col gap-8" id="payments-section">
+          <div class="flex flex-col gap-0" id="payments-section">
             <TabCard
               title="Our Financial Capabilities"
               buttonLabel="Read More"
@@ -206,7 +202,18 @@ const faqItems = [
               backgroundImage={zlOgoCopacity.src}
             />
 
-            <div class="w-full bg-[#373737]/50 rounded-xl p-4 flex flex-col flex-1">
+            <!-- Vertical connector: moves under whichever tab is active (positioned by dashboard-payments.js) -->
+            <div class="relative w-full h-14">
+              <div id="tab-connector" class="absolute flex flex-col items-center" style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;">
+                <div class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#BA7F4A]"></div>
+              </div>
+            </div>
+
+            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl p-6 flex flex-col flex-1">
+              <!-- Decorative top-right glow -->
+              <div class="absolute -top-20 -left-8 w-72 h-72 rounded-full bg-[#E5AF1C]/15 blur-[85px] pointer-events-none"></div>
+
               <div id="payments-content" class="flex flex-col flex-1" style="transition: opacity 0.25s ease;">
               <h2
                 id="card-title"
@@ -221,7 +228,7 @@ const faqItems = [
               >
                 {
                   tabContent.payments.cards.slice(0, 4).map((card) => (
-                    <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
+                    <div class="relative group flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-28 md:min-h-34 transition duration-300 hover:bg-[#474747]/20">
                       <span class="text-white text-sm sm:text-base">
                         {card.label}
                       </span>
@@ -230,6 +237,10 @@ const faqItems = [
                         alt={card.label}
                         class="h-16 xl:h-24 w-auto object-contain"
                       />
+                      <div class="absolute right-4 md:right-5 top-1/2 -translate-y-1/2 z-10 w-60 flex flex-col gap-1 text-left bg-[#3F3F3F]/75 backdrop-blur-md border border-white/20 rounded-xl p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span class="text-white text-base font-medium leading-tight">{card.label}</span>
+                        <span class="text-white/75 text-sm leading-snug">{card.hoverText}</span>
+                      </div>
                     </div>
                   ))
                 }
@@ -282,7 +293,7 @@ const faqItems = [
           </div>
 
           <!-- Right Column (6 columns) -->
-          <div class="flex flex-col gap-8" id="presence-section">
+          <div class="flex flex-col gap-0" id="presence-section">
             <TabCard
               title="Our Presence"
               buttonLabel="Read More"
@@ -295,7 +306,19 @@ const faqItems = [
               backgroundImage={globalImage.src}
             />
 
-            <div class="w-full bg-[#373737]/50 rounded-xl p-4 flex flex-col flex-1">
+            <!-- Vertical connector: moves under whichever presence tab is active (positioned by dashboard-presence.js) -->
+            <!-- Vertical connector: moves under whichever presence tab is active (positioned by dashboard-presence.js) -->
+            <div class="relative w-full h-14">
+              <div id="presence-connector" class="absolute flex flex-col items-center" style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;">
+                <div class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#BA7F4A]"></div>
+              </div>
+            </div>
+
+            <div class="relative overflow-hidden w-full bg-[#373737]/30 rounded-xl p-6 flex flex-col flex-1">
+              <!-- Decorative top-left glow -->
+              <div class="absolute -top-20 -left-8 w-72 h-72 rounded-full bg-[#E5AF1C]/15 blur-[85px] pointer-events-none"></div>
+
               <div
                 class="relative h-[363px] rounded-xl bg-[#373737]/20 flex items-end justify-center overflow-visible"
               >
@@ -303,7 +326,7 @@ const faqItems = [
                   id="presence-image"
                   src={GccImage.src}
                   alt="GCC"
-                  class="h-[400px] w-auto object-contain absolute -bottom-12"
+                  class="h-100 w-auto object-contain absolute -bottom-12"
                   style="transition: opacity 0.25s ease;"
                 />
               </div>
@@ -362,11 +385,11 @@ const faqItems = [
                 { count: "900k", label: "Agent Network" },
                 { count: "400+", label: "Worldwide Locations" },
               ].map((item) => (
-                <div class="flex flex-col items-center justify-center gap-3 rounded-[24px] p-8 text-center">
+                <div class="flex flex-col items-center justify-center gap-3 rounded-3xl p-8 text-center">
                   <span class="text-[#FAA819] text-3xl sm:text-4xl font-semibold leading-none">
                     {item.count}
                   </span>
-                  <span class="text-white text-base sm:text-lg leading-snug max-w-[180px]">
+                  <span class="text-white text-base sm:text-lg leading-snug max-w-45">
                     {item.label}
                   </span>
                 </div>
@@ -392,7 +415,7 @@ const faqItems = [
             </div>
 
             <!-- Right content wrapper: #919191 at 20% opacity, 24px padding -->
-            <div class="flex-1 min-w-0 rounded-4xl bg-[#919191]/17 md:p-8 p-4">
+            <div class="flex-1 min-w-0 rounded-4xl bg-[#919191]/10 backdrop-blur-md border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] md:p-8 p-4">
               <h2
                 class="text-white xl:text-[32px] md:text-xl font-medium leading-snug mb-6"
               >
@@ -402,9 +425,9 @@ const faqItems = [
               </h2>
 
               <!-- Three AI cards -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 xl:gap-8 gap-3">
+              <div class="grid grid-cols-1 sm:grid-cols-3 xl:gap-8 gap-3 items-stretch">
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                  class="flex flex-col items-center gap-3 bg-[#373737]/30 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
                 >
                   <img
                     src={infrastructureAI.src}
@@ -421,7 +444,7 @@ const faqItems = [
                 </div>
 
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
                 >
                   <img
                     src={backendAI.src}
@@ -438,7 +461,7 @@ const faqItems = [
                 </div>
 
                 <div
-                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center h-fit"
+                  class="flex flex-col items-center gap-3 bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 text-center flex-1"
                 >
                   <img
                     src={frontendAI.src}
@@ -510,12 +533,12 @@ const faqItems = [
       </div>
       <PageAnimations />
 
+      <!--
+        Expose server-side asset URLs as a global so the client scripts below can read them.
+        window.DASHBOARD_IMAGES is consumed by dashboard-payments.js and dashboard-presence.js.
+      -->
       <script
         define:vars={{
-          DigitalWallet: DigitalWalletImage.src,
-          CardPayment: CardPaymentImage.src,
-          MerchantImg: MerchantImage.src,
-          BusinessImg: BusinessImage.src,
           GccImage: GccImage.src,
           IndiaSEAImage: IndiaSEAImage.src,
           UsaImage: UsaImage.src,
@@ -537,186 +560,45 @@ const faqItems = [
           Stablecoin: StablecoinImg.src,
         }}
       >
-        const CARDS_PER_PAGE = 4;
-        let paymentsCurrentPage = 0;
-        let activePaymentsKey = "payments";
-
-        const tabContentData = {
-          payments: {
-            title: "Cross Border Payments",
-            cards: [
-              { label: "B2C Remittances", image: B2CRemittances },
-              { label: "Foreign Exchange", image: ForeignExchange },
-              { label: "B2B Remittances", image: B2BRemittances },
-              { label: "WPS Salary payouts", image: WPSSalaryPayouts },
-              { label: "FX Prepaid Cards", image: FXPrepaidCards },
-              { label: "Bill Payments", image: BillPayments },
-            ],
-          },
-          lending: {
-            title: "Secured Lending",
-            cards: [
-              { label: "Asset - Backed Lending", image: AssetBackedLending },
-              { label: "Remit Now Pay Later", image: RemitNowPayLater },
-              { label: "Insurance Premium Finance", image: InsurancePremiumFinance },
-              { label: "Education Loans", image: EducationLoans },
-            ],
-          },
-          techinfra: {
-            title: "Technology Infrastructure",
-            cards: [
-              { label: "Proprietary Core", image: ProprietaryCore },
-              { label: "AI-powered decisioning", image: AIPoweredDecisioning },
-              { label: "Cloud-native & API - first", image: CloudNativeAPI },
-              { label: "Card issuing platform", image: CardIssue },
-              { label: "Stablecoin Treasury & Liquidity", image: Stablecoin },
-            ],
-          },
-        };
-
-        const presenceImageData = {
+        window.DASHBOARD_IMAGES = {
           gcc: GccImage,
-          "india & sea": IndiaSEAImage,
+          indiaSea: IndiaSEAImage,
           usa: UsaImage,
-          "rest of the world": RestOfWorldImage,
+          restOfWorld: RestOfWorldImage,
+          b2cRemittances: B2CRemittances,
+          foreignExchange: ForeignExchange,
+          b2bRemittances: B2BRemittances,
+          wpsSalaryPayouts: WPSSalaryPayouts,
+          fxPrepaidCards: FXPrepaidCards,
+          billPayments: BillPayments,
+          assetBackedLending: AssetBackedLending,
+          remitNowPayLater: RemitNowPayLater,
+          insurancePremiumFinance: InsurancePremiumFinance,
+          educationLoans: EducationLoans,
+          proprietaryCore: ProprietaryCore,
+          aiPoweredDecisioning: AIPoweredDecisioning,
+          cloudNativeApi: CloudNativeAPI,
+          cardIssue: CardIssue,
+          stablecoin: Stablecoin,
         };
+      </script>
 
-        function renderPaymentsCards(titleElement, cardsContainer) {
-          const content = tabContentData[activePaymentsKey];
-          const totalPages = Math.ceil(content.cards.length / CARDS_PER_PAGE);
-          const start = paymentsCurrentPage * CARDS_PER_PAGE;
-          const pageCards = content.cards.slice(start, start + CARDS_PER_PAGE);
-          const paymentsContent = document.getElementById("payments-content");
+      <!--
+        Section 2 (Left Column)  → src/scripts/dashboard-payments.js
+        Section 2 (Right Column) → src/scripts/dashboard-presence.js
+      -->
+      <script>
+        import { setupPaymentsSection } from "../scripts/dashboard-payments.js";
+        import { setupPresenceSection } from "../scripts/dashboard-presence.js";
 
-          function applyUpdate() {
-            titleElement.textContent = content.title;
-            cardsContainer.innerHTML = pageCards
-              .map(
-                (card) => `
-                <div class="flex items-center justify-between gap-4 bg-[#373737]/12 border border-white/10 rounded-xl p-4 md:p-5 min-h-[110px] md:min-h-[130px] transition duration-300 hover:bg-[#474747]/20">
-                  <span class="text-white text-sm sm:text-base">${card.label}</span>
-                  <img src="${card.image}" alt="${card.label}" class="h-16 xl:h-24 w-auto object-contain" />
-                </div>
-              `,
-              )
-              .join("");
-
-            // Update dots
-            const dotsContainer = document.getElementById("payments-dots");
-            if (dotsContainer) {
-              dotsContainer.innerHTML = Array.from({ length: totalPages }, (_, i) =>
-                `<span class="w-2 h-2 rounded-full cursor-pointer ${i === paymentsCurrentPage ? "bg-[#BA7F4A]" : "bg-white/40"}" data-page="${i}"></span>`
-              ).join("");
-              dotsContainer.querySelectorAll("span").forEach((dot) => {
-                dot.addEventListener("click", () => {
-                  paymentsCurrentPage = parseInt(dot.dataset.page);
-                  renderPaymentsCards(titleElement, cardsContainer);
-                });
-              });
-            }
-
-            if (paymentsContent) paymentsContent.style.opacity = "1";
-          }
-
-          if (paymentsContent) {
-            paymentsContent.style.opacity = "0";
-            setTimeout(applyUpdate, 250);
-          } else {
-            applyUpdate();
+        declare global {
+          interface Window {
+            DASHBOARD_IMAGES: Record<string, string>;
           }
         }
 
-        function setupTabContentSwitcher() {
-          const paymentsWrapper = document.getElementById("payments-section");
-          const presenceWrapper = document.getElementById("presence-section");
-          const presenceImage = document.getElementById("presence-image");
-          const titleElement = document.getElementById("card-title");
-          const cardsContainer = document.getElementById("cards-container");
-
-          if (
-            !paymentsWrapper ||
-            !presenceWrapper ||
-            !titleElement ||
-            !cardsContainer
-          )
-            return;
-
-          const paymentsTabCard = paymentsWrapper.querySelector(".tab-card");
-          const presenceTabCard = presenceWrapper.querySelector(".tab-card");
-
-          // Carousel prev/next
-          const prevBtn = document.getElementById("payments-prev");
-          const nextBtn = document.getElementById("payments-next");
-
-          if (prevBtn) {
-            prevBtn.addEventListener("click", () => {
-              const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
-              paymentsCurrentPage = (paymentsCurrentPage - 1 + totalPages) % totalPages;
-              renderPaymentsCards(titleElement, cardsContainer);
-            });
-          }
-
-          if (nextBtn) {
-            nextBtn.addEventListener("click", () => {
-              const totalPages = Math.ceil(tabContentData[activePaymentsKey].cards.length / CARDS_PER_PAGE);
-              paymentsCurrentPage = (paymentsCurrentPage + 1) % totalPages;
-              renderPaymentsCards(titleElement, cardsContainer);
-            });
-          }
-
-          function handlePaymentsTab(tabLabel) {
-            if (tabLabel === "cross border payments") {
-              activePaymentsKey = "payments";
-            } else if (tabLabel === "secured lending") {
-              activePaymentsKey = "lending";
-            } else if (tabLabel === "technology infrastructure") {
-              activePaymentsKey = "techinfra";
-            }
-            paymentsCurrentPage = 0;
-            renderPaymentsCards(titleElement, cardsContainer);
-          }
-
-          function handlePresenceTab(tabLabel) {
-            const key = tabLabel.toLowerCase();
-            const imageSrc = presenceImageData[key] || presenceImageData.gcc;
-            if (presenceImage) {
-              presenceImage.style.opacity = "0";
-              setTimeout(() => {
-                presenceImage.src = imageSrc;
-                presenceImage.alt = `${tabLabel} image`;
-                presenceImage.style.opacity = "1";
-              }, 250);
-            }
-          }
-
-          if (paymentsTabCard) {
-            const paymentsTabs = paymentsTabCard.querySelectorAll(".tab-item");
-            paymentsTabs.forEach((tab) => {
-              tab.addEventListener("click", () => {
-                handlePaymentsTab(tab.textContent.trim().toLowerCase());
-              });
-            });
-          }
-
-          if (presenceTabCard) {
-            const presenceTabs = presenceTabCard.querySelectorAll(".tab-item");
-            presenceTabs.forEach((tab) => {
-              tab.addEventListener("click", () => {
-                handlePresenceTab(tab.textContent.trim());
-              });
-            });
-          }
-        }
-
-        // Setup when DOM is ready
-        if (document.readyState === "loading") {
-          document.addEventListener(
-            "DOMContentLoaded",
-            setupTabContentSwitcher,
-          );
-        } else {
-          setupTabContentSwitcher();
-        }
+        setupPaymentsSection(window.DASHBOARD_IMAGES);
+        setupPresenceSection(window.DASHBOARD_IMAGES);
       </script>
     </div>
   </body>
