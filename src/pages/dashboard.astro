@@ -46,6 +46,7 @@ import Media9 from "../assets/news-media images/Media-9.png";
 import Media10 from "../assets/news-media images/Media-10.png";
 import Media11 from "../assets/news-media images/Media-11.png";
 
+import dashboardBgFinal from "../assets/dashboard-bg-final.png";
 import "../styles/global.css";
 import PageAnimations from "../components/PageAnimations.astro";
 import MainFooter from "../components/MainFooter.astro";
@@ -164,8 +165,12 @@ const mediaImages = [
   <link rel="icon" type="image/png" href={logo.src} />
   <title>Dashboard</title>
   <body class="m-0 p-0 overflow-x-hidden">
+    <!-- Fixed background image -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+      <img src={dashboardBgFinal.src} alt="" class="w-full h-full object-cover object-center" aria-hidden="true" />
+    </div>
+
     <div class="relative min-h-screen w-full">
-      <VideoBackground />
 
       <div
         class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-16 lg:gap-24 p-5 sm:p-8 md:p-10 lg:p-12"
@@ -177,7 +182,7 @@ const mediaImages = [
 
         <!-- Section 1: Hero intro -->
         <div
-          class="opacity-0 flex md:flex-row flex-col justify-between w-full md:items-center gap-6"
+          class="hidden opacity-0 flex md:flex-row flex-col justify-between w-full md:items-center gap-6"
           data-animate="fade-up"
           data-delay="200"
         >
@@ -224,9 +229,9 @@ const mediaImages = [
               title="Our Financial Capabilities"
               buttonLabel="Read More"
               tabs={[
-                { label: "Cross Border Payments", selected: true },
+                { label: "Cross Border<br>Payments", selected: true },
                 { label: "Secured Lending", selected: false },
-                { label: "Technology Infrastructure", selected: false },
+                { label: "Technology<br>Infrastructure", selected: false },
               ]}
               backgroundImage={zlOgoCopacity.src}
             />
@@ -574,7 +579,8 @@ const mediaImages = [
 
             <!-- Bottom: Know more button aligned right -->
             <div class="md:flex justify-end mb-4 hidden">
-              <button
+              <a
+                href="/newsroom"
                 class="flex items-center whitespace-nowrap cursor-pointer border border-white/20 font-medium text-white bg-[#4D4222]/50 gap-2 px-6 py-3 rounded-[40px] text-base transition-all duration-300 hover:bg-[#4D4222]/60"
               >
                 Know more
@@ -592,13 +598,13 @@ const mediaImages = [
                     stroke-linecap="round"
                     stroke-linejoin="round"></path>
                 </svg>
-              </button>
+              </a>
             </div>
           </div>
         </div>
 
         <!-- Section 6: FAQ -->
-        <div class="opacity-0 w-full" data-animate="fade-up" data-delay="450">
+        <div class="hidden opacity-0 w-full" data-animate="fade-up" data-delay="450">
           <div class="flex flex-col gap-10">
             <h2 class="text-white text-3xl sm:text-4xl font-bold">
               Frequently Asked Questions (Faq)

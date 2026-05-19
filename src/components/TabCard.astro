@@ -44,14 +44,14 @@ const {
       </h3>
 
       <!-- Right side: Button -->
-      <button
-        class="hidden md:flex items-center whitespace-nowrap cursor-pointer border border-white/20
-        font-medium text-white bg-[#4D4222]/50
+      <a
+        href="/about"
+        class="hidden md:flex items-center whitespace-nowrap cursor-pointer
+        font-medium text-white
         gap-2 px-6 py-3 rounded-[40px] text-base
-        transition-all duration-300 hover:bg-[#4D4222]/60"
-        onclick={buttonOnClick}
+        transition-all duration-300 hover:bg-white/10"
       >
-        {buttonLabel}
+        Know more
 
         <!-- Right chevron -->
         <svg
@@ -68,7 +68,7 @@ const {
             stroke-linecap="round"
             stroke-linejoin="round"></path>
         </svg>
-      </button>
+      </a>
     </div>
 
     <!-- Below Section: Tabs — horizontal scroll on mobile, wrap on md+ -->
@@ -76,18 +76,18 @@ const {
       class="overflow-x-auto md:overflow-x-visible w-full"
       style="scrollbar-width: none; -ms-overflow-style: none;"
     >
-      <div class="flex flex-nowrap md:flex-wrap items-center gap-3 w-max md:w-full">
+      <div class="flex flex-nowrap md:flex-wrap items-stretch gap-3 w-max md:w-full">
         {
           tabs.map((tab) => (
             <div
-              class={`tab-item flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-nowrap text-center
+              class={`tab-item flex-shrink-0 flex items-center justify-center px-8 rounded-full text-[14px] w-fit transition-all duration-300 cursor-pointer border text-center h-[48px]
             ${
               tab.selected
                 ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
                 : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
             }`}
             >
-              {tab.label}
+              <Fragment set:html={tab.label} />
             </div>
           ))
         }
