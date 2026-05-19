@@ -3,7 +3,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/MainFooter.astro";
 import PageAnimations from "../components/PageAnimations.astro";
 import KnowledgeCard from "../components/KnowledgeCard.astro";
-import banner from "../assets/ApplicationBanner.png";
+import VideoBackground from "../components/VideoBackground.astro";
 import logo from "../assets/Wizzlogo.png";
 
 import blog1 from "../assets/Blog1.png";
@@ -68,39 +68,6 @@ const pressCards = [
   },
 ];
 
-// --- Update these when newsletter content is ready ---
-const newsletterCards = [
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 1",
-    description: "Newsletter content will be added here.",
-  },
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 2",
-    description: "Newsletter content will be added here.",
-  },
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 3",
-    description: "Newsletter content will be added here.",
-  },
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 4",
-    description: "Newsletter content will be added here.",
-  },
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 5",
-    description: "Newsletter content will be added here.",
-  },
-  {
-    date: "Coming Soon",
-    title: "Newsletter Title 6",
-    description: "Newsletter content will be added here.",
-  },
-];
 ---
 
 <html lang="en">
@@ -111,17 +78,14 @@ const newsletterCards = [
     <title>Newsroom</title>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
-    <div
-      style={`background-image: url('${banner.src}')`}
-      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
-    >
-      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+    <div class="relative min-h-screen w-full">
+      <VideoBackground />
 
       <div
         class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-16 lg:gap-24 p-5 sm:p-8 md:p-10 lg:p-12 2xl:p-14 min-h-screen"
       >
         <!-- Header -->
-        <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
+        <div class="sticky top-0 z-50 opacity-0" data-animate="fade-up" data-delay="100">
           <Header />
         </div>
 
@@ -199,6 +163,7 @@ const newsletterCards = [
                     title={card.title}
                     description={card.description}
                     href={`/newsroom-detail?${params.toString()}`}
+                    buttonLabel="Read More"
                   />
                 );
               })
@@ -207,15 +172,17 @@ const newsletterCards = [
 
           <!-- Newsletters Grid (hidden by default) -->
           <div
-            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden"
+            class="grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden"
             id="newsletters-grid"
           >
             {
-              newsletterCards.map((card) => (
+              pressCards.map((card) => (
                 <KnowledgeCard
+                  image={card.image}
                   date={card.date}
                   title={card.title}
                   description={card.description}
+                  buttonLabel="View Article"
                 />
               ))
             }
@@ -248,10 +215,14 @@ const newsletterCards = [
           const active = tab.dataset.tab;
           if (active === "press") {
             pressGrid?.classList.remove("hidden");
+            pressGrid?.classList.add("grid");
             newslettersGrid?.classList.add("hidden");
+            newslettersGrid?.classList.remove("grid");
           } else {
             pressGrid?.classList.add("hidden");
+            pressGrid?.classList.remove("grid");
             newslettersGrid?.classList.remove("hidden");
+            newslettersGrid?.classList.add("grid");
           }
         });
       });

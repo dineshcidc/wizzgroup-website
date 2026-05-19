@@ -11,10 +11,14 @@
     "preview": "astro preview",
     "astro": "astro"
   },
+  "overrides": {
+    "vite": "^7"
+  },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.2",
     "aos": "^2.3.4",
     "astro": "^6.1.5",
+    "motion": "^12.39.0",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

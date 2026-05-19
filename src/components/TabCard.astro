@@ -71,22 +71,27 @@ const {
       </button>
     </div>
 
-    <!-- Below Section: Tabs -->
-    <div class="flex flex-wrap items-center gap-3">
-      {
-        tabs.map((tab) => (
-          <div
-            class={`tab-item px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-pre-line text-center
-          ${
-            tab.selected
-              ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
-              : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
-          }`}
-          >
-            {tab.label}
-          </div>
-        ))
-      }
+    <!-- Below Section: Tabs — horizontal scroll on mobile, wrap on md+ -->
+    <div
+      class="overflow-x-auto md:overflow-x-visible w-full"
+      style="scrollbar-width: none; -ms-overflow-style: none;"
+    >
+      <div class="flex flex-nowrap md:flex-wrap items-center gap-3 w-max md:w-full">
+        {
+          tabs.map((tab) => (
+            <div
+              class={`tab-item flex-shrink-0 px-4 py-2 rounded-full text-xs md:text-base w-fit transition-all duration-300 cursor-pointer border whitespace-nowrap text-center
+            ${
+              tab.selected
+                ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
+                : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
+            }`}
+            >
+              {tab.label}
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </div>

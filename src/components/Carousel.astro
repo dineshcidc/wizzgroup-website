@@ -1,86 +1,181 @@
 <script>
-  const slides = document.querySelectorAll<HTMLElement>(".carousel-slide");
+  import { animate, stagger } from "motion";
+  import type { DOMKeyframesDefinition, AnimationOptions } from "motion";
+
+  const slides   = document.querySelectorAll<HTMLElement>(".carousel-slide");
   const fgImages = document.querySelectorAll<HTMLElement>("[data-fg]");
-  const dots = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
-  const FADE_OUT = 350;
-  const FADE_IN = 400;
-  const AUTO_DELAY = 8000;
-  let current = 0;
+  const dots     = document.querySelectorAll<HTMLButtonElement>(".carousel-dot");
+
+  const FADE_OUT   = 280;
+  const FADE_IN    = 380;
+  const AUTO_DELAY = 15000;
+
+  let current     = 0;
   let isAnimating = false;
   let autoTimer: ReturnType<typeof setInterval>;
 
-  function updateDots(activeIndex: number): void {
-    dots.forEach((dot, i) => {
-      const active = i === activeIndex;
-      dot.setAttribute("aria-selected", String(active));
-      if (active) {
-        dot.classList.add("active");
-        dot.classList.remove("bg-white/40");
-        dot.style.backgroundColor = "#BA7F4A";
-      } else {
-        dot.classList.remove("active");
-        dot.style.backgroundColor = "";
-        dot.classList.add("bg-white/40");
+  // BezierDefinition = readonly [number, number, number, number] — must use as const
+  const smooth = [0.16, 1, 0.3, 1] as const;
+
+  // Spring transition options — lower stiffness + higher mass = slower, smoother feel
+  const springOpts: AnimationOptions = { type: "spring", stiffness: 220, damping: 28, mass: 1.1 };
+  const bounceOpts: AnimationOptions = { type: "spring", stiffness: 240, damping: 26, mass: 1.0 };
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  function mv(from: number, to: number): number[] { return [from, to]; }
+
+  /** Animate a list of elements with a calculated stagger delay. */
+  function staggerAnimate(
+    els: HTMLElement[],
+    keyframes: DOMKeyframesDefinition,
+    opts: AnimationOptions,
+    interval  = 0.1,
+    startDelay = 0
+  ): void {
+    const getDelay = stagger(interval, { startDelay });
+    els.forEach((el, i) =>
+      animate(el, keyframes, { ...opts, delay: getDelay(i, els.length) } as AnimationOptions)
+    );
+  }
+
+  // ── Left panel ────────────────────────────────────────────────────────────
+  function animateLeft(idx: number): void {
+    const slide = slides[idx];
+    const bar   = slide.firstElementChild as HTMLElement | null;
+    const card  = slide.querySelector<HTMLElement>("[data-left-card]");
+    const title = card?.querySelector<HTMLElement>("h2");
+    const sub   = card?.querySelector<HTMLElement>("p");
+
+    // Gold bar sweeps from left
+    if (bar)   animate(bar,   { opacity: mv(0, 1), x: mv(-65, 0) }, { duration: 0.80, ease: smooth });
+    // Card glides in from left
+    if (card)  animate(card,  { opacity: mv(0, 1), x: mv(-90, 0) }, { duration: 0.95, delay: 0.10, ease: smooth });
+    // Title and subtext rise up inside the card
+    if (title) animate(title, { opacity: mv(0, 1), y: mv(22, 0) },  { duration: 0.80, delay: 0.26, ease: smooth });
+    if (sub)   animate(sub,   { opacity: mv(0, 1), y: mv(18, 0) },  { duration: 0.80, delay: 0.40, ease: smooth });
+  }
+
+  // ── Right panel ───────────────────────────────────────────────────────────
+  function animateRight(idx: number): void {
+    const fg = fgImages[idx];
+
+    /* Carousel 1 — hero image glides from right, stats spring up with stagger */
+    if (idx === 0) {
+      const imgs = Array.from(fg.querySelectorAll<HTMLElement>("img:not([aria-hidden])"))
+        .filter(img => getComputedStyle(img).display !== "none");
+      imgs.forEach(img =>
+        animate(img, { opacity: mv(0, 1), x: mv(80, 0), scale: mv(0.95, 1) }, { duration: 1.1, ease: smooth })
+      );
+
+      const grid = fg.querySelector<HTMLElement>("[data-stats]");
+      if (grid) {
+        const cards = Array.from(grid.querySelectorAll<HTMLElement>(":scope > div"));
+        staggerAnimate(
+          cards,
+          { opacity: mv(0, 1), y: mv(70, 0), scale: mv(0.75, 1) },
+          bounceOpts,
+          0.13,
+          0.28
+        );
       }
+      return;
+    }
+
+    /* Carousel 2 — each position card springs up one by one */
+    if (idx === 1) {
+      const all     = Array.from(fg.querySelectorAll<HTMLElement>(".rounded-2xl"));
+      const visible = all.filter(c => getComputedStyle(c).display !== "none");
+      staggerAnimate(
+        visible,
+        { opacity: mv(0, 1), y: mv(85, 0), scale: mv(0.8, 1) },
+        bounceOpts,
+        0.15,
+        0
+      );
+      return;
+    }
+
+    /* Carousel 3 — image from right, list items stagger in from right */
+    if (idx === 2) {
+      const imgs = Array.from(fg.querySelectorAll<HTMLElement>("img:not([aria-hidden])"));
+      imgs.forEach(img =>
+        animate(img, { opacity: mv(0, 1), x: mv(75, 0), scale: mv(0.92, 1) }, { duration: 1.05, ease: smooth })
+      );
+
+      const items = Array.from(fg.querySelectorAll<HTMLElement>("[data-list-item]"));
+      staggerAnimate(
+        items,
+        { opacity: mv(0, 1), x: mv(60, 0) },
+        { duration: 0.75, ease: smooth },
+        0.12,
+        0.18
+      );
+    }
+  }
+
+  function triggerEntrance(idx: number): void {
+    animateLeft(idx);
+    animateRight(idx);
+  }
+
+  // ── Dots ──────────────────────────────────────────────────────────────────
+  function updateDots(idx: number): void {
+    dots.forEach((dot, i) => {
+      const on = i === idx;
+      dot.setAttribute("aria-selected", String(on));
+      dot.classList.toggle("active",      on);
+      dot.classList.toggle("bg-white/40", !on);
+      dot.style.backgroundColor = on ? "#BA7F4A" : "";
     });
   }
 
-  function goToSlide(next: number): void {
+  // ── Core transition ───────────────────────────────────────────────────────
+  async function goToSlide(next: number): Promise<void> {
     if (next === current || isAnimating) return;
     isAnimating = true;
+    const prev = current;
 
-    const prevIdx = current;
+    // Fade both panels out simultaneously
+    await Promise.all([
+      animate(slides[prev],   { opacity: mv(1, 0) }, { duration: FADE_OUT / 1000 }).finished,
+      animate(fgImages[prev], { opacity: mv(1, 0) }, { duration: FADE_OUT / 1000 }).finished,
+    ]);
 
-    slides[prevIdx].classList.remove("opacity-100");
-    slides[prevIdx].classList.add("opacity-0", "pointer-events-none");
-    fgImages[prevIdx].classList.remove("opacity-100");
-    fgImages[prevIdx].classList.add("opacity-0");
+    slides[prev].classList.add("pointer-events-none");
+    slides[prev].classList.replace("opacity-100", "opacity-0");
+    fgImages[prev].classList.replace("opacity-100", "opacity-0");
 
-    setTimeout(() => {
-      slides[next].classList.remove("opacity-0", "pointer-events-none");
-      slides[next].classList.add("opacity-100");
-      fgImages[next].classList.remove("opacity-0");
-      fgImages[next].classList.add("opacity-100");
+    // Reveal next panels, then fire entrance animations
+    slides[next].classList.remove("opacity-0", "pointer-events-none");
+    slides[next].classList.add("opacity-100");
+    fgImages[next].classList.remove("opacity-0");
+    fgImages[next].classList.add("opacity-100");
 
-      updateDots(next);
-      current = next;
+    animate(slides[next],   { opacity: mv(0, 1) }, { duration: 0.28 });
+    animate(fgImages[next], { opacity: mv(0, 1) }, { duration: 0.28 });
 
-      setTimeout(() => {
-        isAnimating = false;
-      }, FADE_IN);
-    }, FADE_OUT);
+    requestAnimationFrame(() => requestAnimationFrame(() => triggerEntrance(next)));
+
+    updateDots(next);
+    current = next;
+    setTimeout(() => { isAnimating = false; }, FADE_IN);
   }
 
+  // ── Auto / controls ───────────────────────────────────────────────────────
   function startAuto(): void {
-    autoTimer = setInterval(() => {
-      goToSlide((current + 1) % slides.length);
-    }, AUTO_DELAY);
+    autoTimer = setInterval(() => goToSlide((current + 1) % slides.length), AUTO_DELAY);
   }
+  function resetAuto(): void { clearInterval(autoTimer); startAuto(); }
 
-  function resetAuto(): void {
-    clearInterval(autoTimer);
-    startAuto();
-  }
+  dots.forEach(dot =>
+    dot.addEventListener("click", () => { goToSlide(Number(dot.dataset.dot)); resetAuto(); })
+  );
+  document.querySelector<HTMLButtonElement>("[data-prev]")
+    ?.addEventListener("click", () => { goToSlide((current - 1 + slides.length) % slides.length); resetAuto(); });
+  document.querySelector<HTMLButtonElement>("[data-next]")
+    ?.addEventListener("click", () => { goToSlide((current + 1) % slides.length); resetAuto(); });
 
-  dots.forEach((dot) => {
-    dot.addEventListener("click", () => {
-      goToSlide(Number(dot.dataset.dot));
-      resetAuto();
-    });
-  });
-
-  const prevBtn = document.querySelector<HTMLButtonElement>("[data-prev]");
-  const nextBtn = document.querySelector<HTMLButtonElement>("[data-next]");
-
-  prevBtn?.addEventListener("click", () => {
-    goToSlide((current - 1 + slides.length) % slides.length);
-    resetAuto();
-  });
-
-  nextBtn?.addEventListener("click", () => {
-    goToSlide((current + 1) % slides.length);
-    resetAuto();
-  });
-
+  // Initial entrance after page-load fade-in completes
+  setTimeout(() => triggerEntrance(0), 700);
   startAuto();
 </script>

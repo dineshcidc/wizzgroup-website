@@ -1,0 +1,32 @@
+---
+import desktopVideoSrc from "../assets/WizzBG_video.mp4";
+import mobileVideoSrc from "../assets/WizzBG_videomobile.mp4";
+
+interface Props {
+  overlayOpacity?: "50" | "80";
+}
+const { overlayOpacity = "50" } = Astro.props;
+---
+
+<!-- Desktop video background -->
+<video
+  autoplay
+  muted
+  loop
+  playsinline
+  class="hidden md:block absolute inset-0 w-full h-full object-cover"
+>
+  <source src={desktopVideoSrc} type="video/mp4" />
+</video>
+<!-- Mobile video background -->
+<video
+  autoplay
+  muted
+  loop
+  playsinline
+  class="block md:hidden absolute inset-0 w-full h-full object-cover"
+>
+  <source src={mobileVideoSrc} type="video/mp4" />
+</video>
+<!-- Overlay -->
+<div class={`absolute inset-0 ${overlayOpacity === "80" ? "bg-[#12152F]/80" : "bg-[#12152F]/50"}`}></div>

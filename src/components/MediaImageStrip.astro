@@ -1,0 +1,181 @@
+---
+interface MediaImage {
+  src: string;
+  alt: string;
+  title: string;
+  subtitle: string;
+}
+
+interface Props {
+  images: MediaImage[];
+}
+
+const { images } = Astro.props;
+
+const IMG_W = 144;
+---
+
+<style>
+  .media-card {
+    perspective: 600px;
+  }
+
+  .media-img {
+    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .media-card:hover .media-img {
+    transform: translateZ(55px);
+  }
+
+  .scroll-strip {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .scroll-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobile-thumb-selected img {
+    box-shadow: 0 -8px 20px rgba(255, 255, 255, 0.18);
+  }
+</style>
+
+<!-- DESKTOP (xl ≥ 1280px) -->
+<div class="hidden xl:block relative w-full" style="height:210px">
+  <div class="relative w-full max-w-[1400px] mx-auto h-full">
+    {
+      images.map((img, i) => (
+        <div
+          class="media-card absolute top-0 group cursor-pointer hover:!z-[9999]"
+          style={`left:calc(${i} * (100% - ${IMG_W}px) / ${images.length - 1}); z-index:${images.length - i};`}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            class="media-img w-36 h-48 rounded-lg object-cover block"
+          />
+          <div
+            class="absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2
+                   w-[350px] opacity-0 group-hover:opacity-100
+                   transition-opacity duration-300
+                   rounded-xl p-5 flex flex-row justify-between items-center gap-4
+                   bg-[#373737]/50 backdrop-blur-md border border-white/10"
+          >
+            <div class="flex flex-col gap-1 flex-1 min-w-0">
+              <span class="text-white font-semibold text-sm leading-tight line-clamp-1">
+                {img.title}
+              </span>
+              <span class="text-white/70 text-xs leading-snug line-clamp-2">
+                {img.subtitle}
+              </span>
+            </div>
+            <div class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-white/15 border border-white/20">
+              <svg
+                class="w-3 h-3 text-white"
+                viewBox="0 0 16 16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 3L11 8L6 13"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<!-- TABLET & MOBILE (below xl) -->
+<div class="mobile-strip-wrapper xl:hidden w-full flex flex-col gap-4">
+  <!-- Horizontal scroll strip — no hover overlay -->
+  <div class="scroll-strip flex flex-row gap-3 overflow-x-auto pb-2">
+    {
+      images.map((img, i) => (
+        <div
+          class:list={[
+            "media-thumb cursor-pointer relative flex-shrink-0",
+            i === 0 ? "mobile-thumb-selected" : "",
+          ]}
+          data-title={img.title}
+          data-subtitle={img.subtitle}
+        >
+          <img
+            src={img.src}
+            alt={img.alt}
+            class:list={[
+              "lg:w-44 lg:h-64 md:w-40 md:h-56 w-36 h-52 rounded-lg object-cover block transition-all duration-300",
+              i === 0 ? "" : "opacity-60",
+            ]}
+          />
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Info card shown below strip — updates on image click -->
+  <div
+    class="rounded-xl p-4 flex flex-row justify-between items-center gap-4
+           bg-[#373737]/50 backdrop-blur-md border border-white/10"
+  >
+    <div class="flex flex-col gap-1.5 flex-1 min-w-0">
+      <span class="mobile-card-title text-white font-semibold text-sm leading-tight line-clamp-1">
+        {images[0].title}
+      </span>
+      <span class="mobile-card-subtitle text-white/70 text-xs leading-snug line-clamp-2">
+        {images[0].subtitle}
+      </span>
+    </div>
+    <div class="flex-shrink-0 w-7 h-7 flex items-center justify-center rounded-lg bg-white/15 border border-white/20">
+      <svg
+        class="w-3 h-3 text-white"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <path
+          d="M6 3L11 8L6 13"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.mobile-strip-wrapper').forEach(wrapper => {
+    const thumbs = wrapper.querySelectorAll<HTMLElement>('.media-thumb');
+    const titleEl  = wrapper.querySelector('.mobile-card-title');
+    const subtitleEl = wrapper.querySelector('.mobile-card-subtitle');
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        if (titleEl)    titleEl.textContent    = thumb.dataset.title    ?? '';
+        if (subtitleEl) subtitleEl.textContent = thumb.dataset.subtitle ?? '';
+
+        thumbs.forEach(t => {
+          t.classList.remove('mobile-thumb-selected');
+          const img = t.querySelector('img');
+          if (img) img.classList.add('opacity-60');
+        });
+
+        thumb.classList.add('mobile-thumb-selected');
+        const img = thumb.querySelector('img');
+        if (img) img.classList.remove('opacity-60');
+      });
+    });
+  });
+</script>

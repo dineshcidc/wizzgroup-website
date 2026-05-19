@@ -3,7 +3,7 @@
 // Placeholder until Figma design is implemented
 import Header from "../components/Header.astro";
 import TabCard from "../components/TabCard.astro";
-import banner from "../assets/ApplicationBanner.png";
+import VideoBackground from "../components/VideoBackground.astro";
 import logo from "../assets/Wizzlogo.png";
 import zlOgoCopacity from "../assets/zlogo-opacity.png";
 import globalImage from "../assets/Global.png";
@@ -34,10 +34,22 @@ import chatbotAI from "../assets/Chatbot-AI.png";
 import infrastructureAI from "../assets/Infrastructure AI.png";
 import backendAI from "../assets/Backend.png";
 import frontendAI from "../assets/Frontend.png";
+import Media1 from "../assets/news-media images/Media-1.png";
+import Media2 from "../assets/news-media images/Media-2.png";
+import Media3 from "../assets/news-media images/Media-3.png";
+import Media4 from "../assets/news-media images/Media-4.png";
+import Media5 from "../assets/news-media images/Media-5.png";
+import Media6 from "../assets/news-media images/Media-6.png";
+import Media7 from "../assets/news-media images/Media-7.png";
+import Media8 from "../assets/news-media images/Media-8.png";
+import Media9 from "../assets/news-media images/Media-9.png";
+import Media10 from "../assets/news-media images/Media-10.png";
+import Media11 from "../assets/news-media images/Media-11.png";
 
 import "../styles/global.css";
 import PageAnimations from "../components/PageAnimations.astro";
 import MainFooter from "../components/MainFooter.astro";
+import MediaImageStrip from "../components/MediaImageStrip.astro";
 
 // Tab Content Data
 const tabContent = {
@@ -130,6 +142,20 @@ const faqItems = [
       "Yes. We use industry-standard security measures to safeguard your information and protect your privacy throughout the loan application and servicing process.",
   },
 ];
+
+const mediaImages = [
+  { src: Media1.src, alt: "Media 1", title: "Financial Workshop", subtitle: "Empowering communities through financial literacy events." },
+  { src: Media2.src, alt: "Media 2", title: "Payment Received", subtitle: "Fast, secure cross-border transfer solutions." },
+  { src: Media3.src, alt: "Media 3", title: "Global Partners", subtitle: "Building trusted partnerships across growth markets." },
+  { src: Media4.src, alt: "Media 4", title: "WPS Salary Payouts", subtitle: "Reliable salary disbursement for enterprises." },
+  { src: Media5.src, alt: "Media 5", title: "Festive Greetings", subtitle: "Celebrating milestones with our global community." },
+  { src: Media6.src, alt: "Media 6", title: "Welcome to Wizz", subtitle: "Your trusted partner for cross-border payments." },
+  { src: Media7.src, alt: "Media 7", title: "Moving Money", subtitle: "Seamless remittances for individuals and businesses." },
+  { src: Media8.src, alt: "Media 8", title: "Lifestyle Finance", subtitle: "Enabling better lives through smarter money movement." },
+  { src: Media9.src, alt: "Media 9", title: "Global Presence", subtitle: "Serving customers across 200+ countries worldwide." },
+  { src: Media10.src, alt: "Media 10", title: "New Horizons", subtitle: "Expanding into new markets and opportunities." },
+  { src: Media11.src, alt: "Media 11", title: "European Markets", subtitle: "Strengthening our footprint across European corridors." },
+];
 ---
 
 <html lang="en">
@@ -138,17 +164,14 @@ const faqItems = [
   <link rel="icon" type="image/png" href={logo.src} />
   <title>Dashboard</title>
   <body class="m-0 p-0 overflow-x-hidden">
-    <div
-      style={`background-image: url('${banner.src}')`}
-      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
-    >
-      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+    <div class="relative min-h-screen w-full">
+      <VideoBackground />
 
       <div
         class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-16 lg:gap-24 p-5 sm:p-8 md:p-10 lg:p-12"
       >
         <!-- Header -->
-        <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
+        <div class="sticky top-0 z-50 opacity-0" data-animate="fade-up" data-delay="100">
           <Header />
         </div>
 
@@ -367,7 +390,7 @@ const faqItems = [
                   id="presence-image"
                   src={GccImage.src}
                   alt="GCC"
-                  class="h-100 w-auto md:object-cover object-contain absolute -bottom-12"
+                  class="h-100 w-auto md:object-cover object-contain absolute -bottom-6"
                   style="transition: opacity 0.25s ease;"
                 />
               </div>
@@ -472,7 +495,7 @@ const faqItems = [
                 class="grid grid-cols-1 sm:grid-cols-3 xl:gap-8 gap-3 items-stretch"
               >
                 <div
-                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/30 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/30 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1 transition-transform duration-300 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <img
                     src={infrastructureAI.src}
@@ -492,7 +515,7 @@ const faqItems = [
                 </div>
 
                 <div
-                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1 transition-transform duration-300 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <img
                     src={backendAI.src}
@@ -512,7 +535,7 @@ const faqItems = [
                 </div>
 
                 <div
-                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1"
+                  class="flex flex-row items-center gap-3 sm:flex-col sm:items-center bg-[#373737]/24 border border-white/5 rounded-xl xl:p-5 p-3 sm:text-center flex-1 transition-transform duration-300 hover:-translate-y-0.5 cursor-pointer"
                 >
                   <img
                     src={frontendAI.src}
@@ -542,13 +565,15 @@ const faqItems = [
           >
             <!-- Top: Title -->
             <h2
-              class="bg-gradient-to-r from-[#959595] to-[#B1D1EA] bg-clip-text text-transparent text-2xl sm:text-3xl font-medium"
+              class="bg-gradient-to-r from-[#959595] to-[#B1D1EA] bg-clip-text text-transparent text-2xl sm:text-3xl font-medium mb-8"
             >
               News &amp; Media
             </h2>
 
+            <MediaImageStrip images={mediaImages} />
+
             <!-- Bottom: Know more button aligned right -->
-            <div class="flex justify-end">
+            <div class="md:flex justify-end mb-4 hidden">
               <button
                 class="flex items-center whitespace-nowrap cursor-pointer border border-white/20 font-medium text-white bg-[#4D4222]/50 gap-2 px-6 py-3 rounded-[40px] text-base transition-all duration-300 hover:bg-[#4D4222]/60"
               >

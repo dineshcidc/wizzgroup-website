@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/MainFooter.astro";
 import PageAnimations from "../components/PageAnimations.astro";
 import BrandCard from "../components/BrandCard.astro";
-import banner from "../assets/ApplicationBanner.png";
+import VideoBackground from "../components/VideoBackground.astro";
 import logo from "../assets/Wizzlogo.png";
 import zlogo from "../assets/Zlogo.png";
 import brand1 from "../assets/Brand1.png";
@@ -20,6 +20,10 @@ import wizzBrand4 from "../assets/Wizz-Brand4.png";
 import wizzBrand5 from "../assets/Wizz-Brand5.png";
 import wizzBrand6 from "../assets/Wizz-Brand6.png";
 import earth from "../assets/Earth.png";
+import corridorIndia from "../assets/INDIA- Restworld.png";
+import corridorUsa from "../assets/USA - Restworld.png";
+import corridorUae from "../assets/UAE - Restworld.png";
+import corridorCoverage from "../assets/Coverage Map.png";
 import visionImg from "../assets/Vision_about.png";
 import missionImg from "../assets/Mission_about.png";
 import differImg from "../assets/Differ_about.png";
@@ -191,17 +195,14 @@ const problemPills = [
     <title>About</title>
   </head>
   <body class="m-0 p-0 overflow-x-hidden">
-    <div
-      style={`background-image: url('${banner.src}')`}
-      class="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
-    >
-      <div class="absolute inset-0 bg-[#12152F]/50"></div>
+    <div class="relative min-h-screen w-full">
+      <VideoBackground />
 
       <div
         class="relative z-10 flex flex-col justify-between gap-10 sm:gap-14 md:gap-16 lg:gap-24 p-5 sm:p-8 md:p-10 lg:p-12 2xl:p-14 min-h-screen"
       >
         <!-- Header -->
-        <div class="opacity-0 z-50" data-animate="fade-up" data-delay="100">
+        <div class="sticky top-0 z-50 opacity-0" data-animate="fade-up" data-delay="100">
           <Header />
         </div>
 
@@ -401,22 +402,29 @@ const problemPills = [
             class="flex flex-col gap-0 w-full mt-4 md:mt-10"
             id="corridors-tab-section"
           >
-            <!-- Corridors Tabs — flex-wrap matches Dashboard TabCard (no centering, no scroll) -->
-            <div class="flex flex-wrap gap-3 w-full">
-              {
-                corridorTabs.map((tab) => (
-                  <div
-                    class={`corridor-tab px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
-                    ${
-                      tab.selected
-                        ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
-                        : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
-                    }`}
-                  >
-                    {tab.label}
-                  </div>
-                ))
-              }
+            <!-- Corridors Tabs: horizontal scroll on mobile, centered wrap on md+ -->
+            <div
+              id="corridors-tab-scroll"
+              class="overflow-x-auto w-full md:overflow-x-visible"
+              style="scrollbar-width: none; -ms-overflow-style: none;"
+            >
+              <div class="flex flex-nowrap gap-3 px-1 md:flex-wrap md:justify-center md:px-0 w-max md:w-full">
+                {
+                  corridorTabs.map((tab, i) => (
+                    <div
+                      data-tab-index={i}
+                      class={`corridor-tab flex-shrink-0 px-6 py-2 rounded-full text-base w-fit transition-all duration-300 cursor-pointer border
+                      ${
+                        tab.selected
+                          ? "bg-[#FFBD00]/17 border-[#F79A59] text-white"
+                          : "bg-[#8A8A8A]/10 text-white hover:bg-white/10 border-transparent"
+                      }`}
+                    >
+                      {tab.label}
+                    </div>
+                  ))
+                }
+              </div>
             </div>
 
             <!-- Vertical connector: absolute-positioned under the active tab -->
@@ -424,7 +432,7 @@ const problemPills = [
               <div
                 id="corridor-connector"
                 class="absolute flex flex-col items-center"
-                style="left: 0; transform: translateX(-50%); transition: left 0.3s ease;"
+                style="left: 0; transform: translateX(-50%);"
               >
                 <div
                   class="w-px h-12 bg-gradient-to-b from-[#BA7F4A]/30 to-[#BA7F4A]"
@@ -438,11 +446,19 @@ const problemPills = [
             <div
               class="w-full bg-[#373737]/30 border border-white/10 rounded-xl md:p-10 md:h-auto h-100"
             >
+              <!-- Desktop / Tablet: single earth image for all tabs -->
               <img
+                id="corridor-desktop-img"
                 src={earth.src}
                 alt="Corridors Map"
-                class="w-full md:h-auto h-full md:object-contain object-cover rounded-md"
+                class="hidden md:block w-full h-auto object-contain rounded-md"
+                style="transition: opacity 0.2s ease, filter 0.2s ease;"
               />
+              <!-- Mobile: per-tab images, JS switches them on click -->
+              <img src={corridorIndia.src} alt="India to Rest of the World" data-tab-index="0" class="corridor-mobile-img md:hidden w-full h-full object-cover rounded-md" />
+              <img src={corridorUsa.src} alt="USA to Rest of the World" data-tab-index="1" class="corridor-mobile-img hidden md:hidden w-full h-full object-cover rounded-md" />
+              <img src={corridorUae.src} alt="UAE to Rest of the World" data-tab-index="2" class="corridor-mobile-img hidden md:hidden w-full h-full object-cover rounded-md" />
+              <img src={corridorCoverage.src} alt="Coverage Map" data-tab-index="3" class="corridor-mobile-img hidden md:hidden w-full h-full object-cover rounded-md" />
             </div>
           </div>
         </div>
